@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NEMOSIM - Cook book (3) &mdash; nemosim 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="nemosim 1.0 documentation" href="index.html" />
+    <link rel="next" title="NEMOSIM - Cook book (4)" href="nscookbook4.html" />
+    <link rel="prev" title="NEMOSIM - Cook book (2)" href="nscookbook2.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="nscookbook4.html" title="NEMOSIM - Cook book (4)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nscookbook2.html" title="NEMOSIM - Cook book (2)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NEMOSIM - Cook book (3)</a><ul>
+<li><a class="reference internal" href="#the-orthogonal-projection">The Orthogonal projection</a></li>
+<li><a class="reference internal" href="#using-the-euler-angles">1. Using the Euler angles</a></li>
+<li><a class="reference internal" href="#pan-and-zoom-options">2. Pan and zoom options</a></li>
+<li><a class="reference internal" href="#adding-grid-lines">3. Adding grid-lines</a></li>
+<li><a class="reference internal" href="#arc-colour-scale-options">4. Arc colour-scale options</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nscookbook2.html"
+                        title="previous chapter">NEMOSIM - Cook book (2)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nscookbook4.html"
+                        title="next chapter">NEMOSIM - Cook book (4)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/nscookbook3.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="nemosim-cook-book-3">
+<span id="nscookbook3"></span><h1>NEMOSIM - Cook book (3)<a class="headerlink" href="#nemosim-cook-book-3" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-orthogonal-projection">
+<h2>The Orthogonal projection<a class="headerlink" href="#the-orthogonal-projection" title="Permalink to this headline">¶</a></h2>
+<p>Several examples used to illustrate NEMOSIM&#8217;s feature have already introduced some of the map projections available. These include the last example in the previous section which used the orthogonal map projection. The following sections demonstrate the controls available to the user that affect the final view.</p>
+</div>
+<div class="section" id="using-the-euler-angles">
+<h2>1. Using the Euler angles<a class="headerlink" href="#using-the-euler-angles" title="Permalink to this headline">¶</a></h2>
+<p>The default view is a side-on view with the Greenwich Meridian on the vertical centre-line
+and the Equator as the horizontal centreline. This view can be rotated in three planes
+using three angular controls: <tt class="docutils literal"><span class="pre">-eu1</span>&nbsp; <span class="pre">-eu2</span></tt> and <tt class="docutils literal"><span class="pre">-eu3</span></tt>. Each takes a parameter in
+degrees. Firstly, <tt class="docutils literal"><span class="pre">-eu1</span></tt> sets the east-west rotation. The following sequence shows the
+result of changing values from 0. (the default) to 360. in steps of 30 degrees. For this
+sequence <tt class="docutils literal"><span class="pre">-eu2</span></tt> and <tt class="docutils literal"><span class="pre">-eu3</span></tt> retain their defaults values of 0. :</p>
+<a class="reference internal image-reference" href="_images/example5a.png"><img alt="_images/example5a.png" class="align-center" src="_images/example5a.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5b.png"><img alt="_images/example5b.png" class="align-center" src="_images/example5b.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5c.png"><img alt="_images/example5c.png" class="align-center" src="_images/example5c.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5d.png"><img alt="_images/example5d.png" class="align-center" src="_images/example5d.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5e.png"><img alt="_images/example5e.png" class="align-center" src="_images/example5e.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5f.png"><img alt="_images/example5f.png" class="align-center" src="_images/example5f.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5g.png"><img alt="_images/example5g.png" class="align-center" src="_images/example5g.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5h.png"><img alt="_images/example5h.png" class="align-center" src="_images/example5h.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5i.png"><img alt="_images/example5i.png" class="align-center" src="_images/example5i.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5j.png"><img alt="_images/example5j.png" class="align-center" src="_images/example5j.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5k.png"><img alt="_images/example5k.png" class="align-center" src="_images/example5k.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5l.png"><img alt="_images/example5l.png" class="align-center" src="_images/example5l.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example5m.png"><img alt="_images/example5m.png" class="align-center" src="_images/example5m.png" style="width: 237.5px; height: 124.0px;" /></a>
+<p>As a typical example, the third image is generated by:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/bathy_level.nc -o example5c.png -d Bathy_level \
+-nomask -spos 3 -cs ps.pal -bbg gray -ortho -show -eu1 60 -eu2 0 -eu3 0 \
+-grid 30. 15. -abg black -annotate 115 30 &quot;eu1=60 eu2=0 eu3=0&quot; -afs 15
+</pre></div>
+</div>
+<p>Secondly, <tt class="docutils literal"><span class="pre">-eu2</span></tt> sets the north-south rotation. The following sequence shows the result
+of changing values from -90. through 0. (the default) to 90. in steps of 30 degrees. For
+this sequence <tt class="docutils literal"><span class="pre">-eu1</span></tt> and <tt class="docutils literal"><span class="pre">-eu3</span></tt> retain their defaults values of 0. :</p>
+<a class="reference internal image-reference" href="_images/example6a.png"><img alt="_images/example6a.png" class="align-center" src="_images/example6a.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example6b.png"><img alt="_images/example6b.png" class="align-center" src="_images/example6b.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example6c.png"><img alt="_images/example6c.png" class="align-center" src="_images/example6c.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example6d.png"><img alt="_images/example6d.png" class="align-center" src="_images/example6d.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example6e.png"><img alt="_images/example6e.png" class="align-center" src="_images/example6e.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example6f.png"><img alt="_images/example6f.png" class="align-center" src="_images/example6f.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example6g.png"><img alt="_images/example6g.png" class="align-center" src="_images/example6g.png" style="width: 237.5px; height: 124.0px;" /></a>
+<p>Thirdly, <tt class="docutils literal"><span class="pre">-eu3</span></tt> sets a left-right tilt. The following sequence shows the result
+of changing values from -90. through 0. (the default) to 90. in steps of 30 degrees. For
+this sequence <tt class="docutils literal"><span class="pre">-eu1</span></tt> and <tt class="docutils literal"><span class="pre">-eu2</span></tt> retain their defaults values of 0. :</p>
+<a class="reference internal image-reference" href="_images/example7a.png"><img alt="_images/example7a.png" class="align-center" src="_images/example7a.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example7b.png"><img alt="_images/example7b.png" class="align-center" src="_images/example7b.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example7c.png"><img alt="_images/example7c.png" class="align-center" src="_images/example7c.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example7d.png"><img alt="_images/example7d.png" class="align-center" src="_images/example7d.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example7e.png"><img alt="_images/example7e.png" class="align-center" src="_images/example7e.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example7f.png"><img alt="_images/example7f.png" class="align-center" src="_images/example7f.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example7g.png"><img alt="_images/example7g.png" class="align-center" src="_images/example7g.png" style="width: 237.5px; height: 124.0px;" /></a>
+<p>Thus <tt class="docutils literal"><span class="pre">-eu1</span></tt> and <tt class="docutils literal"><span class="pre">-eu2</span></tt> can be used to centre the view over a known geographical location. For example, given that the Kerguelen islands are situated at 69.5 degrees east and 49.25 degrees south, a view centred on the islands will be obtained with:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/bathy_level.nc -o example8a.png -d Bathy_level \
+-nomask -spos 3 -cs ps.pal -bbg gray -ortho -show -eu1 69.5 -eu2 -49.25 \
+-eu3 0 -grid 30. 15. -abg black -annotate 115 30 &quot;eu1=69.5 eu2=-49.25 eu3=0&quot; -afs 15
+</pre></div>
+</div>
+<p>I.e.:</p>
+<a class="reference internal image-reference" href="_images/example8a.png"><img alt="_images/example8a.png" class="align-center" src="_images/example8a.png" style="width: 475.0px; height: 248.0px;" /></a>
+<p>And the third angle can be used to tilt around this point, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/bathy_level.nc -o example8b.png -d Bathy_level \
+-nomask -spos 3 -cs ps.pal -bbg gray -ortho -show -eu1 69.5 -eu2 -49.25 \
+-eu3 60 -grid 30. 15. -abg black -annotate 115 30 &quot;eu1=69.5 eu2=-49.25 eu3=60.&quot; -afs 15
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example8b.png"><img alt="_images/example8b.png" class="align-center" src="_images/example8b.png" style="width: 475.0px; height: 248.0px;" /></a>
+</div>
+<div class="section" id="pan-and-zoom-options">
+<h2>2. Pan and zoom options<a class="headerlink" href="#pan-and-zoom-options" title="Permalink to this headline">¶</a></h2>
+<p>By default the globe is sized to almost fit the minimum dimension of the image canvas. The
+viewpoint can be raised or lowered from this setting by use of the <tt class="docutils literal"><span class="pre">-gsize</span></tt> option. This
+option takes a single argument which is a non-dimensional scaling. The default view is
+obtained with a value of 80. Lowering this value moves the viewpoint towards the globe
+centre (an effective &#8216;zoom-in&#8217;). Raising this value moves the viewpoint away (an effective
+&#8216;zoom-out&#8217;). The following sequence of images uses the last example to illustrate this
+with <tt class="docutils literal"><span class="pre">-gsize</span></tt> values of 10, 20, 40, 60, 80 (default), 100, 120, and 140 respectively:</p>
+<a class="reference internal image-reference" href="_images/example9a.png"><img alt="_images/example9a.png" class="align-center" src="_images/example9a.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9b.png"><img alt="_images/example9b.png" class="align-center" src="_images/example9b.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9c.png"><img alt="_images/example9c.png" class="align-center" src="_images/example9c.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9d.png"><img alt="_images/example9d.png" class="align-center" src="_images/example9d.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9e.png"><img alt="_images/example9e.png" class="align-center" src="_images/example9e.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9f.png"><img alt="_images/example9f.png" class="align-center" src="_images/example9f.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9g.png"><img alt="_images/example9g.png" class="align-center" src="_images/example9g.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9h.png"><img alt="_images/example9h.png" class="align-center" src="_images/example9h.png" style="width: 237.5px; height: 124.0px;" /></a>
+<p>Note the first few examples clearly verify that the Kerguelen Islands are at the centre of the
+image.</p>
+<p>The globe can also be moved off-centre using the <tt class="docutils literal"><span class="pre">-td</span></tt> (translation distance) and
+<tt class="docutils literal"><span class="pre">-ta</span></tt> (translation angle) options. The default value for both these parameters is
+zero. The single argument to the <tt class="docutils literal"><span class="pre">-td</span></tt> option is a non-dimensional distance with a
+useful range between 0 and 20. The single argument to the <tt class="docutils literal"><span class="pre">-ta</span></tt> option is an angle in
+degrees measured from the horizontal. The following sequence of images varies the
+translation distance from 5 to 20 with the default translation angle. The result moves
+the globe to the right:</p>
+<a class="reference internal image-reference" href="_images/example9i.png"><img alt="_images/example9i.png" class="align-center" src="_images/example9i.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9j.png"><img alt="_images/example9j.png" class="align-center" src="_images/example9j.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9k.png"><img alt="_images/example9k.png" class="align-center" src="_images/example9k.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9l.png"><img alt="_images/example9l.png" class="align-center" src="_images/example9l.png" style="width: 237.5px; height: 124.0px;" /></a>
+<p>The translation angle can be used to move the globe along different radii. The following
+sequence of images varies the translation angle between 45 degrees and 270 degrees with a
+fixed translation distance of 15:</p>
+<a class="reference internal image-reference" href="_images/example9m.png"><img alt="_images/example9m.png" class="align-center" src="_images/example9m.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9n.png"><img alt="_images/example9n.png" class="align-center" src="_images/example9n.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9o.png"><img alt="_images/example9o.png" class="align-center" src="_images/example9o.png" style="width: 237.5px; height: 124.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example9p.png"><img alt="_images/example9p.png" class="align-center" src="_images/example9p.png" style="width: 237.5px; height: 124.0px;" /></a>
+<p>Finally, the offset distance and angle are most commonly used with a &#8216;zoomed-in&#8217; image to
+recover a sense of curvature. This is demonstrated in this final example which is a
+variation of an earlier example used to illustrate the <tt class="docutils literal"><span class="pre">-gsize</span></tt> option with a value of
+40:</p>
+<a class="reference internal image-reference" href="_images/example9q.png"><img alt="_images/example9q.png" class="align-center" src="_images/example9q.png" style="width: 475.0px; height: 248.0px;" /></a>
+</div>
+<div class="section" id="adding-grid-lines">
+<h2>3. Adding grid-lines<a class="headerlink" href="#adding-grid-lines" title="Permalink to this headline">¶</a></h2>
+<p>One option has been used in all these examples which is yet to get a mention. This is the
+<tt class="docutils literal"><span class="pre">-grid</span></tt> option which overlays equally spaced lines of longitude and latitude. The option
+takes two arguments which are the longitudional and latitudinal spacing (in degrees)
+respectively.  These examples have used the recommended settings of 30. and 15. degrees
+respectively. Obviously, smaller spacings may be more appropriate for zoomed in views. For
+example, this variation of an earlier example with <tt class="docutils literal"><span class="pre">-grid</span> <span class="pre">15.</span> <span class="pre">10.</span></tt>:</p>
+<a class="reference internal image-reference" href="_images/example10a.png"><img alt="_images/example10a.png" class="align-center" src="_images/example10a.png" style="width: 475.0px; height: 248.0px;" /></a>
+<p>The mechanism for drawing these lines is relatively crude, the lines are produced by
+plotting regularly spaced dots along each requested line of constant longitude or
+latitude. By default the dots are spaced 0.125 degrees apart. In many cases this provides
+the appearance of continuous lines. However, the option: <tt class="docutils literal"><span class="pre">-gridstep</span></tt> can be used to fine
+tune this by either:</p>
+<blockquote>
+<div><ul class="simple">
+<li>using a finer angular step to draw better connected lines</li>
+<li>using a coarser angular step to reduce the visual significance of the grid lines</li>
+</ul>
+</div></blockquote>
+<p>For example, specifying <tt class="docutils literal"><span class="pre">-gridstep</span> <span class="pre">0.025</span> <span class="pre">0.025</span></tt> produces continuous lines in the current
+example:</p>
+<a class="reference internal image-reference" href="_images/example10b.png"><img alt="_images/example10b.png" class="align-center" src="_images/example10b.png" style="width: 475.0px; height: 248.0px;" /></a>
+<p>Whereas, specifying <tt class="docutils literal"><span class="pre">-gridstep</span> <span class="pre">3.0</span> <span class="pre">2.0</span></tt> produces a more subtle effect:</p>
+<a class="reference internal image-reference" href="_images/example10c.png"><img alt="_images/example10c.png" class="align-center" src="_images/example10c.png" style="width: 475.0px; height: 248.0px;" /></a>
+</div>
+<div class="section" id="arc-colour-scale-options">
+<h2>4. Arc colour-scale options<a class="headerlink" href="#arc-colour-scale-options" title="Permalink to this headline">¶</a></h2>
+<p>It is worth noting that the default image size/aspect ratio results in some redundant
+border areas for the whole globe images. A more compact image is obtained using a square
+canvas but this can compress the colour-bar and is aesthetically less pleasing. An
+alternative, &#8216;arc&#8217; form of the colour-scale is provided for these cases. The colour-scale
+can be positioned in any of the four quadrants using the values 5 through 8 of the
+<tt class="docutils literal"><span class="pre">-spos</span></tt> scale-position option. These cases are illustrated here:</p>
+<a class="reference internal image-reference" href="_images/example11c.png"><img alt="_images/example11c.png" class="align-center" src="_images/example11c.png" style="width: 248.0px; height: 248.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example11d.png"><img alt="_images/example11d.png" class="align-center" src="_images/example11d.png" style="width: 248.0px; height: 248.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example11a.png"><img alt="_images/example11a.png" class="align-center" src="_images/example11a.png" style="width: 248.0px; height: 248.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example11b.png"><img alt="_images/example11b.png" class="align-center" src="_images/example11b.png" style="width: 248.0px; height: 248.0px;" /></a>
+<p>Note also that with all the non-rectangular map projections an alternative background
+colour can be set for the &#8216;white-space&#8217; around each map. Land areas within the map are set
+by the <tt class="docutils literal"><span class="pre">-bg</span></tt> option; border areas are coloured according to the <tt class="docutils literal"><span class="pre">-bbg</span></tt> option and the
+&#8216;non-mapped&#8217; areas of the image area are coloured according to the <tt class="docutils literal"><span class="pre">-abg</span></tt> option. The
+default colour is a mid-gray. The four images above use both a white border and
+alternative background; all previous examples in this section have used a black canvas
+with gray borders. Because the arc scale will overlap part of the border area, the best
+results are obtained when borders and blackground colours are the same. Dark backgrounds
+will require changing the font colour used for annotations. For example:</p>
+<a class="reference internal image-reference" href="_images/example11e.png"><img alt="_images/example11e.png" class="align-center" src="_images/example11e.png" style="width: 248.0px; height: 248.0px;" /></a>
+<p>which was created using:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/bathy_level.nc -o example11e.png -d Bathy_level -nomask -cs ps.pal \
+          -bbg black -ortho -show -eu1 69.5 -eu2 -49.25 -eu3 60 -grid 30. 15.          \
+          -annotate 115 478 &quot;eu1=69.5 eu2=-49.25 eu3=60. spos=6&quot; -afs 15 -gsize 80     \
+          -spos 6 -r 400 400 -bfg white -fg white -abg black
+</pre></div>
+</div>
+<p>But choosing a dark background which is different to the land colour allows better determination of the map edges:</p>
+<a class="reference internal image-reference" href="_images/example11f.png"><img alt="_images/example11f.png" class="align-center" src="_images/example11f.png" style="width: 248.0px; height: 248.0px;" /></a>
+<p>which differs from the previous example only by:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example11e.png -o example11f.png -bbg midnightblue -abg midnightblue
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="nscookbook4.html" title="NEMOSIM - Cook book (4)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nscookbook2.html" title="NEMOSIM - Cook book (2)"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

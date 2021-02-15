@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NEMOSIM - Cook book (6) &mdash; nemosim 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="nemosim 1.0 documentation" href="index.html" />
+    <link rel="next" title="NEMOSIM - Cook book (7)" href="nscookbook7.html" />
+    <link rel="prev" title="NEMOSIM - Cook book (5)" href="nscookbook5.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="nscookbook7.html" title="NEMOSIM - Cook book (7)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nscookbook5.html" title="NEMOSIM - Cook book (5)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NEMOSIM - Cook book (6)</a><ul>
+<li><a class="reference internal" href="#example-video-frame-production">Example video frame production</a></li>
+<li><a class="reference internal" href="#adding-a-date-clock">Adding a date clock</a></li>
+<li><a class="reference internal" href="#producing-all-the-frames">Producing all the frames</a></li>
+<li><a class="reference internal" href="#encoding-the-video-sequence">Encoding the video sequence</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nscookbook5.html"
+                        title="previous chapter">NEMOSIM - Cook book (5)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nscookbook7.html"
+                        title="next chapter">NEMOSIM - Cook book (7)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/nscookbook6.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="nemosim-cook-book-6">
+<span id="nscookbook6"></span><h1>NEMOSIM - Cook book (6)<a class="headerlink" href="#nemosim-cook-book-6" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="example-video-frame-production">
+<h2>Example video frame production<a class="headerlink" href="#example-video-frame-production" title="Permalink to this headline">¶</a></h2>
+<p>The last example in the previous section provides a useful starting point for
+demonstrating the use of <tt class="docutils literal"><span class="pre">nemosim</span></tt> in scripts to generate animation frames. The example
+data used in the previous section, and included in the software release, was originally
+part of a 60 day sequence of daily means held in a single file. The steps required to
+produce an animated sequence from such a file can be summarised in the following menu:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Produce a sample frame with content tuned as required AND save the mapping matrix
+using the <tt class="docutils literal"><span class="pre">-usemap</span></tt> option</li>
+<li>Script a loop command that produces successive numbered frames from each time level.
+Re-use of the mapping matrix within this loop ensures both consistency between the
+frames and speed of production.</li>
+<li>Encode the frames into a single movie file.</li>
+</ul>
+</div></blockquote>
+<p>For a high quality video it is best to start with a slightly larger image than the previous
+example. Here is a suitable sample frame which repeats the example from the previous section
+with tweaked sizes and positions:</p>
+<div class="highlight-python"><div class="highlight"><pre>nemosim -f ./data/AMM60_1d_20121018_20121216_grid_T.nc -d sst -o amm60.png -nomask \
+        -r 1000 1200 -ortho -eu1 356. -eu2 53. -eu3 -1. -gsize 30 \
+        -vmask 100. 0.0  -stfs 24 -sfs 18 -margins 10 160 50 50 -grid 5 5  \
+        -limits 0.0 19.0 -spos 2 -bbg black -bfg white -cs blue2red_b.pal \
+        -title &quot;AMM60 Sea Surface Temperature&quot; -stitle C -stjus 7 -stpos 1010 1250 \
+        -logo ./data/NOC_logo_white.png -lsize 198 100 -lpos 5 10 \
+        -usemap amm60_ortho.nc
+</pre></div>
+</div>
+<p>Note the addition of the <tt class="docutils literal"><span class="pre">-usemap</span></tt> option and the change in data source to the
+original, multi-time-level file. No particular time-level is requested here so the
+default choice of the first time-level will be extracted. This isn&#8217;t important here
+since the frame isn&#8217;t actually going to be used; the purpose of this step is only to
+generate the mapping matrix.</p>
+</div>
+<div class="section" id="adding-a-date-clock">
+<h2>Adding a date clock<a class="headerlink" href="#adding-a-date-clock" title="Permalink to this headline">¶</a></h2>
+<p>Before proceeding to frame production, it is useful to consider how best to indicate the
+passage of time in any resulting animation. Oceanic features will form and propagate to
+provide a sense of movement but without a clear time indicator there is no reference for
+the actual time scale involved. All NEMO output will include the time_counter variable
+which timestamps each time-level with the number of seconds since a reference date. In the
+case of the AMM60 data the units are:</p>
+<div class="highlight-python"><div class="highlight"><pre>time_counter:units = &quot;seconds since 1950-01-01 00:00:00&quot; ;
+</pre></div>
+</div>
+<p>For display purposes, a calendar date provides a better visual aid to the passage of time
+since most frames are produced at intervals of at least one model day. Converting
+time_counter values to calendar dates is a task beyond the scope of this cookbook but
+assuming you have access to a utility such as <tt class="docutils literal"><span class="pre">nocstfinder</span></tt> shown here:</p>
+<div class="highlight-python"><div class="highlight"><pre>nocstfinder -f ./data/AMM60_1d_20121018_20121216_grid_T.nc  -e 0 -l -r
+18102012 19102012 20102012 21102012 22102012 23102012 24102012
+25102012 26102012 27102012 28102012 29102012 30102012 31102012
+01112012 02112012 03112012 04112012 05112012 06112012 07112012
+08112012 09112012 10112012 11112012 12112012 13112012 14112012
+15112012 16112012 17112012 18112012 19112012 20112012 21112012
+22112012 23112012 24112012 25112012 26112012 27112012 28112012
+29112012 30112012 01122012 02122012 03122012 04122012 05122012
+06122012 07122012 08122012 09122012 10122012 11122012 12122012
+13122012 14122012 15122012 16122012
+</pre></div>
+</div>
+<p>then obtaining a list of dates associated with the data should be possible. For reference,
+the arguments shown here to the command: request the end of each averaging period (<tt class="docutils literal"><span class="pre">-e</span>
+<span class="pre">0</span></tt>); specify a gregorian leap-year calendar (<tt class="docutils literal"><span class="pre">-l</span></tt>) and request dates as DDMMYYY in
+reverse to the normal NEMO presentation of YYYYMMDD (<tt class="docutils literal"><span class="pre">-r</span></tt>).</p>
+<p>The date format requested here is precisely that required for the <tt class="docutils literal"><span class="pre">-dateclk</span></tt> option to
+<tt class="docutils literal"><span class="pre">nemosim</span></tt> which can be used to size, position and annotate a date clock representation
+of the date on the output image. The date clock is a circular element with calendar months
+marked around the circumference, the year written in the centre and a circular black bar
+indicating current progress through the year.</p>
+</div>
+<div class="section" id="producing-all-the-frames">
+<h2>Producing all the frames<a class="headerlink" href="#producing-all-the-frames" title="Permalink to this headline">¶</a></h2>
+<p>We now have all the elements required to produce the complete frame sequence. With some
+simple scripting techniques a series of numbered frames can easily be produced. Here is
+a bash script example that combines all the elements so far discussed:</p>
+<div class="highlight-python"><div class="highlight"><pre>#!/bin/bash
+nemosim -f ./data/AMM60_1d_20121018_20121216_grid_T.nc -d sst -o amm60.png -nomask \
+        -r 1000 1200 -ortho -eu1 356. -eu2 53. -eu3 -1. -gsize 30 \
+        -vmask 100. 0.0  -stfs 24 -sfs 18 -margins 10 160 50 50 -grid 5 5  \
+        -limits 0.0 19.0 -spos 2 -bbg black -bfg white -cs blue2red_b.pal \
+        -title &quot;AMM60 Sea Surface Temperature&quot; -stitle C -stjus 7 -stpos 1010 1250 \
+        -logo ./data/NOC_logo_white.png -lsize 198 100 -lpos 5 10 \
+        -usemap amm60_ortho.nc
+
+dates=( `nocstfinder -f ./data/AMM60_1d_20121018_20121216_grid_T.nc  -e 0 -l -r` )
+
+for n in `seq 0 1 59`
+do
+  nn=`printf &#39;%4.4d&#39; $n`
+  nt=$(( $n + 1 ))
+  fout=amm60_sst_$nn.png
+  ./nemosim -as amm60_ortho.nc -o $fout -t $nt -dateclk 100 780 1000 ${dates[$n]}
+done
+</pre></div>
+</div>
+<p>Just a couple of subtleties worth noting here:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Frame numbers are produced as a zero padded 4-digit string. This ensures they are
+both numerically and alphabetically ordered since some encoding software packages
+may rely on unix file ordering when ingesting frames.</li>
+<li>The elements of the bash array <tt class="docutils literal"><span class="pre">dates</span></tt> are 0-indexed whereas the index supplied
+to the <tt class="docutils literal"><span class="pre">-t</span></tt> option of <tt class="docutils literal"><span class="pre">nemosim</span></tt> refers to the first time-level as index 1. Hence
+the need to have <tt class="docutils literal"><span class="pre">nt</span></tt> leading <tt class="docutils literal"><span class="pre">n</span></tt> by 1.</li>
+</ul>
+</div></blockquote>
+<p>Here is an example frame from the sequence (click on the image to view the full-size
+frame):</p>
+<a class="reference internal image-reference" href="_images/amm60_sst_0035.png"><img alt="_images/amm60_sst_0035.png" class="align-center" src="_images/amm60_sst_0035.png" style="width: 292.5px; height: 325.0px;" /></a>
+</div>
+<div class="section" id="encoding-the-video-sequence">
+<h2>Encoding the video sequence<a class="headerlink" href="#encoding-the-video-sequence" title="Permalink to this headline">¶</a></h2>
+<p>There are many ways to turn a numbered sequence of images into an encoded video and many
+of these methods will produce poor quality results unless some control is exercised over
+default settings. Chiefly this is because most techniques are meant for encoding video
+streams of real-world images where natural features are not unduly altered by slight
+blurring or fuzziness. When crisper edges are required and parts of the image remain
+static then it is often necessary to increase quality demands and except the larger files
+that result.</p>
+<p>The <tt class="docutils literal"><span class="pre">ffmpeg</span></tt> utility provides one of the simplest methods and is readily available:</p>
+<div class="highlight-python"><div class="highlight"><pre>ffmpeg -i amm60_sst_%04d.png -vcodec mpeg4 -vb 20M amm60SST.mp4
+</pre></div>
+</div>
+<p>Here the quality is controlled by the <tt class="docutils literal"><span class="pre">-vb</span></tt> option (video bitrate). Try leaving this
+option out and compare the results.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="nscookbook7.html" title="NEMOSIM - Cook book (7)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nscookbook5.html" title="NEMOSIM - Cook book (5)"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

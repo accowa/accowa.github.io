@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NEMOSIM - Scriptable Image Maker for NEMO output &mdash; nemosim 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="nemosim 1.0 documentation" href="#" />
+    <link rel="next" title="NEMOSIM - User Manual" href="nemosim.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="#"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="nemosim.html" title="NEMOSIM - User Manual"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NEMOSIM - Scriptable Image Maker for NEMO output</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nemosim.html"
+                        title="next chapter">NEMOSIM - User Manual</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="nemosim-scriptable-image-maker-for-nemo-output">
+<h1>NEMOSIM - Scriptable Image Maker for NEMO output<a class="headerlink" href="#nemosim-scriptable-image-maker-for-nemo-output" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nemosim.html">NEMOSIM - User Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nemosim.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nemosim.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nemosim.html#option-reference">Option reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nscookbook.html">NEMOSIM - Cook book (1)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook.html#example-1">Example 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook.html#common-enhancements">Common enhancements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nscookbook2.html">NEMOSIM - Cook book (2)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook2.html#increasing-productivity">Increasing productivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook2.html#using-multiple-threads">1. Using multiple threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook2.html#reusing-the-mapping-matrix">2. Reusing the mapping matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook2.html#command-inheritance">3. Command inheritance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nscookbook3.html">NEMOSIM - Cook book (3)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook3.html#the-orthogonal-projection">The Orthogonal projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook3.html#using-the-euler-angles">1. Using the Euler angles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook3.html#pan-and-zoom-options">2. Pan and zoom options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook3.html#adding-grid-lines">3. Adding grid-lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook3.html#arc-colour-scale-options">4. Arc colour-scale options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nscookbook4.html">NEMOSIM - Cook book (4)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook4.html#controlling-the-layout">Controlling the layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook4.html#overview-of-options-used">1. Overview of options used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook4.html#determining-current-settings">2. Determining current settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook4.html#matching-settings-to-command-line-options">3. Matching settings to command-line options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook4.html#setting-margins">4. Setting margins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook4.html#using-scale-margins-to-control-colourbars">5. Using scale margins to control colourbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook4.html#label-placement-and-text-justification">6. Label placement and text justification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook4.html#text-fonts">7. Text fonts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook4.html#logo-placement-and-sizing">8. Logo placement and sizing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nscookbook5.html">NEMOSIM - Cook book (5)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook5.html#limited-area-views-and-models">Limited area views and models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook5.html#limited-area-views-from-global-datasets">1. Limited area views from global datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook5.html#producing-images-from-regional-datasets">2. Producing images from regional datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook5.html#cropping-by-reducing-the-regional-box">3. Cropping by reducing the regional box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook5.html#using-the-orthogonal-projection">4   Using the orthogonal projection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nscookbook6.html">NEMOSIM - Cook book (6)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook6.html#example-video-frame-production">Example video frame production</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook6.html#adding-a-date-clock">Adding a date clock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook6.html#producing-all-the-frames">Producing all the frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook6.html#encoding-the-video-sequence">Encoding the video sequence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nscookbook7.html">NEMOSIM - Cook book (7)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook7.html#working-with-non-nemo-output">Working with non-NEMO output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook7.html#creating-an-external-coordinate-file">Creating an external coordinate file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook7.html#using-the-external-coordinate-file">Using the external coordinate file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook7.html#dealing-with-overlap-rows-and-columns">Dealing with overlap rows and columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook7.html#creating-a-mask-file">Creating a mask file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook7.html#using-an-overlay-to-distinguish-regions">Using an overlay to distinguish regions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscookbook7.html#adding-texture-to-land-areas">Adding texture to land areas</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<a class="reference internal image-reference" href="_images/NEMO-Website.png"><img alt="_images/NEMO-Website.png" class="align-center" src="_images/NEMO-Website.png" style="width: 51.5px; height: 5.9px;" /></a>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="nemosim.html" title="NEMOSIM - User Manual"
+             >next</a> |</li>
+        <li><a href="#">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

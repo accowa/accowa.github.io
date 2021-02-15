@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NEMOSIM - Cook book (1) &mdash; nemosim 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="nemosim 1.0 documentation" href="index.html" />
+    <link rel="next" title="NEMOSIM - Cook book (2)" href="nscookbook2.html" />
+    <link rel="prev" title="NEMOSIM - User Manual" href="nemosim.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="nscookbook2.html" title="NEMOSIM - Cook book (2)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nemosim.html" title="NEMOSIM - User Manual"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NEMOSIM - Cook book (1)</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#example-1">Example 1</a></li>
+<li><a class="reference internal" href="#common-enhancements">Common enhancements</a><ul>
+<li><a class="reference internal" href="#adding-a-colour-scale">1. Adding a colour-scale</a></li>
+<li><a class="reference internal" href="#adding-titles">2. Adding titles</a></li>
+<li><a class="reference internal" href="#changing-style-colours">3. Changing style colours</a></li>
+<li><a class="reference internal" href="#using-two-input-fields">4. Using two input fields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nemosim.html"
+                        title="previous chapter">NEMOSIM - User Manual</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nscookbook2.html"
+                        title="next chapter">NEMOSIM - Cook book (2)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/nscookbook.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="nemosim-cook-book-1">
+<span id="nscookbook"></span><h1>NEMOSIM - Cook book (1)<a class="headerlink" href="#nemosim-cook-book-1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to learn about nemosim is to try some simple examples and gradually add
+complexity. The distribution comes with sample data from a 1/4 degree gloabl model
+(surface only) and a 1 degree global model (full 3D) that can be used for these cook book
+examples.  These examples assume that you have successfully compiled nemosim and are
+running from the main NemoSim directory. You will need to add this directory to your PATH
+environment and adjust relative paths to the data accordingly if you wish to run from a
+different directory.</p>
+</div>
+<div class="section" id="example-1">
+<h2>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h2>
+<p>There are three mandatory arguments which must be provided (either explicitly or via
+command inheritance). However, these three may not be sufficient if the operating
+environment is not fully set. For example, an attempt to produce an image of the sea
+surface temperature from the example 1/4 degree data could be as simple as:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example1.png -d isstempe
+
+ Error: bathymetry file not found
+ bathy_level.nc does not exist
+ set NEMOBATHYFILE environment variable correctly
+ or supply the bathy filename with the -bathy option
+ or run with the -nomask option
+</pre></div>
+</div>
+<p>This first attempt has been brought up short because nemosim requires instruction on how
+to identify masked (land/seabed) values within the dataset. For many datasets a single
+fillvalue will be sufficient but when, for example, plotting a sub-surface layer it is
+useful to distinguish between land points and sea-bed. To do this, nemosim requires
+additional information about the model bathymetry; in particular the number of wet levels
+in each grid column. Traditionally, this information is held in the bathy_level.nc input
+file used in a constant z-level NEMO configuration. Most groups will be using partial
+z-levels these days and will employ a bathy_meter.nc file. A bathy_level.nc file can be
+created from such runs using the mask.nc file that NEMO will create when told to via the
+nn_msh namelist parameter. The tmask dataset in the mask.nc file can be vertically summed
+to provide the Bathy_level field, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>ncap2 -v -sBathy_level=tmask.float().ttl($z) mask.nc bathy_level.nc
+ncks -A -C -4 -v nav_lon,nav_lat bathy_meter.nc bathy_level.nc
+</pre></div>
+</div>
+<p>If the Bathy_level dataset exists in an accessible NetCDF file then this file can be
+named via the <tt class="docutils literal"><span class="pre">-bathy</span></tt> command-line option or the NEMOBATHYFILE environment variable.
+If the dataset is not available then adding the <tt class="docutils literal"><span class="pre">-nomask</span></tt> option will bypass the
+requirement and treat the whole dataset as valid data with an assumed fill value of 0.0.
+e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example1.png -d isstempe -nomask
+</pre></div>
+</div>
+<p>appears to have worked and an image will have been created. This can be viewed using your
+favorite image viewing utility. ImageMagick&#8217;s own display utility is as good as many and
+will have been included when the ImageMagick libraries were built or installed. Thus:</p>
+<div class="highlight-python"><div class="highlight"><pre>display example1.png
+</pre></div>
+</div>
+<p>will reveal the image below. Alternatively, this can be done in a single step by adding the -show option:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example1.png -d isstempe -nomask -show
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example1.png"><img alt="_images/example1.png" class="align-center" src="_images/example1.png" style="width: 362.0px; height: 202.0px;" /></a>
+<p>In this case, the plot is satisfactory because the land values in the SST field plotted
+are set to zero in the dataset. The green border has been added to the web display to help
+illustrate the edges of the image. If the fill value is not zero or more than one fill
+value is used (for example to distinguish between land and seabed locations) then two
+values can be supplied via the <tt class="docutils literal"><span class="pre">-vmask</span></tt> option.  By default, points matching the first
+masked value will be plotted in black, points matching the other mask value will be
+plotted in gray.</p>
+</div>
+<div class="section" id="common-enhancements">
+<h2>Common enhancements<a class="headerlink" href="#common-enhancements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="adding-a-colour-scale">
+<h3>1. Adding a colour-scale<a class="headerlink" href="#adding-a-colour-scale" title="Permalink to this headline">¶</a></h3>
+<p>The first common enhancement is to add a colour-scale. Nemosim allows rectangular
+colourbars to be added to any of the four possible margins (left, right, bottom, top).
+Selecting a position automatically adds margins of a size suitable for the purpose:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example1a.png -d isstempe -nomask -show -spos 1
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example1a.png"><img alt="_images/example1a.png" class="align-center" src="_images/example1a.png" style="width: 477.0px; height: 250.0px;" /></a>
+<p>Position 1 places the scale in the lefthand margin; 2 right-hand; 3 bottom and 4 top as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example1a.png -d isstempe -nomask -show -spos 1
+./nemosim -f ./data/ORCA025_2001m01I.nc -o example1b.png -d isstempe -nomask -show -spos 2
+./nemosim -f ./data/ORCA025_2001m01I.nc -o example1c.png -d isstempe -nomask -show -spos 3
+./nemosim -f ./data/ORCA025_2001m01I.nc -o example1d.png -d isstempe -nomask -show -spos 4
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example1a.png"><img alt="_images/example1a.png" class="align-center" src="_images/example1a.png" style="width: 314.82px; height: 165.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example1b.png"><img alt="_images/example1b.png" class="align-center" src="_images/example1b.png" style="width: 314.82px; height: 165.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example1c.png"><img alt="_images/example1c.png" class="align-center" src="_images/example1c.png" style="width: 314.82px; height: 165.0px;" /></a>
+<a class="reference internal image-reference" href="_images/example1d.png"><img alt="_images/example1d.png" class="align-center" src="_images/example1d.png" style="width: 314.82px; height: 165.0px;" /></a>
+</div>
+<div class="section" id="adding-titles">
+<h3>2. Adding titles<a class="headerlink" href="#adding-titles" title="Permalink to this headline">¶</a></h3>
+<p>By default, nemosim does not display a plot title and simply labels the colour-scale with
+the NetCDF dataset&#8217;s short name. These are rarely meaningful to anyone other than a NEMO
+aficionado but it is simple to add a title with the <tt class="docutils literal"><span class="pre">-title</span></tt> option and to override the
+default scale title with the <tt class="docutils literal"><span class="pre">-stitle</span></tt> option, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example1e.png -d isstempe -nomask -show -spos 1 \
+                                          -stitle SST -title &quot;Sea Surface Temperature&quot;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example1e.png"><img alt="_images/example1e.png" class="align-center" src="_images/example1e.png" style="width: 477.0px; height: 250.0px;" /></a>
+<p>Advanced options are available to control the placement, font and font-size of all these
+elements. These options will be described later; for now it is enough to note the
+capability. Please note also that strings containing spaces must be quoted (either single
+or double quotes).</p>
+</div>
+<div class="section" id="changing-style-colours">
+<h3>3. Changing style colours<a class="headerlink" href="#changing-style-colours" title="Permalink to this headline">¶</a></h3>
+<p>Foreground and background colours are, by default, black and white respectively. Other
+colours may be chosen via the <tt class="docutils literal"><span class="pre">-fg</span></tt>, <tt class="docutils literal"><span class="pre">-bg</span></tt>, <tt class="docutils literal"><span class="pre">-bfg</span></tt> and <tt class="docutils literal"><span class="pre">-bfg</span></tt> options which set
+the main image foreground and background colours and the border area foreground and
+background colours respectively. Colours may be given as standard colours names (such as
+<tt class="docutils literal"><span class="pre">-bg</span> <span class="pre">darkgreen</span></tt>) or hexadecimal RGB values. The following example illustrates this by
+setting the border background to a mid-gray with RGB value (166 166 166):</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example1f.png -d isstempe -nomask -show -spos 1 \
+                                          -stitle SST -title &quot;Sea Surface Temperature&quot; \
+                                          -bbg &quot;#a6a6a6&quot;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example1f.png"><img alt="_images/example1f.png" class="align-center" src="_images/example1f.png" style="width: 477.0px; height: 250.0px;" /></a>
+</div>
+<div class="section" id="using-two-input-fields">
+<h3>4. Using two input fields<a class="headerlink" href="#using-two-input-fields" title="Permalink to this headline">¶</a></h3>
+<p>The final example in this introductory set illustrates how to provide a second data field
+to nemosim. Commonly, the second data-field is combined with the first as either a sum,
+difference or speed calculation (<tt class="docutils literal"><span class="pre">-sum</span></tt>, <tt class="docutils literal"><span class="pre">-diff</span></tt>, <tt class="docutils literal"><span class="pre">-uv</span></tt>, respectively). For these,
+the second dataset is named via the <tt class="docutils literal"><span class="pre">-d2</span></tt> option. For cases where the second dataset
+resides in a separate datafile, this can be provided via the <tt class="docutils literal"><span class="pre">-f2</span></tt> option (not used
+here). A special treatment of the second component is provided by the <tt class="docutils literal"><span class="pre">-overlay</span></tt> option.
+For this, the second dataset is not combined with the first but is used to create its own
+image which is overlaid on the image produced by the first dataset. This is only effective
+if the second dataset has a limited geographical coverage but is ideal for overlaying
+sea-ice on other state variables. The merging occurs in pixel space (i.e. after the
+generation of 8-bit images) with the second image selected everywhere its pixel value is
+above a certain threshold. Normally, this coincides with the minimum value on the data
+range used to plot the second field (as given via the <tt class="docutils literal"><span class="pre">-limits2</span></tt> option). In the
+following example, the result is the SST field visible in sea-ice free regions with the
+ice concentration elsewhere:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example1g.png -d isstempe -nomask -show -spos 1 \
+                                          -title &quot;Sea Surface Temperature with sea ice&quot;\
+                                          -stitle SST -d2 ileadfra -limits2 0.0 0.8    \
+                                          -overlay -bbg &quot;#a6a6a6&quot; -stitle2 &quot;ice conc.&quot;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example1g.png"><img alt="_images/example1g.png" class="align-center" src="_images/example1g.png" style="width: 477.0px; height: 250.0px;" /></a>
+<p>Note also the automatic generation of a second colour-scale (this will be placed in the
+opposite margin to that selected for the main colour-scale) and the use of the
+<tt class="docutils literal"><span class="pre">-stitle2</span></tt> option to give a more meaningful title to the second colour-scale.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="nscookbook2.html" title="NEMOSIM - Cook book (2)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nemosim.html" title="NEMOSIM - User Manual"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

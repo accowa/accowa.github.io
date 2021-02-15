@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NEMOSIM - Cook book (5) &mdash; nemosim 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="nemosim 1.0 documentation" href="index.html" />
+    <link rel="next" title="NEMOSIM - Cook book (6)" href="nscookbook6.html" />
+    <link rel="prev" title="NEMOSIM - Cook book (4)" href="nscookbook4.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="nscookbook6.html" title="NEMOSIM - Cook book (6)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nscookbook4.html" title="NEMOSIM - Cook book (4)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NEMOSIM - Cook book (5)</a><ul>
+<li><a class="reference internal" href="#limited-area-views-and-models">Limited area views and models</a></li>
+<li><a class="reference internal" href="#limited-area-views-from-global-datasets">1. Limited area views from global datasets</a></li>
+<li><a class="reference internal" href="#producing-images-from-regional-datasets">2. Producing images from regional datasets</a></li>
+<li><a class="reference internal" href="#cropping-by-reducing-the-regional-box">3. Cropping by reducing the regional box</a></li>
+<li><a class="reference internal" href="#using-the-orthogonal-projection">4   Using the orthogonal projection</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nscookbook4.html"
+                        title="previous chapter">NEMOSIM - Cook book (4)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nscookbook6.html"
+                        title="next chapter">NEMOSIM - Cook book (6)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/nscookbook5.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="nemosim-cook-book-5">
+<span id="nscookbook5"></span><h1>NEMOSIM - Cook book (5)<a class="headerlink" href="#nemosim-cook-book-5" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="limited-area-views-and-models">
+<h2>Limited area views and models<a class="headerlink" href="#limited-area-views-and-models" title="Permalink to this headline">¶</a></h2>
+<p>The examples so far have concentrated on producing images of or from global model
+datasets. This section demonstrates some of the options for producing limited area views;
+either from global datasets or from regional model output.</p>
+</div>
+<div class="section" id="limited-area-views-from-global-datasets">
+<h2>1. Limited area views from global datasets<a class="headerlink" href="#limited-area-views-from-global-datasets" title="Permalink to this headline">¶</a></h2>
+<p>Producing a limited area view from a larger dataset has been demonstrated previously by
+employing the pan and zoom options of the orthogonal projection. However, a similar result
+can also be achieved with the default, uniform long-lat projection by specifying the
+bounding coordinates of the region of interest. These bounds are supplied as longitude
+latitude pairs to the <tt class="docutils literal"><span class="pre">-sw</span></tt> and <tt class="docutils literal"><span class="pre">-ne</span></tt> options. As the names suggest, these options
+specify the lower left (<tt class="docutils literal"><span class="pre">-sw</span></tt>) corners and upper right (<tt class="docutils literal"><span class="pre">-ne</span></tt>) corners of the bounding
+rectangle in long-lat space. Because <tt class="docutils literal"><span class="pre">nemosim</span></tt> was originally developed with global
+models in mind, an additional option: <tt class="docutils literal"><span class="pre">-no_offset</span></tt> may be required to disable some
+assumptions about the longitudinal cyclicity of the data. For example, an attempt to
+produce a regional view of the bathymetry around the Kerguelen plateau (i.e. a similar
+view to the earlier orthogonal example) such as:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f data/bathy_level.nc -d Bathy_level -o example14a.png \
+          -sw 60. -55. -ne 79. -44.5 -nomask -show
+</pre></div>
+</div>
+<p>doesn&#8217;t quite produce the expected result:</p>
+<a class="reference internal image-reference" href="_images/example14a.png"><img alt="_images/example14a.png" class="align-center" src="_images/example14a.png" style="width: 180.0px; height: 100.0px;" /></a>
+<p>Adding the <tt class="docutils literal"><span class="pre">-no_offset</span></tt> option fixes this:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example14a.png -o example14b.png -no_offset
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example14b.png"><img alt="_images/example14b.png" class="align-center" src="_images/example14b.png" style="width: 180.0px; height: 100.0px;" /></a>
+<p>Note regions that straddle the Greenwich Meridion  can be produced from suitable sources
+by specifying <tt class="docutils literal"><span class="pre">-ne</span></tt> longitude values greater than 360.</p>
+</div>
+<div class="section" id="producing-images-from-regional-datasets">
+<h2>2. Producing images from regional datasets<a class="headerlink" href="#producing-images-from-regional-datasets" title="Permalink to this headline">¶</a></h2>
+<p>NEMO is often used for regional studies and, with care, <tt class="docutils literal"><span class="pre">nemosim</span></tt> can be used to produce
+images from regional model output. To demonstrate this some example data is provided from
+the Atlantic Margin Model at 1 minute resolution (AMM60). The data provided are for a
+single SST field which is sufficient to demonstrate the capabilities. Bear in mind,
+though, that <tt class="docutils literal"><span class="pre">nemosim</span></tt> merely extracts a slice through the depth dimension for plotting.
+Since many regional models are run with sigma-style vertical coordinates, it may be
+necessary to introduce a preprocessing step if the intention is to plot a constant depth
+surface away from the sea surface.</p>
+<p>Firstly, try the default settings with the new data:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f data/AMM60_sst.nc -d sst -o example15a.png -show -nomask -np 4
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example15a.png"><img alt="_images/example15a.png" class="align-center" src="_images/example15a.png" style="width: 180.0px; height: 100.0px;" /></a>
+<p>which does little more than demonstrate the default assumptions for global data. The
+plotted patch can be moved around by repositioning the central longitude line. For
+example:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example15a.png -o example15b.png -cenl 90.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example15b.png"><img alt="_images/example15b.png" class="align-center" src="_images/example15b.png" style="width: 180.0px; height: 100.0px;" /></a>
+<p>but to reduce the blank areas we need to specify the bounding region. Suitable values can
+be obtained by scanning the nav_lon and nav_lat fields in the dataset. This almost works:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example15a.png -o example15c.png -sw 335. 39.5 -ne 377.5 65.5
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example15c.png"><img alt="_images/example15c.png" class="align-center" src="_images/example15c.png" style="width: 180.0px; height: 100.0px;" /></a>
+<p>but suffers from the cyclic assumptions (check the top left-hand corner). Note that by
+setting the bounding region, <tt class="docutils literal"><span class="pre">nemosim</span></tt> has entered a non-global mode where points
+outside the data domain are set to the alternative background colour (default gray). This
+reveals the shape of the data domain with curvilinear boundaries in the uniform long-lat
+projection. Adding the <tt class="docutils literal"><span class="pre">-no_offset</span></tt> option produces the first clear and complete result
+from the regional model:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example15c.png -o example15d.png -no_offset
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example15d.png"><img alt="_images/example15d.png" class="align-center" src="_images/example15d.png" style="width: 180.0px; height: 100.0px;" /></a>
+<p>Finally, changing the aspect ratio produces a more natural result:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example15d.png -o example15e.png -r 700 600
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example15e.png"><img alt="_images/example15e.png" class="align-center" src="_images/example15e.png" style="width: 175.0px; height: 150.0px;" /></a>
+</div>
+<div class="section" id="cropping-by-reducing-the-regional-box">
+<h2>3. Cropping by reducing the regional box<a class="headerlink" href="#cropping-by-reducing-the-regional-box" title="Permalink to this headline">¶</a></h2>
+<p>When producing images for purposes such as animation sequences, it is desirable to have
+images with straighter edges. One simple way the achieve this is to set a bounding region
+wholly contained within the data domain, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f data/AMM60_sst.nc -d sst -o example16.png -show \
+       -nomask -sw 343.35 41.00 -ne 367. 63.45 -r 452 600 \
+       -no_offset -np 4
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example16.png"><img alt="_images/example16.png" class="align-center" src="_images/example16.png" style="width: 113.0px; height: 150.0px;" /></a>
+<p>which has the desired effect but, of course, truncates some of the domain.</p>
+</div>
+<div class="section" id="using-the-orthogonal-projection">
+<h2>4   Using the orthogonal projection<a class="headerlink" href="#using-the-orthogonal-projection" title="Permalink to this headline">¶</a></h2>
+<p>There is a better alternative because, in the case of the AMM60 domain, the area appears
+nearly rectangular when viewed using the orthogonal projection. This may not be
+immediately apparent so it is useful to document the steps taken from the default setting
+to reach the final view. Firstly, acitivate the orthogonal projection in a square image:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f data/AMM60_sst.nc -d sst -o example17a.png -nomask \
+       -r 600 600 -ortho -show -np 4
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example17a.png"><img alt="_images/example17a.png" class="align-center" src="_images/example17a.png" style="width: 150.0px; height: 150.0px;" /></a>
+<p>Now centre the image on the centre of the data domain using the first two Euler angles:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example17a.png -o example17b.png -eu1 356. -eu2 53.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example17b.png"><img alt="_images/example17b.png" class="align-center" src="_images/example17b.png" style="width: 150.0px; height: 150.0px;" /></a>
+<p>Next use the vmask option to set the land points (which have the value 0.0) to gray:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example17b.png -o example17c.png -vmask 100. 0.0
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example17c.png"><img alt="_images/example17c.png" class="align-center" src="_images/example17c.png" style="width: 150.0px; height: 150.0px;" /></a>
+<p>Now use the zoom option (<tt class="docutils literal"><span class="pre">-gsize</span></tt>) to almost fill the image area with the data domain.
+Because of the shape of the data domain, the best result is obtained with a slightly
+rectangular canvas:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example17c.png -o example17d.png -r 600 720 -gsize 30
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example17d.png"><img alt="_images/example17d.png" class="align-center" src="_images/example17d.png" style="width: 150.0px; height: 180.0px;" /></a>
+<p>At this stage it is obvious that a slight twist around the third axis will give a more
+even border around the data domain:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example17d.png -o example17e.png -eu3 -1.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example17e.png"><img alt="_images/example17e.png" class="align-center" src="_images/example17e.png" style="width: 150.0px; height: 180.0px;" /></a>
+<p>With these settings as a basis we can add the dressing and by exercising fine control over
+font sizes and placements produce a complete image suitable for animation purposes:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example17e.png -o example17f.png -spos 2 -bbg black \
+       -bfg white -stfs 14 -sfs 11 -margins 10 96 30 30 \
+       -grid 5 5 -limits 0   .0 18.0 -cs blue2red_b.pal \
+       -title &quot;AMM60 Sea Surface Temperature&quot; -stitle C \
+       -stjus 7 -stpos 612 750 \
+       -logo    ./data/NOC_logo_white.png -lsize 120 60 \
+       -lpos 4 6 -t 1 -dateclk 60 468 600 18102012 -tfs 24
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example17f.png"><img alt="_images/example17f.png" class="align-center" src="_images/example17f.png" style="width: 176.5px; height: 195.0px;" /></a>
+<p>The next section of the cookbook will use this last example as the basis for an animation
+sequence which demonstrates many of the advantages of nemosim.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="nscookbook6.html" title="NEMOSIM - Cook book (6)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nscookbook4.html" title="NEMOSIM - Cook book (4)"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

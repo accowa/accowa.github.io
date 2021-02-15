@@ -1,0 +1,572 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NEMOSIM - User Manual &mdash; nemosim 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="nemosim 1.0 documentation" href="index.html" />
+    <link rel="next" title="NEMOSIM - Cook book (1)" href="nscookbook.html" />
+    <link rel="prev" title="NEMOSIM - Scriptable Image Maker for NEMO output" href="index.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="nscookbook.html" title="NEMOSIM - Cook book (1)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="NEMOSIM - Scriptable Image Maker for NEMO output"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NEMOSIM - User Manual</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#option-reference">Option reference</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">NEMOSIM - Scriptable Image Maker for NEMO output</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nscookbook.html"
+                        title="next chapter">NEMOSIM - Cook book (1)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/nemosim.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="nemosim-user-manual">
+<span id="nemosim"></span><h1>NEMOSIM - User Manual<a class="headerlink" href="#nemosim-user-manual" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>nemosim reads horizontal slices of NEMO ocean model data and produces a bitmap
+image of the data according to the controls imposed by the command-line
+arguments. These arguments provide a fair degree of control over the final image
+including:</p>
+<ul class="simple">
+<li>Geographical domain (default: global)</li>
+<li>Data range limits</li>
+<li>Image size</li>
+<li>Colour scale</li>
+<li>Optional data field to be overlaid or combined as a sum, difference, speed etc.</li>
+<li>Map projection ( (lon,lat) , Mollweide or orthographic )</li>
+<li>Optional logo placement</li>
+<li>Colour scale legend placement</li>
+<li>Optional date clock</li>
+<li>Optional additional annotation</li>
+<li>Input dataset format (NetCDF)</li>
+</ul>
+<p>nemosim is built using the
+<cite>ImageMagick &lt;http://www.imagemagick.org/&gt;</cite> library which provides
+routines to manipulate images in a multitude of image formats. nemosim restricts
+output to high quality pngs or jpegs.  In order to access font information (for
+annotations) nemosim needs to have access to an X server. This means the command
+must be run in a desktop environment where a valid X display is accessible. If
+&#8220;xclock&#8221; works then so will nemosim. Despite this minor restriction nemosim is
+ideally suited for incorporation into scripts thus automating the production of
+frames for animation.</p>
+<p>nemosim will work from a single NetCDF file but the NEMO files do not generally
+contain the masking fields. Thus to overlay a meaningful land mask the model
+bathy_level dataset must also be supplied. This is normally called
+&#8220;bathy_level.nc&#8221; but each model configuration will have its own dataset. Access
+to this dataset is determined by:</p>
+<ul class="simple">
+<li>Disabling the land mask by using the <tt class="docutils literal"><span class="pre">-nomask</span></tt> option</li>
+<li>Providing a full path via the -bathy argument</li>
+<li>Providing a full path via the environment variable: <tt class="docutils literal"><span class="pre">NEMOBATHYFILE</span></tt>. E.g.</li>
+</ul>
+<p><tt class="docutils literal"><span class="pre">export</span> <span class="pre">NEMOBATHYFILE=/home/Users/me/ORCA025/bathy_level.nc</span></tt></p>
+<p>nemosim can be run with a minimum number of command line arguments and should
+make sensible choices for most parameters. Access to all settings is provided
+via command-line arguments for refining images further.  For fancier images the
+list can get quite long and not particularly memorable. Fortunately, nemosim
+will record the invoking command within the image as a comment field or within a
+saved map file as a NetCDF global attribute. The creation command for any image
+can be retrieved using the ImageMagick <tt class="docutils literal"><span class="pre">identify</span> <span class="pre">-verbose</span></tt> utility. A shell
+script utility is provided to run this command and retrieve just the command
+information in a well formatted manner:
+<tt class="docutils literal"><span class="pre">$NSIM_ROOT/bin/rdimgcom</span> <span class="pre">mynemoimage.png</span></tt></p>
+</div>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The full set of command line arguments is:</p>
+<div class="highlight-python"><div class="highlight"><pre>Usage: nemosim
+                  [-as mapfile|image|cmdfile {}]
+                  -f infile
+                  -o outimage
+                  -d dataset_name
+                  [-usemap transform_mapping_file {}]
+                  [-k k_level] {0}
+                  [-spos colour_scale_position]{0} (0-8 valid)
+                  [-cs colour_file] {pastel.pal}
+                  [-limits data_min data_max]
+                  [-crescale scale_factor_for_colourscale]
+                  [-logsc]
+                  [-f2 infile2]
+                  [-d2 2nd_dataset_name]
+                   [-k2] {0}
+                   [-uv ]
+                   [-diff ]
+                   [-sum ]
+                   [-overlay ]
+                   [-nscombo ]
+                    [-overi overlay_threshold_index] {2}
+                    [-cs2 overlay_colour_file] {seaice.pal}
+                    [-limits2 overlay_data_min overlay_data_max]
+                    [-crescale2 scale_factor_for_overlay_colscale]
+                  [-r i_size j_size] {720 400}
+                  [-high] {1920 1080}
+                  [-medium] {720 400}
+                  [-low] {360 200}
+                  [-sw bottom_left_degrees bottom_left_degrees] {0.0 -90.0}
+                  [-ne top_right_degrees top_right_degrees] {360.0 90.}
+                  [-cenl centreline_longitude] {300.0}
+                  [-no_offset]
+                  [-moll]
+                    [-mcen centre_meridian] {300}
+                  [-icosa]
+                  [-conic]
+                    [-mcen longitude of rotated pole] {300}
+                    [-mlat latitude of rotated pole] {90}
+                  [-ortho]
+                    [-eu1 first_Euler_angle] {90.0}
+                    [-eu2 second_Euler_angle] {90.0}
+                    [-eu3 third_Euler_angle] {180.0}
+                    [-ta offset_translation_angle] {0}
+                    [-td offset_translation_distance] {0}
+                    [-gsize globe_scale_factor] {80}
+                    [-vdist viewpoint_distance] {10}
+                    [-grid lon_spacing lat_spacing] {30. 15.}
+                    [-gridstep lon_dot_spacing lat_dot_spacing] {0.125 0.125}
+                  [-png]
+                    [-transp_bg]
+                    [-transp_fg]
+                  [-jpeg]
+                  [-fg image_foreground_colour]{white}
+                  [-bg image_background_colour]{black}
+                  [-abg alternative image_background_colour]{gray}
+                  [-bfg border_foreground_colour]{white}
+                  [-bbg border_background_colour]{black}
+                  [-margins left right bottom top]{0 0 0 0}
+                  [-Margins left% right% bottom% top%]{spos dependant}
+                  [-smargins left right bottom top]{0 0 0 0}
+                  [-Smargins left% right% bottom% top%] {spos dependant}
+                  [-dateclk clock_radius ck_xpos ck_ypos datestr]
+                  [-logo logo_image_file]
+                    [-lsize logo_width logo_height
+                    [-lpos logo_xpos logo_ypos]
+                  [-annotate xpos ypos label_text]
+                    [-afs annotation-font-size] {11}
+                  [-title title_text]
+                    [-tpos title_xpos title_ypos
+                    [-tjus title_text_justification]
+                    [-tfnt title_font ]
+                    [-tfs title_font_pointsize]{12}
+                  [-stitle scale_title_text]{var_name}
+                    [-stpos scale_title_xpos scale_title_ypos
+                    [-stjus scale_title_text_justification]
+                  [-stitle2 2nd_scale_title_text]{var2_name}
+                    [-stpos2 2nd_scale_title_x 2nd_scale_title_y
+                    [-stjus2 2nd_scale_title_text_justification]
+                  [-stfnt scale_title_font ]
+                    [-stfs title_font_pointsize]{10}
+                  [-sfnt scale_font ]
+                    [-sfs scale_font_pointsize]{9}
+                  [-bathy bathy_level_file]
+                  [-coordf coordinate_file]
+                  [-nomask]
+                  [-bcoord]
+                  [-q]
+                  [-cice]
+                  [-nooverl]
+                  [-xdim longitude_dimension_name]{x}
+                  [-ydim latitude_dimension_name]{y}
+                  [-np omp_num_threads]
+                  [-t netcdf_time_level]
+                  [-box]
+                  [-usemax]
+                  [-usemin]
+                  [-rpt report_level]
+                  [-show]
+                  [-info]
+                  [-verbose]
+</pre></div>
+</div>
+<p>Formally, only the first three are essential (as indicated by the absence of []
+brackets); but even those are not required if making use of the <tt class="docutils literal"><span class="pre">-as</span></tt> option
+(see section on Command inheritance).  Where set, the built-in defaults are
+shown in {}. Many other defaults will be set dependent on other choices. For
+examples in the absence of explicit data limits the dataset minimum and maximum
+vaules will be used. All the other options can be used to override the automatic
+choices.</p>
+</div>
+<div class="section" id="option-reference">
+<h2>Option reference<a class="headerlink" href="#option-reference" title="Permalink to this headline">¶</a></h2>
+<p>Each option is explained in the following sections which
+include examples for illustration:</p>
+<p><strong>Mandatory options</strong></p>
+<dl class="docutils">
+<dt><strong>-f infile</strong></dt>
+<dd>An input NetCDF file name must be supplied.</dd>
+<dt><strong>-o outimage</strong></dt>
+<dd>An output image filename must be supplied.</dd>
+<dt><strong>-d dataset_name</strong></dt>
+<dd>The &#8220;short name&#8221; of the dataset to be extracted and displayed.  Names containing
+spaces must be quoted; e.g. &#8220;POTENTIAL TEMPERATURE (MEAN)&#8221;.</dd>
+</dl>
+<p><strong>Component options</strong></p>
+<dl class="docutils">
+<dt><strong>-as mapfile|image|cmdfile</strong></dt>
+<dd>nemosim is able to extract previous command strings from either: pixel to ij
+mapping files (see -usemap); other images created by nemosim or ascii text files.
+Without any additional arguments this will recreate the original image produced by
+the command (overwriting any existing image of the same name). Additional arguments
+will replace any occurrances of the same option appearing either in the input
+command record or preceding in the supplied list. Thus:
+<tt class="docutils literal"><span class="pre">nemosim</span> <span class="pre">-as</span> <span class="pre">existing.png</span> <span class="pre">-o</span> <span class="pre">newcopy.png</span></tt> will create a copy of the existing image
+completely from scratch. This is the only option that avoids the need to provide the
+three, otherwise, mandatory arguments. Note, extracting command strings from nemosim
+generated images is done by running the ./bin/rdimgcom script and writing the results
+to a temporary file. If the compiler does not support the Fortran 2008 standard
+EXECUTE_COMMAND function (Gfortran 4.8 or later) or the program cannot create the
+temporary file, then the user is prompted to run these steps manually and create an
+ascii cmdfile. Running with a mapfile should always work since the command is stored
+as a NetCDF attribute.</dd>
+<dt><strong>[-k k_level] {0}</strong></dt>
+<dd>The level to be extracted from a 3D dataset. This value should be 0
+for 2D datasets.</dd>
+<dt><strong>[-cs colour_file] {pastel.pal}</strong></dt>
+<dd>The name of the colourscale to use. Current options are: pastel.pal, pastel2.pal,
+ps.pal, seaice.pal, best64.pal, blue2red_b.pal, blue2red.pal, brown2green.pal,
+brown2green_desat.pal, brown2white.pal, tim.pal, blue2white.pal, relief.pal,
+bathy.pal, velocity.pal</dd>
+<dt><strong>[-limits data_min data_max] {}</strong></dt>
+<dd>The data limits over which the 252 colours of the colour scale are applied. Values
+less than the minimum will be assigned the first colour in the scale. Values
+greater than the maximum will be assigned the last colour in the scale.</dd>
+<dt><strong>[-crescale scale_factor_for_colourscale]</strong></dt>
+<dd>use the supplied scale factor to rescale the units displayed on the main colourscale.</dd>
+<dt><strong>[-logsc]</strong></dt>
+<dd>Use the log (base 10) of the main variable for plotting. Range limits
+supplied to the -limits option should be limits for the log values.
+Currently only the main field (either direct values or combined via the
+-combo options) can be treated. Overlay fields (supplied via the -over
+options) are not affected by this option.</dd>
+<dt><strong>[-f2 infile]</strong></dt>
+<dd>An optional input file name giving the location of a 2nd component dataset.
+If**-d2**is used without this option then the 1st component datafile is
+assumed to also contain the 2nd component.</dd>
+<dt><strong>[-d2 2nd_component dataset]</strong></dt>
+<dd><p class="first">An optional 2nd compoent dataset which can be combined with the first component
+dataset to produce either: a sum, difference (1st - 2nd) or a speed (sqrt(1st^2 +
+2nd^2)) field.</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt><strong>[-k2 k_level] {0}</strong></dt>
+<dd>The level to be extracted from a 3D dataset for the second component. This
+value should be 0 for 2D datasets.</dd>
+<dt><strong>[-uv]</strong></dt>
+<dd>Combine the 2 components as a speed field (sqrt(1st^2 + 2nd^2)). This one
+works best with the -logsc option.</dd>
+<dt><strong>[-sum]</strong></dt>
+<dd>Calculate and plot the sum of the 2 components.</dd>
+<dt><strong>[-diff]</strong></dt>
+<dd>Combine the 2 components as a difference field (1st - 2nd).</dd>
+<dt><strong>[-nscombo]</strong></dt>
+<dd>Combine the 2 components as a North-South hemisphere composite. The 1st
+field is plotted in the Northern hemisphere and the 2nd in the Southern
+hemisphere.</dd>
+<dt><strong>[-overlay]</strong></dt>
+<dd><p class="first">Overlay the second dataset on the first. The mechanism is crude and
+happens in pixelspace but it can be used to overlay fields which overlap
+only in confined areas. The most useful examples of these are the seaice
+fields.  The named dataset must be present in the original input files.</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt><strong>[-overi overlay_threshold_index] {2}</strong></dt>
+<dd>The threshold colour index. Only pixels in the overlay image with
+a colour index greater than this value will be mapped onto the
+combined image. Thus the degree of masking achieved by the
+overlay field is controlled by the combination of the overlay
+data limits and the overlay threshold index.</dd>
+<dt><strong>[-cs2 overlay_colour_file] {seaice.pal}</strong></dt>
+<dd>The colour file applied to the overlay field (monochromatic scales
+work best)</dd>
+<dt><strong>[-limits2 overlay_data_min overlay_data_max] {}</strong></dt>
+<dd>The data range limits for the overlaid field</dd>
+<dt><strong>[-crescale2 scale_factor_for_2nd_colourscale]</strong></dt>
+<dd>use the supplied scale factor to rescale the units displayed
+on the colourscale for the overlaid field.</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><strong>[-r i_size j_size] {720 400}</strong></dt>
+<dd>The image size in pixels. Note that the default horizontal colourscale legend will
+be placed in an additional stripe at the bottom of the image. The height of this
+additional area will be 15% of the supplied height. The (optional) vertical colour
+scale will occupy the left-hand 15% of the width and will overlay the underlying
+image.</dd>
+<dt><strong>[-high] {1920 1080}</strong></dt>
+<dd>Predefined image size giving a HD 1080p resolution image.</dd>
+<dt><strong>[-medium] {720 400}</strong></dt>
+<dd>Predefined image size giving a reasonable image suitable for animations</dd>
+<dt><strong>[-low] {360 200}</strong></dt>
+<dd>Predefined image size giving a small, low resolution image suitable for previewing
+or web use.</dd>
+<dt><strong>[-sw bottom_left_degrees bottom_left_degrees] {0.0 -80.0}</strong></dt>
+<dd>Optional restriction on the region
+to be displayed. The SW corner of the viewing window
+should be supplied in degrees E, degrees N.</dd>
+<dt><strong>[-ne top_right_degrees top_right_degrees] {360.0 90.}</strong></dt>
+<dd>Optional restriction on the region to be displayed. The NW corner of the viewing
+window should be supplied in degrees E, degrees N.  Longitudinal values greater
+than 360. are permitted to allow regions which straddle the GM</dd>
+<dt><strong>[-cenl centreline_longitude] {300.0}</strong></dt>
+<dd>The longitude of the centre of the image. This is really only relevant to global
+regions which can be treated cyclically. Strange effects can happen if you fail to
+switch this off (-no_offset) with subglobal images.</dd>
+<dt><strong>[-no_offset]</strong></dt>
+<dd>Switch of the centreline positioning which assumes the image can be treated
+cyclically. This is applied automatically for Mollweide and orthographic projections.</dd>
+<dt><strong>[-png]</strong></dt>
+<dd>Force output image format to be PNG instead of JPEG. This happens automatically if
+the output filename ends with a .png extension. PNG format is lossless, compact and
+supports transparency.</dd>
+<dt><strong>[-moll]</strong></dt>
+<dd>Apply a Mollweide projection.</dd>
+<dt><strong>[-mcen centre_meridian] {300}</strong></dt>
+<dd>Set the longitude (degrees E) of the meridian running down the centre of the
+Mollweide ellipse.</dd>
+<dt><strong>[-ortho]</strong></dt>
+<dd><p class="first">Apply an orthographic projection. Essentially a &#8220;gplot&#8221; emulator without the
+interactivity.  For anyone familiar with gplot the next 7 options are the same view
+controls that are set in gplot&#8217;s preview window. Everyone else will soon get the
+hang of it!</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt><strong>[-eu1 first_Euler_angle] {90.0}</strong></dt>
+<dd>E-W rotate in degrees E</dd>
+<dt><strong>[-eu2 second_Euler_angle] {90.0}</strong></dt>
+<dd>N-S rotate in degrees N</dd>
+<dt><strong>[-eu3 third_Euler_angle] {180.0}</strong></dt>
+<dd>Tilt angle in degrees</dd>
+<dt><strong>[-ta offset_translation_angle] {0}</strong></dt>
+<dd>Offset translation angle in degrees
+(only useful if you need to move the globe from the centre of the image)</dd>
+<dt><strong>[-td offset_translation_distance] {0}</strong></dt>
+<dd>Offset translation distance (in globe radii)
+(only useful if you need to move the globe from the centre of the image)</dd>
+<dt><strong>[-gsize globe_scale_factor] {80}</strong></dt>
+<dd>Globe scale factor. Decrease to zoom in; increase to zoom out</dd>
+<dt><strong>[-vdist viewpoint_distance] {10}</strong></dt>
+<dd>Viewpoint distance. Decrease to zoom in; increase to zoom out</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><strong>[-icosa]</strong></dt>
+<dd>Map a global image onto the faces of an icosahedron. The resulting image can
+be cut-out, folded and glued to form a 3-dimensional solid.</dd>
+<dt><strong>[-conic]</strong></dt>
+<dd>An attempt to mimic the transformations necessary for a spherical display
+device. Only partially successful and still under development.</dd>
+<dt><strong>[-mcen longitude of rotated pole] {300}</strong></dt>
+<dd>longitude of the central point in the conic projection</dd>
+<dt><strong>[-mlat latitude of rotated pole] {90}</strong></dt>
+<dd>latitude of the central point in the conic projection</dd>
+<dt><strong>[-dplace clock_radius ck_xpos ck_ypos datestr]</strong></dt>
+<dd>Manually set the date clock radius and position (pixel coordinates). NEMO requires
+a 4th argument which is an eight character date string of the form YYYYMMDD. In
+scripts, this string can be provided by the nocstfinder utility.</dd>
+<dt><strong>[-logo logo_image]</strong></dt>
+<dd><p class="first">Apply a logo as determined by the size and placement options</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt><strong>[-lsize logo_width logo_height]</strong></dt>
+<dd>The pixel width and height of the logo.</dd>
+<dt><strong>[-lpos logo_xpos logo_ypos]</strong></dt>
+<dd>Pixel coordinates of the top lefthand corner of the logo.</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><strong>[-annotate xpos ypos label_text]</strong></dt>
+<dd>Add an optional line of annotation starting at the supplied
+pixel coordinates.</dd>
+<dt><strong>[-title alternative_title_text]</strong></dt>
+<dd>The default plot title is constructed from the variable name and combination operation (if applicible). This option allows the user to provide alternative text of their own choosing.</dd>
+<dt><strong>[-bathy bathy_level_file]</strong></dt>
+<dd>Provides the full or relative path to the baty_level.nc file which contains a
+Bathy_level dataset set for masking purposes. This is an altenative to providing
+te same information via the NEMOBATHYFILE environment variable.</dd>
+<dt><strong>[-nomask]</strong></dt>
+<dd>Run without masking. All data points are assumed to be valid.</dd>
+<dt><strong>[-bcoord]</strong></dt>
+<dd>This switch forces any coordinate fields in the variable&#8217;s data file to be ignored and to read and use those in the bathymetry file instead. Useful if the
+coordinates are missing or corrupt in the main input file.</dd>
+<dt><strong>[-usemap map_file.nc]</strong></dt>
+<dd>For large images and/or high resolution source data, the time taken to compute the
+pixel to model coordinate mapping is a significant part of the overall processing
+time. If map_file.nc does not exist then this option creates it and writes the
+mapping data as a NetCDF dataset.  If the file exists then nemosim will attempt to
+read and apply the mapping data to speed up processing time. Very useful for
+producing animation sequences where only the input field varies or for tweaking
+images when deciding on colour-scales, labels, scale placement, logos, margins
+sizes, fonts or anything else which doesn&#8217;t effect the mapping of the main image.
+The creation command is stored as a NetCDF attribute which means the mapping file
+can be used as an argument to the -as option. Note also that the destination image
+resolution and input data shape are also stored as attributes and used for a basic
+sanity check when the mapping data is applied.</dd>
+<dt><strong>[-nooverl]</strong></dt>
+<dd>nemosim was originally designed to work with full NEMO datasets and includes
+special treatment of the cyclic columns. Some Met Office NEMO files have had the
+cyclic columns and north-fold row removed. This option reinstates the missing
+columns and rows so that the internal logic will work.  If your images have a black
+vertical line through the Indian Ocean then you probably need to activate this
+option.</dd>
+<dt><strong>[-t netcdf_time_level]</strong></dt>
+<dd>This option provides the time-level which is to be extracted from
+a 4 dimensional dataset in a netcdf file.</dd>
+<dt><strong>[-usemax]</strong></dt>
+<dd>Scan the data field to find the maximum value and use this as an upper limit (main variable only).</dd>
+<dt><strong>[-usemin]</strong></dt>
+<dd>Scan the data field to find the minimum value and use this as a lower limit (main variable only).</dd>
+<dt><strong>[-show]</strong></dt>
+<dd>Optionally display the final image on the screen as well as writing to the output
+file. &amp;lt ctrl &amp;gt Q can be used to close the image.</dd>
+<dt><strong>[-verbose]</strong></dt>
+<dd>Mainly for observing progress whilst debugging.</dd>
+</dl>
+<p>Here are some examples with the resultant images:</p>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example1c.png -d isstempe -nomask -spos 3
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example1c.png"><img alt="_images/example1c.png" class="align-center" src="_images/example1c.png" style="width: 286.2px; height: 150.0px;" /></a>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example2a.png -d isstempe -nomask -spos 3 \
+          -ortho -eu2 40 -eu1 135 -show -r 400 400
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example2a.png"><img alt="_images/example2a.png" class="align-center" src="_images/example2a.png" style="width: 159.6px; height: 150.0px;" /></a>
+<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example3a.png -d isstempe -nomask -spos 3 \
+          -moll -show
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example3a.png"><img alt="_images/example3a.png" class="align-center" src="_images/example3a.png" style="width: 286.2px; height: 150.0px;" /></a>
+<p>A more interesting example that uses many options (click on the thumbnail
+image to obtain the full-size image):</p>
+<div class="highlight-python"><div class="highlight"><pre>nemosim -usemap flatglobal_1024x512.mapf \
+          -f $MEAN_DIR/1987/ORCA0083-N01_19871231d05U.nc \
+          -o ./globaluv.jpg -k 24 \
+          -d vozocrtx \
+          -f2 $MEAN_DIR/1987/ORCA0083-N01_19871231d05V.nc \
+          -d2 vomecrty \
+          -uv \
+          -logsc \
+          -limits -1.25 0.0 \
+          -t 1 \
+          -bcoords \
+          -sw 0.0 -90. -ne 360. 90. \
+          -no_offset \
+          -r 1024 512 \
+          -cs blue2white.pal
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/globaluv.jpg"><img alt="_images/globaluv.jpg" class="align-center" src="_images/globaluv.jpg" style="width: 307.2px; height: 153.6px;" /></a>
+<p>Finally some composites that illustrate the available palettes:</p>
+<a class="reference internal image-reference" href="_images/palsheet1.png"><img alt="_images/palsheet1.png" class="align-center" src="_images/palsheet1.png" style="width: 722.4px; height: 552.0px;" /></a>
+<a class="reference internal image-reference" href="_images/palsheet2.png"><img alt="_images/palsheet2.png" class="align-center" src="_images/palsheet2.png" style="width: 722.4px; height: 552.0px;" /></a>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="nscookbook.html" title="NEMOSIM - Cook book (1)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="NEMOSIM - Scriptable Image Maker for NEMO output"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
