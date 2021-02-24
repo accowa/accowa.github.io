@@ -9,19 +9,19 @@
       
       
       
-      <link rel="shortcut icon" href="/favicon.ico">
+      <link rel="shortcut icon" href="../../favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.4">
     
     
       
-        <title>n01 consortium Documentation</title>
+        <title>Example rebuild_nemo submission script - n01 consortium Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.358818c7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.358818c7.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.f0267088.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f0267088.min.css">
         
       
     
@@ -36,7 +36,7 @@
     
     
     
-      <link rel="stylesheet" href="/stylesheets/n01pages.css">
+      <link rel="stylesheet" href="../../stylesheets/n01pages.css">
     
     
       
@@ -58,6 +58,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#example-rebuild_nemo-submission-script" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -67,9 +72,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="/." title="n01 consortium Documentation" class="md-header-nav__button md-logo" aria-label="n01 consortium Documentation">
+    <a href="../.." title="n01 consortium Documentation" class="md-header-nav__button md-logo" aria-label="n01 consortium Documentation">
       
-  <img src="/images/archer2_white_transparent.png" alt="logo">
+  <img src="../../images/archer2_white_transparent.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -83,7 +88,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              
+              Example rebuild_nemo submission script
             
           </span>
         </div>
@@ -153,9 +158,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="n01 consortium Documentation" class="md-nav__button md-logo" aria-label="n01 consortium Documentation">
+    <a href="../.." title="n01 consortium Documentation" class="md-nav__button md-logo" aria-label="n01 consortium Documentation">
       
-  <img src="/images/archer2_white_transparent.png" alt="logo">
+  <img src="../../images/archer2_white_transparent.png" alt="logo">
 
     </a>
     n01 consortium Documentation
@@ -182,7 +187,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/." class="md-nav__link">
+    <a href="../.." class="md-nav__link">
       Documentation overview
     </a>
   </li>
@@ -215,7 +220,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/models/nemo/nemo/" class="md-nav__link">
+    <a href="../../models/nemo/nemo/" class="md-nav__link">
       NEMO
     </a>
   </li>
@@ -232,7 +237,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/postproc/" class="md-nav__link">
+    <a href="../" class="md-nav__link">
       Post-processing tips
     </a>
   </li>
@@ -244,7 +249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/forcing/" class="md-nav__link">
+    <a href="../../forcing/" class="md-nav__link">
       Forcing datasets
     </a>
   </li>
@@ -256,7 +261,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/nemo_studio/" class="md-nav__link">
+    <a href="../../nemo_studio/" class="md-nav__link">
       Personal projects
     </a>
   </li>
@@ -269,12 +274,181 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
-
+                
+                  <a href="https://github.com/accowa/n01-pages/edit/master/docs/postproc/rebuild_nemo_script.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="example-rebuild_nemo-submission-script">Example rebuild_nemo submission script</h1>
+<div class="highlight"><pre><span></span><code>#!/bin/bash
+#SBATCH --qos=standard
+#SBATCH --job-name=mreb_1m
+#SBATCH --time=03:00:00
+#SBATCH --nodes=2
+#SBATCH --ntasks=12
+#SBATCH --ntasks-per-node=6
+#SBATCH --account=n01
+#SBATCH --partition=standard
+# Based on placement generated by: mkslurm -S 0 -s 0 -C 12 -c 16
+#
+module -s restore /work/n01/shared/acc/n01_modules/ucx_env
+export PATH=/work/n01/n01/acc/TOOLS/bin:$PATH
+export LD_LIBRARY_PATH=/work/n01/n01/acc/TOOLS/lib:$LD_LIBRARY_PATH
+export OMP_NUM_THREADS=4
+##################################################################################
+#
+# Parallel rebuild of multiple_file XIOS output from eORCA025
+#
+# This script is configured to rebuild the eORCA025 output generated with 16
+# detached XIOS servers. It uses the standard rebuild_nemo tool with 12 instances
+# running simultaneously across two nodes. Each instance occupies a 16 core NUMA
+# and uses 4 OpenMP threads. There has been little investigation to find if this
+# optimal but it works and recombines a years worth of monthly mean output in
+# around 20 minutes (including some very large biogeochemical datasets)
+#
+# The loop order is: year -&gt; filetype -&gt; month so that each invocation of 12
+# parallel tasks delivers a years worth of monthly means for that filetype with
+# each of the 12 tasks having a similar load and completing in roughly the
+# same length of time
+#
+###################################################################################
+#
+# Define the destination directory (annual subdirectories will be created below this)
+#
+  dstdir=/work/n01/n01/acc/NEMO/OUT_eORCA025/A001/monthly
+#
+# Define the data directory containing the distributed mean fields
+#
+  dtadir=/work/n01/n01/acc/NEMO/r4.0.3/dev_r4.0.3_NERC/cfgs/ORCA025_MEDUSA/EXP00/MEANS_OUT
+#
+# Set the number of distributed datasets to combine ( = number of XIOS servers )
+#
+  export NUMP=16
+#
+# Provide absolute path to the rebuild_nemo executable/script and a base name for its namelist
+#
+  reb=/work/n01/n01/acc/NEMO/r4.0.3/dev_r4.0.3_NERC/tools/REBUILD_NEMO/rebuild_nemo
+  nlfile=reb$$.nl
+#
+# Set the start and end years of the sequence to process
+#
+  ystart=1853
+  yend=1856
+#
+# Define a recyclable file to hold the tasklist and the launch directory
+#
+tsklst=$dstdir/tasks.conf
+tskdir=`pwd`
+#
+cd $dtadir
+#
+# Loop through each year
+#
+for y in `seq $ystart 1 $yend`
+do
+ #
+ # Loop through each type of dataset (expand or contract as required)
+ #
+ for typ in icemod grid_T grid_U grid_V grid_W diad_T ptrc_T
+ do
+  if [ -f $tsklst ] ; then rm $tsklst ; fi
+  n=0
+  #
+  # Loop through each month (do not extend beyond 12)
+  #
+  for m in 01 02 03 04 05 06 07 08 09 10 11 12
+  do
+   #
+   # find the basename for this year/type/month combination
+   # (there should only be one match - do not really need a loop here)
+   #
+   for fin in `ls -1 e*_1m_*${typ}*${y}${m}_0000.nc`
+   do
+     f=`echo $fin | sed -e&#39;s/_0000.nc//&#39;`
+     if [ ! -d ${dstdir}/$y ] ; then mkdir ${dstdir}/$y ; fi
+     #
+     # Construct a more concise output filename
+     #
+     if [ $f == ${f/icemod} ] &amp;&amp; [ $f == ${f/diaptr} ]; then
+       ff=`echo $f | sed -e&#39;s/\(.*\)1m_\(........_........\)\(_[a-zA-Z]*_[a-zA-Z]*\)_.*-\(....\)\(..\)/\1y\4m\5\3.nc/&#39;`
+     else
+       ff=`echo $f | sed -e&#39;s/\(.*\)1m_\(........_........\)\(_[a-zA-Z23]*\)_.*-\(....\)\(..\)/\1y\4m\5\3.nc/&#39;`
+     fi
+     #
+     # If to be processed, then append the full rebuild command to the task list
+     #
+     if [ ! -f ${dstdir}/$y/$ff ] ; then
+       echo $n $reb -n ${n}_$nlfile -p $OMP_NUM_THREADS -d 1 -x 64 -y 64 -z 1 -t 1 $f $NUMP &gt;&gt; $tsklst
+       #
+       # rebuild_nemo doe not allow us to set the output filename. Store what is used, what we want it
+       # to be (including final destination) and the namelist file (so that it can be tidied later)
+       #
+       fcomb[$n]=$f.nc
+       frenm[$n]=${dstdir}/$y/$ff
+       fnlfi[$n]=${n}_$nlfile
+       n=$(( $n + 1 ))
+     fi
+   done
+  #
+  # End of scan through months
+  #
+  done
+  #
+  # A tasklist of up to 12 tasks has been constructed; check its length
+  #
+  if [ -f $tsklst ] ; then
+   nt=`wc -l $tsklst | sed -e &#39;s/ .*//&#39;`
+  else
+   nt=0
+  fi
+  #
+  # Run any non-zero length tasklist using srun and appropriate placement
+  #
+  if test $nt -gt 0 ; then
+   srun --ntasks=$nt --mem-bind=local --cpu-bind=v,map_cpu:00,0x10,0x20,0x30,0x40,0x50 --multi-prog $tsklst
+   #
+   # On completion the combined files have the wrong names and are still in the data directory
+   # Use the stored arrays to move/rename them and remove the temporary namelist files
+   #
+   for k in `seq 0 1 $(( $nt - 1 ))`
+   do
+    if [ -f ${fcomb[$k]} ] ; then mv ${fcomb[$k]} ${frenm[$k]} ; fi
+    if [ -f ${fnlfi[$k]} ] ; then rm ${fnlfi[$k]} ; fi
+   done
+  fi
+ #
+ # End of file-type loop
+ #
+ done
+#
+# End of year loop
+#
+done
+#
+cd $tskdir
+</code></pre></div>
+                
+              
               
                 
 
@@ -304,15 +478,15 @@
       
     </div>
     
-      <script src="/assets/javascripts/vendor.7e0ee788.min.js"></script>
-      <script src="/assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "/",
+          base: "../..",
           features: ['tabs'],
           search: Object.assign({
-            worker: "/assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

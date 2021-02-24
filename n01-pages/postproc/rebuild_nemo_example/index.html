@@ -9,19 +9,19 @@
       
       
       
-      <link rel="shortcut icon" href="/favicon.ico">
+      <link rel="shortcut icon" href="../../favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.4">
     
     
       
-        <title>n01 consortium Documentation</title>
+        <title>Running multiple rebuild_nemo commands simultaneously - n01 consortium Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.358818c7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.358818c7.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.f0267088.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f0267088.min.css">
         
       
     
@@ -36,7 +36,7 @@
     
     
     
-      <link rel="stylesheet" href="/stylesheets/n01pages.css">
+      <link rel="stylesheet" href="../../stylesheets/n01pages.css">
     
     
       
@@ -58,6 +58,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#running-multiple-rebuild_nemo-commands-simultaneously" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -67,9 +72,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="/." title="n01 consortium Documentation" class="md-header-nav__button md-logo" aria-label="n01 consortium Documentation">
+    <a href="../.." title="n01 consortium Documentation" class="md-header-nav__button md-logo" aria-label="n01 consortium Documentation">
       
-  <img src="/images/archer2_white_transparent.png" alt="logo">
+  <img src="../../images/archer2_white_transparent.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -83,7 +88,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              
+              Running multiple rebuild_nemo commands simultaneously
             
           </span>
         </div>
@@ -153,9 +158,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="n01 consortium Documentation" class="md-nav__button md-logo" aria-label="n01 consortium Documentation">
+    <a href="../.." title="n01 consortium Documentation" class="md-nav__button md-logo" aria-label="n01 consortium Documentation">
       
-  <img src="/images/archer2_white_transparent.png" alt="logo">
+  <img src="../../images/archer2_white_transparent.png" alt="logo">
 
     </a>
     n01 consortium Documentation
@@ -182,7 +187,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/." class="md-nav__link">
+    <a href="../.." class="md-nav__link">
       Documentation overview
     </a>
   </li>
@@ -215,7 +220,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/models/nemo/nemo/" class="md-nav__link">
+    <a href="../../models/nemo/nemo/" class="md-nav__link">
       NEMO
     </a>
   </li>
@@ -232,7 +237,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/postproc/" class="md-nav__link">
+    <a href="../" class="md-nav__link">
       Post-processing tips
     </a>
   </li>
@@ -244,7 +249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/forcing/" class="md-nav__link">
+    <a href="../../forcing/" class="md-nav__link">
       Forcing datasets
     </a>
   </li>
@@ -256,7 +261,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/nemo_studio/" class="md-nav__link">
+    <a href="../../nemo_studio/" class="md-nav__link">
       Personal projects
     </a>
   </li>
@@ -269,12 +274,90 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
-
+                
+                  <a href="https://github.com/accowa/n01-pages/edit/master/docs/postproc/rebuild_nemo_example.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="running-multiple-rebuild_nemo-commands-simultaneously">Running multiple rebuild_nemo commands simultaneously</h1>
+<p>For larger configurations the 'one_file' option with XIOS is not necessarily a good
+choice. Too many XIOS servers trying to write to a single file can produce poor
+performance. So much so that, with higher frequency output, NEMO can reach the next
+archive point before the previous has been written. This can lead to a back-log of
+requests and eventual out-of-memory errors. The larger configurations can also benefit
+from the NetCDF4 data compression that can only be activated in 'multiple_file' mode.</p>
+<p>In this case the post-processing task will be to rebuild the multiple strips written
+by the XIOS servers into single global datasets. There is also some rechunking to do
+since the default chunksizes set by XIOS are unlikely to be good choices for the 
+global dataset.</p>
+<p>Consider the example of an eORCA025 configuration with biogeochemistry. A typical 
+setup could employ 16 XIOS servers and output for the biogeochemical mean fields 
+may be:</p>
+<div class="highlight"><pre><span></span><code>eORCA025_MED_UKESM_1m_18560101_18561230_ptrc_T_185601-185601_0000.nc
+eORCA025_MED_UKESM_1m_18560101_18561230_ptrc_T_185601-185601_0001.nc
+.
+.
+eORCA025_MED_UKESM_1m_18560101_18561230_ptrc_T_185601-185601_0015.nc
+.
+.
+eORCA025_MED_UKESM_1m_18560101_18561230_ptrc_T_185612-185612_0000.nc
+eORCA025_MED_UKESM_1m_18560101_18561230_ptrc_T_185612-185612_0001.nc
+.
+.
+eORCA025_MED_UKESM_1m_18560101_18561230_ptrc_T_185612-185612_0015.nc
+</code></pre></div>
+<p>with 12x16 files of monthly means for the 1 year integration. Combining each set of 16 files
+into a separate monthly mean file can be done with the rebuld_nemo tool. E.g.:</p>
+<div class="highlight"><pre><span></span><code>tools/REBUILD_NEMO/rebuild_nemo -n reb.nl -p 4 -d 1 -x 64 -y 64 -z 1 -t 1 \
+              eORCA025_MED_UKESM_1m_18560101_18561230_ptrc_T_185612-185612 16 
+</code></pre></div>
+<p>But, again, it will be much quicker, and a better use of the nodes, to run
+multiple versions of such commands simultaneously. This is essentially the same
+task as the multiple ncks invocations described previously. The main difference
+being that rebuild_nemo can use OpenMP threads and it may be better to restrict
+these larger tasks to one per NUMA (16 cores). This requires a 2-node solution
+to process 12 months at a time. Note also that rebuild_nemo is actually a script
+that takes the command-line arguments and constructs the named namelist ( not
+sure why; probably whoever wrote it wasn't aware F90 has standard ways of
+handling command-line arguments ).  This makes little difference other than a
+need to make sure each innvocation uses a unique name for its namelist; and to
+tidy up afterwards.</p>
+<p>The complete solution is shown <a href="../rebuild_nemo_script/">here</a> but the essence 
+of the controlling slurm script is this:</p>
+<div class="highlight"><pre><span></span><code>#!/bin/bash
+.
+#SBATCH --nodes=2
+#SBATCH --ntasks=12
+#SBATCH --ntasks-per-node=6
+# Based on placement generated by: mkslurm -S 0 -s 0 -C 12 -c 16
+export OMP_NUM_THREADS=4
+.
+ srun --ntasks=12 --mem-bind=local --cpu-bind=v,map_cpu:00,0x10,0x20,0x30,0x40,0x50 \
+      --multi-prog tasks.conf
+.
+</code></pre></div>
+                
+              
               
                 
 
@@ -304,15 +387,15 @@
       
     </div>
     
-      <script src="/assets/javascripts/vendor.7e0ee788.min.js"></script>
-      <script src="/assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "/",
+          base: "../..",
           features: ['tabs'],
           search: Object.assign({
-            worker: "/assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

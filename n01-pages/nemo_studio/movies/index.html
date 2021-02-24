@@ -9,19 +9,19 @@
       
       
       
-      <link rel="shortcut icon" href="/favicon.ico">
+      <link rel="shortcut icon" href="../../favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.4">
     
     
       
-        <title>n01 consortium Documentation</title>
+        <title>A first script for producing animation frames on ARCHER2 - n01 consortium Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.358818c7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.358818c7.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.f0267088.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f0267088.min.css">
         
       
     
@@ -36,7 +36,7 @@
     
     
     
-      <link rel="stylesheet" href="/stylesheets/n01pages.css">
+      <link rel="stylesheet" href="../../stylesheets/n01pages.css">
     
     
       
@@ -58,6 +58,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#a-first-script-for-producing-animation-frames-on-archer2" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -67,9 +72,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="/." title="n01 consortium Documentation" class="md-header-nav__button md-logo" aria-label="n01 consortium Documentation">
+    <a href="../.." title="n01 consortium Documentation" class="md-header-nav__button md-logo" aria-label="n01 consortium Documentation">
       
-  <img src="/images/archer2_white_transparent.png" alt="logo">
+  <img src="../../images/archer2_white_transparent.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -83,7 +88,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              
+              A first script for producing animation frames on ARCHER2
             
           </span>
         </div>
@@ -153,9 +158,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="n01 consortium Documentation" class="md-nav__button md-logo" aria-label="n01 consortium Documentation">
+    <a href="../.." title="n01 consortium Documentation" class="md-nav__button md-logo" aria-label="n01 consortium Documentation">
       
-  <img src="/images/archer2_white_transparent.png" alt="logo">
+  <img src="../../images/archer2_white_transparent.png" alt="logo">
 
     </a>
     n01 consortium Documentation
@@ -182,7 +187,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/." class="md-nav__link">
+    <a href="../.." class="md-nav__link">
       Documentation overview
     </a>
   </li>
@@ -215,7 +220,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/models/nemo/nemo/" class="md-nav__link">
+    <a href="../../models/nemo/nemo/" class="md-nav__link">
       NEMO
     </a>
   </li>
@@ -232,7 +237,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/postproc/" class="md-nav__link">
+    <a href="../../postproc/" class="md-nav__link">
       Post-processing tips
     </a>
   </li>
@@ -244,7 +249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/forcing/" class="md-nav__link">
+    <a href="../../forcing/" class="md-nav__link">
       Forcing datasets
     </a>
   </li>
@@ -256,7 +261,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/nemo_studio/" class="md-nav__link">
+    <a href="../" class="md-nav__link">
       Personal projects
     </a>
   </li>
@@ -269,12 +274,116 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
-
+                
+                  <a href="https://github.com/accowa/n01-pages/edit/master/docs/nemo_studio/movies.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="a-first-script-for-producing-animation-frames-on-archer2">A first script for producing animation frames on ARCHER2</h1>
+<p>My NEMO Scriptable Image Maker
+(<a href="https://accowa.github.io/nemosim_manual">nemosim</a>) runs on ARCHER2. A typical
+image such as:</p>
+<p><img alt="Screenshot" src="../../images/nemosim_example.png" /></p>
+<p>was produced with this command: </p>
+<div class="highlight"><pre><span></span><code>/work/n01/n01/acc/TOOLS/IM/NemoSim/nemosim -d tos -k 1 -bcoord \ 
+-bathy  /work/n01/n01/acc/NEMO/eORCA1/eORCA_R1_zps_domcfg.nc \
+-usemap /work/n01/n01/acc/TOOLS/IM/NemoSim/eORCA1_600x300.nc \
+-limits -1.8 30.0 -r 600 300 -no_offset -sw 0. -90. -ne 360. 90. \
+-np 8 -d2 siconc -overlay \
+-f  2100/eORCA1_MED_UKESM_y2100m12_grid_T.nc \
+-f2 2100/eORCA1_MED_UKESM_y2100m12_icemod.nc \
+-o /work/n01/n01/acc/NOCSMULTITASK/frames/out_3011.png -dateclk 35 40 65 15122100
+</code></pre></div>
+<p>which looks daunting but is easily generated in a script and, when run in
+parallel on an ARCHER2 node, can produce thousands of frames in mere minutes.
+For example:</p>
+<div class="highlight"><pre><span></span><code>#!/bin/bash
+#SBATCH --qos=standard
+#SBATCH --job-name=mfra_1m
+#SBATCH --time=00:45:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=12
+#SBATCH --ntasks-per-node=12
+#SBATCH --cpus-per-task=8
+#SBATCH --account=n01
+#SBATCH --partition=standard
+# Created by: mkslurm -S 0 -s 0 -m 2 -C  12 -c  8 -t 00:10:00 -a n01 -j mcnk_1m
+module -s restore /work/n01/shared/acc/n01_modules/ucx_env
+export OMP_NUM_THREADS=8
+export OMP_PLACES=cores
+export CRAY_OMP_CHECK_AFFINITY=TRUE
+export PATH=/work/n01/n01/acc/TOOLS/bin:$PATH
+export LD_LIBRARY_PATH=/work/n01/n01/acc/TOOLS/lib:/work/n01/n01/acc/TOOLS/IM/lib:$LD_LIBRARY_PATH
+#
+tskdir=`pwd`
+dstdir=`pwd`/frames
+dtadir=/work/n01/n01/acc/NEMO/OUT_eORCA1/A005/monthly
+ystart=1850
+yend=2100
+tsklst=$dstdir/tasks.conf
+bathyfile=/work/n01/n01/acc/NEMO/eORCA1/eORCA_R1_zps_domcfg.nc
+mapfile=/work/n01/n01/acc/TOOLS/IM/NemoSim/eORCA1_600x300.nc
+basecmd=&quot;/work/n01/n01/acc/TOOLS/IM/NemoSim/nemosim -d tos -k 1 -bcoord -bathy $bathyfile -usemap $mapfile -limits -1.8 30.0 -r 600 300 -no_offset -sw 0. -90. -ne 360. 90. -np $OMP_NUM_THREADS -d2 siconc -overlay &quot;
+#
+cd $dtadir
+#
+nf=0
+for y in `seq $ystart 1 $yend`
+do
+ if [ -f $tsklst ] ; then rm $tsklst ; fi
+ n=0
+ for m in 01 02 03 04 05 06 07 08 09 10 11 12
+ do
+  for f in `ls -1 ${y}/e*_*y${y}m${m}_grid_T.nc`
+  do
+    f2=${f/grid_T/icemod}
+    if [ -f $f ] &amp;&amp; [ -f $f2 ] ; then
+     fnf=`printf &quot;%4.4d&quot; $nf`
+     ff=${dstdir}/out_${fnf}.png
+      echo $n   $basecmd  -f $f -f2 $f2 -o $ff -dateclk 35 40 65 15${m}${y} &gt;&gt; $tsklst
+      n=$(( $n + 1 ))
+      nf=$(( $nf + 1 ))
+    fi
+  done
+ done
+ if [ -f $tsklst ] ; then
+  nt=`wc -l $tsklst | sed -e &#39;s/ .*//&#39;`
+ else
+  nt=0
+ fi
+ if test $nt -gt 0 ; then
+  srun --ntasks=$nt --mem-bind=local --cpu-bind=v,map_cpu:00,0x8,0x10,0x18,0x20,0x28,0x30,0x38,0x40,0x48,0x50,0x58 --multi-prog $tsklst
+  #srun --ntasks=$nt --mem-bind=local --hint=compute_bound --distribution=block:block --multi-prog $tsklst
+ fi
+done
+#
+cd $tskdir
+</code></pre></div>
+<p>And for compiling these frames into a mp4 movie:
+<div class="highlight"><pre><span></span><code>ffmpeg -i frames/out_%04d.png -vcodec mpeg4 -vb 4M eorca1.mp4
+</code></pre></div></p>
+                
+              
               
                 
 
@@ -304,15 +413,15 @@
       
     </div>
     
-      <script src="/assets/javascripts/vendor.7e0ee788.min.js"></script>
-      <script src="/assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "/",
+          base: "../..",
           features: ['tabs'],
           search: Object.assign({
-            worker: "/assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
