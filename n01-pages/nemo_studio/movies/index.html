@@ -74,7 +74,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="../.." title="n01 consortium Documentation" class="md-header-nav__button md-logo" aria-label="n01 consortium Documentation">
       
-  <img src="../../images/archer2_white_transparent.png" alt="logo">
+  <img src="../../images/n01_blue_transparent.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -160,7 +160,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="n01 consortium Documentation" class="md-nav__button md-logo" aria-label="n01 consortium Documentation">
       
-  <img src="../../images/archer2_white_transparent.png" alt="logo">
+  <img src="../../images/n01_blue_transparent.png" alt="logo">
 
     </a>
     n01 consortium Documentation
@@ -373,7 +373,6 @@ do
  fi
  if test $nt -gt 0 ; then
   srun --ntasks=$nt --mem-bind=local --cpu-bind=v,map_cpu:00,0x8,0x10,0x18,0x20,0x28,0x30,0x38,0x40,0x48,0x50,0x58 --multi-prog $tsklst
-  #srun --ntasks=$nt --mem-bind=local --hint=compute_bound --distribution=block:block --multi-prog $tsklst
  fi
 done
 #
