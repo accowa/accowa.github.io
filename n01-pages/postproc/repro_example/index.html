@@ -9,19 +9,19 @@
       
       
       
-      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="shortcut icon" href="../../favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.4">
     
     
       
-        <title>Post-processing tips - n01 consortium Documentation</title>
+        <title>Running multiple, small-scale parallel tasks - n01 consortium Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.358818c7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.358818c7.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.f0267088.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f0267088.min.css">
         
       
     
@@ -36,7 +36,7 @@
     
     
     
-      <link rel="stylesheet" href="../stylesheets/n01pages.css">
+      <link rel="stylesheet" href="../../stylesheets/n01pages.css">
     
     
       
@@ -59,7 +59,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#post-processing-tips" class="md-skip">
+        <a href="#running-multiple-small-scale-parallel-tasks" class="md-skip">
           Skip to content
         </a>
       
@@ -72,9 +72,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href=".." title="n01 consortium Documentation" class="md-header-nav__button md-logo" aria-label="n01 consortium Documentation">
+    <a href="../.." title="n01 consortium Documentation" class="md-header-nav__button md-logo" aria-label="n01 consortium Documentation">
       
-  <img src="../images/n01_blue_transparent.png" alt="logo">
+  <img src="../../images/n01_blue_transparent.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -88,7 +88,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Post-processing tips
+              Running multiple, small-scale parallel tasks
             
           </span>
         </div>
@@ -158,9 +158,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="n01 consortium Documentation" class="md-nav__button md-logo" aria-label="n01 consortium Documentation">
+    <a href="../.." title="n01 consortium Documentation" class="md-nav__button md-logo" aria-label="n01 consortium Documentation">
       
-  <img src="../images/n01_blue_transparent.png" alt="logo">
+  <img src="../../images/n01_blue_transparent.png" alt="logo">
 
     </a>
     n01 consortium Documentation
@@ -187,7 +187,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." class="md-nav__link">
+    <a href="../.." class="md-nav__link">
       Documentation overview
     </a>
   </li>
@@ -220,7 +220,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../models/nemo/nemo/" class="md-nav__link">
+    <a href="../../models/nemo/nemo/" class="md-nav__link">
       NEMO
     </a>
   </li>
@@ -235,20 +235,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../" class="md-nav__link">
       Post-processing tips
     </a>
-    
   </li>
 
     
@@ -258,7 +249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../forcing/" class="md-nav__link">
+    <a href="../../forcing/" class="md-nav__link">
       Forcing datasets
     </a>
   </li>
@@ -270,7 +261,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../nemo_studio/" class="md-nav__link">
+    <a href="../../nemo_studio/" class="md-nav__link">
       Personal projects
     </a>
   </li>
@@ -303,24 +294,112 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/accowa/n01-pages/edit/master/docs/postproc/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/accowa/n01-pages/edit/master/docs/postproc/repro_example.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="post-processing-tips">Post-processing tips</h1>
-<p>ARCHER2 has 128-core, exclusive use nodes but no serial nodes for post-processing</p>
-<p>How do we make best use of the nodes for serial tasks? E.g.:</p>
-<ul>
-<li><a href="ncks_example/">Compressing and chunking ‘one_file’ output</a></li>
-<li><a href="rebuild_nemo_example/">Rebuilding and chunking ‘multiple_file’ output</a></li>
-</ul>
-<p>What is the best way to run multiple, small-scale parallel tasks? E.g.:</p>
-<ul>
-<li><a href="repro_example/">Running reproducibility tests</a></li>
-<li>Running ensembles of small to medium configurations</li>
-</ul>
-<p><a href="..">Top</a></p>
+                <h1 id="running-multiple-small-scale-parallel-tasks">Running multiple, small-scale parallel tasks</h1>
+<p>Another scenario that requires special consideration on ARCHER2 is a need to run multiple,
+small-scale parallel tasks. This may be for ensembles of perturbed models or for
+investigations into the effect of varying parameter values. If each model only requires a
+fraction of an ARCHER2 node then a method of launching multiple instances within each node
+is required.</p>
+<p>Slurm permits this by allowing a series of srun commands to be launched within a job
+script with each subsequent command backgrounded (i.e. with the usual Unix protocol of
+appending an ampersand). This will work so long as the overall resource requirement does
+not exceed that requested by the job. However, the unhelpful, default behaviour on ARCHER2
+is to launch each srun command on the same cores so explicit placement needs to be
+generated for each srun command to achieve an effective result.</p>
+<p>It is also usual to prepare experiment directories for each invocation in advance and to
+run each srun command in a different experiment directory. The following example illustrates
+such a scenario:</p>
+<div class="highlight"><pre><span></span><code>#!/bin/bash
+#SBATCH --qos=standard
+#SBATCH --job-name=nemo_test
+#SBATCH --time=00:10:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=16
+#SBATCH --account=n01
+#SBATCH --partition=standard
+module -s restore /work/n01/shared/acc/n01_modules/ucx_env
+export OMP_NUM_THREADS=1
+#
+cd /work/n01/n01/acc/NEMO/2021/dev_r14312_MPI_Interface/cfgs/GYRE_PISCES_ST/REPRO_4_2
+srun --ntasks=8 --mem-bind=local --cpu-bind=v,map_cpu:00,0x1,0x2,0x3,0x4,0x5,0x6,0x7, ./nemo &amp;
+#
+cd /work/n01/n01/acc/NEMO/2021/dev_r14312_MPI_Interface/cfgs/GYRE_PISCES_ST/REPRO_2_4
+srun --ntasks=8 --mem-bind=local --cpu-bind=v,map_cpu:0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17, ./nemo &amp;
+wait
+</code></pre></div>
+<p>where two, 8-core GYRE_PISCES tests have been run simultaneously on a single node with
+each correctly placed in one of the first two 16-core NUMA regions. Note also the
+inclusion of the <code>wait</code> command after the last srun. This prevents the job-shell from
+exiting until all the backgrounded tasks have completed.</p>
+<p>Clearly, generating such scripts for many-member ensembles would be tedious. Fortunately,
+an extension of the mkslurm_hetjob script (mkslurm_hetjob_ensemble) has been constructed
+(thanks Mattia!) to include this capability. This allows all the same placement arguments
+as the standard scripts but also accepts a series of named directories supplied to the -D
+argument. A similarly distributed task is produced for each directory listed with a cd to
+the appropriate directory between each srun command. Thus, an improvement on the previous
+example, this time including the use of XIOS servers with each task, can be generated by:</p>
+<div class="highlight"><pre><span></span><code>dir1=/work/n01/n01/acc/NEMO/2021/dev_r14312_MPI_Interface/cfgs/GYRE_PISCES_ST/REPRO_4_2
+dir2=/work/n01/n01/acc/NEMO/2021/dev_r14312_MPI_Interface/cfgs/GYRE_PISCES_ST/REPRO_2_4
+/work/n01/shared/malmans/mkslurm_hetjob_ensemble -S 1 -s 8 -C 8 -g 0 m 2 -D $dir1 $dir2 
+</code></pre></div>
+<p>which produces this script ready for submission:</p>
+<div class="highlight"><pre><span></span><code>#!/bin/bash
+#SBATCH --job-name=nemo_test
+#SBATCH --time=00:10:00
+#SBATCH --account=n01
+#SBATCH --qos=standard
+
+#SBATCH --partition=standard
+#SBATCH --nodes=1
+#SBATCH --ntasks=18
+#SBATCH --ntasks-per-node=18
+#SBATCH --ntasks-per-core=1
+
+# Created by: mkslurm_hetjob_ensemble -S 1 -s 8 -m 2 -C 8 -g 0 -D [&#39;/work/n01/n01/acc/NEMO/2021/dev_r14312_MPI_Interface/cfgs/GYRE_PISCES_ST/REPRO_4_2&#39;, &#39;/work/n01/n01/acc/NEMO/2021/dev_r14312_MPI_Interface/cfgs/GYRE_PISCES_ST/REPRO_2_4&#39;] --alternate-dirs False -N 128 -t 00:10:00 -a n01 -j nemo_test -q standard -v False
+module -s restore /work/n01/shared/acc/n01_modules/ucx_env
+export OMP_NUM_THREADS=1
+
+# Ensemble 0: /work/n01/n01/acc/NEMO/2021/dev_r14312_MPI_Interface/cfgs/GYRE_PISCES_ST/REPRO_4_2
+cat &gt; &quot;$SLURM_SUBMIT_DIR&quot;/myscript_wrapper_0.sh &lt;&lt; EOFB
+#!/bin/ksh
+#
+set -A map ./xios_server.exe ./nemo
+exec_map=( 0 1 1 1 1 1 1 1 1 )
+#
+exec \${map[\${exec_map[\$SLURM_PROCID]}]}
+##
+EOFB
+chmod u+x &quot;$SLURM_SUBMIT_DIR&quot;/myscript_wrapper_0.sh
+cd /work/n01/n01/acc/NEMO/2021/dev_r14312_MPI_Interface/cfgs/GYRE_PISCES_ST/REPRO_4_2 || exit
+srun --mem-bind=local \
+ --ntasks=9 --ntasks-per-node=9 --cpu-bind=v,mask_cpu:0x1,0x10000,0x20000,0x40000,0x80000,0x100000,0x200000,0x400000,0x800000 &quot;$SLURM_SUBMIT_DIR&quot;/myscript_wrapper_0.sh &amp;
+cd &quot;$SLURM_SUBMIT_DIR&quot; || exit
+
+# Ensemble 1: /work/n01/n01/acc/NEMO/2021/dev_r14312_MPI_Interface/cfgs/GYRE_PISCES_ST/REPRO_2_4
+cat &gt; &quot;$SLURM_SUBMIT_DIR&quot;/myscript_wrapper_1.sh &lt;&lt; EOFB
+#!/bin/ksh
+#
+set -A map ./xios_server.exe ./nemo
+exec_map=( 0 1 1 1 1 1 1 1 1 )
+#
+exec \${map[\${exec_map[\$SLURM_PROCID]}]}
+##
+EOFB
+chmod u+x &quot;$SLURM_SUBMIT_DIR&quot;/myscript_wrapper_1.sh
+cd /work/n01/n01/acc/NEMO/2021/dev_r14312_MPI_Interface/cfgs/GYRE_PISCES_ST/REPRO_2_4 || exit
+srun --mem-bind=local \
+ --ntasks=9 --ntasks-per-node=9 --cpu-bind=v,mask_cpu:0x100,0x1000000,0x2000000,0x4000000,0x8000000,0x10000000,0x20000000,0x40000000,0x80000000 &quot;$SLURM_SUBMIT_DIR&quot;/myscript_wrapper_1.sh &amp;
+cd &quot;$SLURM_SUBMIT_DIR&quot; || exit
+
+wait
+</code></pre></div>
+<p>Note this script will correctly extend across multiple nodes if required and separate into
+hetjob components if there is non-uniform use of the nodes.</p>
                 
               
               
@@ -335,41 +414,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../models/nemo/nemo/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                NEMO
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../forcing/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Forcing datasets
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -387,15 +431,15 @@
       
     </div>
     
-      <script src="../assets/javascripts/vendor.7e0ee788.min.js"></script>
-      <script src="../assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "..",
+          base: "../..",
           features: ['tabs'],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
