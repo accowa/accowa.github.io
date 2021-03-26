@@ -1,39 +1,32 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>NEMOSIM - Cook book (4) &mdash; nemosim 1.0 documentation</title>
-    
+    <title>NEMOSIM - Cook book (4) &#8212; nemosim 1.0 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="nemosim 1.0 documentation" href="index.html" />
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="NEMOSIM - Cook book (5)" href="nscookbook5.html" />
     <link rel="prev" title="NEMOSIM - Cook book (3)" href="nscookbook3.html" /> 
-  </head>
-  <body>
+  </head><body>
 
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
 </div>
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -52,9 +45,9 @@
       </ul>
     </div>
 
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">NEMOSIM - Cook book (4)</a><ul>
 <li><a class="reference internal" href="#controlling-the-layout">Controlling the layout</a></li>
@@ -76,22 +69,23 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="nscookbook5.html"
                         title="next chapter">NEMOSIM - Cook book (5)</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/nscookbook4.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nscookbook4.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -100,7 +94,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="nemosim-cook-book-4">
 <span id="nscookbook4"></span><h1>NEMOSIM - Cook book (4)<a class="headerlink" href="#nemosim-cook-book-4" title="Permalink to this headline">¶</a></h1>
@@ -120,10 +114,10 @@ exercising control over settings such as:</p>
 The explanation will be based on an examination of this image and its variants:</p>
 <a class="reference internal image-reference" href="_images/example12a.png"><img alt="_images/example12a.png" class="align-center" src="_images/example12a.png" style="width: 580.0px; height: 396.0px;" /></a>
 <p>which was produced by this command:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o example12a.png -d isstempe -r 880 640 \
-          -nomask -show -spos 1 -stitle SST -title &quot;Sea Surface Temperature with sea ice&quot; \
-          -d2 ileadfra -limits2 0.0 0.8 -overlay -bbg #a6a6a6 -stitle2 &quot;ice conc.&quot; \
-          -logo ./data/NOC_logo.png -lsize 158 50 -lpos 5 5 -tfnt &quot;Handwriting---Dakota&quot;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">example12a</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">r</span> <span class="mi">880</span> <span class="mi">640</span> \
+          <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">1</span> <span class="o">-</span><span class="n">stitle</span> <span class="n">SST</span> <span class="o">-</span><span class="n">title</span> <span class="s2">&quot;Sea Surface Temperature with sea ice&quot;</span> \
+          <span class="o">-</span><span class="n">d2</span> <span class="n">ileadfra</span> <span class="o">-</span><span class="n">limits2</span> <span class="mf">0.0</span> <span class="mf">0.8</span> <span class="o">-</span><span class="n">overlay</span> <span class="o">-</span><span class="n">bbg</span> <span class="c1">#a6a6a6 -stitle2 &quot;ice conc.&quot; \</span>
+          <span class="o">-</span><span class="n">logo</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">NOC_logo</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">lsize</span> <span class="mi">158</span> <span class="mi">50</span> <span class="o">-</span><span class="n">lpos</span> <span class="mi">5</span> <span class="mi">5</span> <span class="o">-</span><span class="n">tfnt</span> <span class="s2">&quot;Handwriting---Dakota&quot;</span>
 </pre></div>
 </div>
 <p>Several new elements have been introduced here so that the finer control over their
@@ -134,17 +128,17 @@ elements.</p>
 <h2>1. Overview of options used<a class="headerlink" href="#overview-of-options-used" title="Permalink to this headline">¶</a></h2>
 <p>This example has:</p>
 <ul class="simple">
-<li>Set explicit titles for each colourbar (<tt class="docutils literal"><span class="pre">-stitle</span></tt> and <tt class="docutils literal"><span class="pre">-stitle2</span></tt> respectively)</li>
-<li>Set an explicit plot title (<tt class="docutils literal"><span class="pre">-title</span></tt>)</li>
-<li>Set border background colour to a mid-gray (<tt class="docutils literal"><span class="pre">-bbg</span></tt>)</li>
-<li>Requested the inclusion of a logo image (<tt class="docutils literal"><span class="pre">-logo</span></tt>)</li>
-<li>Set and explicit size for the logo (<tt class="docutils literal"><span class="pre">-lsize</span></tt>)</li>
-<li>Positioned the logo explicitly (<tt class="docutils literal"><span class="pre">-lpos</span></tt>)</li>
-<li>Requested a particular font for the plot title (<tt class="docutils literal"><span class="pre">-tfnt</span></tt>)</li>
+<li>Set explicit titles for each colourbar (<code class="docutils literal notranslate"><span class="pre">-stitle</span></code> and <code class="docutils literal notranslate"><span class="pre">-stitle2</span></code> respectively)</li>
+<li>Set an explicit plot title (<code class="docutils literal notranslate"><span class="pre">-title</span></code>)</li>
+<li>Set border background colour to a mid-gray (<code class="docutils literal notranslate"><span class="pre">-bbg</span></code>)</li>
+<li>Requested the inclusion of a logo image (<code class="docutils literal notranslate"><span class="pre">-logo</span></code>)</li>
+<li>Set and explicit size for the logo (<code class="docutils literal notranslate"><span class="pre">-lsize</span></code>)</li>
+<li>Positioned the logo explicitly (<code class="docutils literal notranslate"><span class="pre">-lpos</span></code>)</li>
+<li>Requested a particular font for the plot title (<code class="docutils literal notranslate"><span class="pre">-tfnt</span></code>)</li>
 </ul>
 <p>Note that string arguments containing spaces or dashes must be quoted. The fonts available
-can be listed using the <cite>ImageMagick</cite> <tt class="docutils literal"><span class="pre">identify</span></tt> utility. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>identify -list font | grep Font | grep -v glyphs
+can be listed using the <cite>ImageMagick</cite> <code class="docutils literal notranslate"><span class="pre">identify</span></code> utility. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">identify</span> <span class="o">-</span><span class="nb">list</span> <span class="n">font</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">Font</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="n">glyphs</span>
 </pre></div>
 </div>
 <p>should produce an uncluttered list. The aspect ratio of the logo will be preserved so the
@@ -158,82 +152,82 @@ are computed.</p>
 </div>
 <div class="section" id="determining-current-settings">
 <h2>2. Determining current settings<a class="headerlink" href="#determining-current-settings" title="Permalink to this headline">¶</a></h2>
-<p>The <tt class="docutils literal"><span class="pre">-info</span></tt> option can be used to display the key internal data structures. For the
+<p>The <code class="docutils literal notranslate"><span class="pre">-info</span></code> option can be used to display the key internal data structures. For the
 current exercise only the first section (relating to the image control structure) of the
 output written to standard out is relevant:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example12a.png -info
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">example12a</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">info</span>
 
 
-=====================================================================================
-== Details of internal image control structure (im of type canvas):                ==
-==         warning: long strings may be truncated to 48 characters                 ==
-=====================================================================================
-           wi  =                     pixel width  main drawing area    880
-           ht  =                     pixel height main drawing area    640
-           bl  =            pixel width  of additional left  margin    140
-           br  =            pixel width  of additional right margin    140
-           bb  =            pixel height of additional base  margin     76
-           bt  =            pixel height of additional top   margin     76
-           sbl =                 pixel width  of scale left  margin     28
-           sbr =                 pixel width  of scale right margin     98
-           sbb =                 pixel height of scale base  margin     76
-           sbt =                 pixel height of scale top   margin    228
-          spos =  scale position, may not match input if overlaying      2
-          tfs  =                           title font size (points)     30
-          tpx  =                             title x-pixel position    580
-          tpy  =                             title y-pixel position     19
-          tjs  =                               title justification       8
-          stfs =                     scale title font size (points)     14
-     stpx(1:2) =                       scale title x-pixel position    140  1020
-     stpy(1:2) =                       scale title y-pixel position    716   716
-     stjs(1:2) =                                scale title justif.      7     9
-           sfs =                scale annotation font size (points)     12
-       trnspbg =    logical switch (0/1) for transparent background      0
-       trnspfg =    logical switch (0/1) for transparent background      0
-       show    =    logical switch (0/1) to display the final image      1
-      imgtype =                 output image type 1=jpeg, other=png      0
-       logosx= =                               optional logo x-size    158
-        logosy =                               optional logo y-size     50
-        logox  =                           optional logo x-position      5
-        logoy  =                           optional logo y-position      5
-           day =                        optional day (part of date)      1
-         month =                      optional month (part of date)      4
-          year =                       optional year (part of date)   1958
-          drad =                optional pixel radius of date clock    100
-         dposx =      optional pixel xposition of date clock centre    100
-         dposy =      optional pixel yposition of date clock centre    100
-         annox =             optional pixel xposition of annotation     15
-         annoy =             optional pixel yposition of annotation     15
-         annfs =                      optional annotation font-size     11
-  fn(MAX_STR)  =                              image output filename: example12a.png
-  csn(MAX_STR) =                      colour scale palette filename: ./pals/pastel2.pal
- ocsn(MAX_STR) =              overlay colour scale palette filename: ./pals/seaice.pal
-   bg(MAX_STR) =                                  background colour: black
-   fg(MAX_STR) =                                  foreground colour: white
-  abg(MAX_STR) =                      alternative background colour: #9A9A9A
-  bbg(MAX_STR) =                           border background colour: #a6a6a6
-  bfg(MAX_STR) =                           border foreground colour: black
- ttxt(MAX_STR) =                                         title text: Sea Surface Temperature with sea ice
- stxt(MAX_STR) =                                   scale title text: SST
-stxt2(MAX_STR) =                   scale title text for overlay var: ice conc.
- tfnt(MAX_STR) =                                         title font: Handwriting---Dakota
- sfnt(MAX_STR) =                                         scale font: Arial
-stfnt(MAX_STR) =                                   scale title font: Arial
- logo(MAX_STR) =                                    logo image file: ./data/NOC_logo.png
-annot(MAX_STR) =                                    annotation text:
+<span class="o">=====================================================================================</span>
+<span class="o">==</span> <span class="n">Details</span> <span class="n">of</span> <span class="n">internal</span> <span class="n">image</span> <span class="n">control</span> <span class="n">structure</span> <span class="p">(</span><span class="n">im</span> <span class="n">of</span> <span class="nb">type</span> <span class="n">canvas</span><span class="p">):</span>                <span class="o">==</span>
+<span class="o">==</span>         <span class="n">warning</span><span class="p">:</span> <span class="n">long</span> <span class="n">strings</span> <span class="n">may</span> <span class="n">be</span> <span class="n">truncated</span> <span class="n">to</span> <span class="mi">48</span> <span class="n">characters</span>                 <span class="o">==</span>
+<span class="o">=====================================================================================</span>
+           <span class="n">wi</span>  <span class="o">=</span>                     <span class="n">pixel</span> <span class="n">width</span>  <span class="n">main</span> <span class="n">drawing</span> <span class="n">area</span>    <span class="mi">880</span>
+           <span class="n">ht</span>  <span class="o">=</span>                     <span class="n">pixel</span> <span class="n">height</span> <span class="n">main</span> <span class="n">drawing</span> <span class="n">area</span>    <span class="mi">640</span>
+           <span class="n">bl</span>  <span class="o">=</span>            <span class="n">pixel</span> <span class="n">width</span>  <span class="n">of</span> <span class="n">additional</span> <span class="n">left</span>  <span class="n">margin</span>    <span class="mi">140</span>
+           <span class="n">br</span>  <span class="o">=</span>            <span class="n">pixel</span> <span class="n">width</span>  <span class="n">of</span> <span class="n">additional</span> <span class="n">right</span> <span class="n">margin</span>    <span class="mi">140</span>
+           <span class="n">bb</span>  <span class="o">=</span>            <span class="n">pixel</span> <span class="n">height</span> <span class="n">of</span> <span class="n">additional</span> <span class="n">base</span>  <span class="n">margin</span>     <span class="mi">76</span>
+           <span class="n">bt</span>  <span class="o">=</span>            <span class="n">pixel</span> <span class="n">height</span> <span class="n">of</span> <span class="n">additional</span> <span class="n">top</span>   <span class="n">margin</span>     <span class="mi">76</span>
+           <span class="n">sbl</span> <span class="o">=</span>                 <span class="n">pixel</span> <span class="n">width</span>  <span class="n">of</span> <span class="n">scale</span> <span class="n">left</span>  <span class="n">margin</span>     <span class="mi">28</span>
+           <span class="n">sbr</span> <span class="o">=</span>                 <span class="n">pixel</span> <span class="n">width</span>  <span class="n">of</span> <span class="n">scale</span> <span class="n">right</span> <span class="n">margin</span>     <span class="mi">98</span>
+           <span class="n">sbb</span> <span class="o">=</span>                 <span class="n">pixel</span> <span class="n">height</span> <span class="n">of</span> <span class="n">scale</span> <span class="n">base</span>  <span class="n">margin</span>     <span class="mi">76</span>
+           <span class="n">sbt</span> <span class="o">=</span>                 <span class="n">pixel</span> <span class="n">height</span> <span class="n">of</span> <span class="n">scale</span> <span class="n">top</span>   <span class="n">margin</span>    <span class="mi">228</span>
+          <span class="n">spos</span> <span class="o">=</span>  <span class="n">scale</span> <span class="n">position</span><span class="p">,</span> <span class="n">may</span> <span class="ow">not</span> <span class="n">match</span> <span class="nb">input</span> <span class="k">if</span> <span class="n">overlaying</span>      <span class="mi">2</span>
+          <span class="n">tfs</span>  <span class="o">=</span>                           <span class="n">title</span> <span class="n">font</span> <span class="n">size</span> <span class="p">(</span><span class="n">points</span><span class="p">)</span>     <span class="mi">30</span>
+          <span class="n">tpx</span>  <span class="o">=</span>                             <span class="n">title</span> <span class="n">x</span><span class="o">-</span><span class="n">pixel</span> <span class="n">position</span>    <span class="mi">580</span>
+          <span class="n">tpy</span>  <span class="o">=</span>                             <span class="n">title</span> <span class="n">y</span><span class="o">-</span><span class="n">pixel</span> <span class="n">position</span>     <span class="mi">19</span>
+          <span class="n">tjs</span>  <span class="o">=</span>                               <span class="n">title</span> <span class="n">justification</span>       <span class="mi">8</span>
+          <span class="n">stfs</span> <span class="o">=</span>                     <span class="n">scale</span> <span class="n">title</span> <span class="n">font</span> <span class="n">size</span> <span class="p">(</span><span class="n">points</span><span class="p">)</span>     <span class="mi">14</span>
+     <span class="n">stpx</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span>                       <span class="n">scale</span> <span class="n">title</span> <span class="n">x</span><span class="o">-</span><span class="n">pixel</span> <span class="n">position</span>    <span class="mi">140</span>  <span class="mi">1020</span>
+     <span class="n">stpy</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span>                       <span class="n">scale</span> <span class="n">title</span> <span class="n">y</span><span class="o">-</span><span class="n">pixel</span> <span class="n">position</span>    <span class="mi">716</span>   <span class="mi">716</span>
+     <span class="n">stjs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span>                                <span class="n">scale</span> <span class="n">title</span> <span class="n">justif</span><span class="o">.</span>      <span class="mi">7</span>     <span class="mi">9</span>
+           <span class="n">sfs</span> <span class="o">=</span>                <span class="n">scale</span> <span class="n">annotation</span> <span class="n">font</span> <span class="n">size</span> <span class="p">(</span><span class="n">points</span><span class="p">)</span>     <span class="mi">12</span>
+       <span class="n">trnspbg</span> <span class="o">=</span>    <span class="n">logical</span> <span class="n">switch</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">transparent</span> <span class="n">background</span>      <span class="mi">0</span>
+       <span class="n">trnspfg</span> <span class="o">=</span>    <span class="n">logical</span> <span class="n">switch</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">transparent</span> <span class="n">background</span>      <span class="mi">0</span>
+       <span class="n">show</span>    <span class="o">=</span>    <span class="n">logical</span> <span class="n">switch</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">to</span> <span class="n">display</span> <span class="n">the</span> <span class="n">final</span> <span class="n">image</span>      <span class="mi">1</span>
+      <span class="n">imgtype</span> <span class="o">=</span>                 <span class="n">output</span> <span class="n">image</span> <span class="nb">type</span> <span class="mi">1</span><span class="o">=</span><span class="n">jpeg</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span><span class="n">png</span>      <span class="mi">0</span>
+       <span class="n">logosx</span><span class="o">=</span> <span class="o">=</span>                               <span class="n">optional</span> <span class="n">logo</span> <span class="n">x</span><span class="o">-</span><span class="n">size</span>    <span class="mi">158</span>
+        <span class="n">logosy</span> <span class="o">=</span>                               <span class="n">optional</span> <span class="n">logo</span> <span class="n">y</span><span class="o">-</span><span class="n">size</span>     <span class="mi">50</span>
+        <span class="n">logox</span>  <span class="o">=</span>                           <span class="n">optional</span> <span class="n">logo</span> <span class="n">x</span><span class="o">-</span><span class="n">position</span>      <span class="mi">5</span>
+        <span class="n">logoy</span>  <span class="o">=</span>                           <span class="n">optional</span> <span class="n">logo</span> <span class="n">y</span><span class="o">-</span><span class="n">position</span>      <span class="mi">5</span>
+           <span class="n">day</span> <span class="o">=</span>                        <span class="n">optional</span> <span class="n">day</span> <span class="p">(</span><span class="n">part</span> <span class="n">of</span> <span class="n">date</span><span class="p">)</span>      <span class="mi">1</span>
+         <span class="n">month</span> <span class="o">=</span>                      <span class="n">optional</span> <span class="n">month</span> <span class="p">(</span><span class="n">part</span> <span class="n">of</span> <span class="n">date</span><span class="p">)</span>      <span class="mi">4</span>
+          <span class="n">year</span> <span class="o">=</span>                       <span class="n">optional</span> <span class="n">year</span> <span class="p">(</span><span class="n">part</span> <span class="n">of</span> <span class="n">date</span><span class="p">)</span>   <span class="mi">1958</span>
+          <span class="n">drad</span> <span class="o">=</span>                <span class="n">optional</span> <span class="n">pixel</span> <span class="n">radius</span> <span class="n">of</span> <span class="n">date</span> <span class="n">clock</span>    <span class="mi">100</span>
+         <span class="n">dposx</span> <span class="o">=</span>      <span class="n">optional</span> <span class="n">pixel</span> <span class="n">xposition</span> <span class="n">of</span> <span class="n">date</span> <span class="n">clock</span> <span class="n">centre</span>    <span class="mi">100</span>
+         <span class="n">dposy</span> <span class="o">=</span>      <span class="n">optional</span> <span class="n">pixel</span> <span class="n">yposition</span> <span class="n">of</span> <span class="n">date</span> <span class="n">clock</span> <span class="n">centre</span>    <span class="mi">100</span>
+         <span class="n">annox</span> <span class="o">=</span>             <span class="n">optional</span> <span class="n">pixel</span> <span class="n">xposition</span> <span class="n">of</span> <span class="n">annotation</span>     <span class="mi">15</span>
+         <span class="n">annoy</span> <span class="o">=</span>             <span class="n">optional</span> <span class="n">pixel</span> <span class="n">yposition</span> <span class="n">of</span> <span class="n">annotation</span>     <span class="mi">15</span>
+         <span class="n">annfs</span> <span class="o">=</span>                      <span class="n">optional</span> <span class="n">annotation</span> <span class="n">font</span><span class="o">-</span><span class="n">size</span>     <span class="mi">11</span>
+  <span class="n">fn</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span>  <span class="o">=</span>                              <span class="n">image</span> <span class="n">output</span> <span class="n">filename</span><span class="p">:</span> <span class="n">example12a</span><span class="o">.</span><span class="n">png</span>
+  <span class="n">csn</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                      <span class="n">colour</span> <span class="n">scale</span> <span class="n">palette</span> <span class="n">filename</span><span class="p">:</span> <span class="o">./</span><span class="n">pals</span><span class="o">/</span><span class="n">pastel2</span><span class="o">.</span><span class="n">pal</span>
+ <span class="n">ocsn</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>              <span class="n">overlay</span> <span class="n">colour</span> <span class="n">scale</span> <span class="n">palette</span> <span class="n">filename</span><span class="p">:</span> <span class="o">./</span><span class="n">pals</span><span class="o">/</span><span class="n">seaice</span><span class="o">.</span><span class="n">pal</span>
+   <span class="n">bg</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                                  <span class="n">background</span> <span class="n">colour</span><span class="p">:</span> <span class="n">black</span>
+   <span class="n">fg</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                                  <span class="n">foreground</span> <span class="n">colour</span><span class="p">:</span> <span class="n">white</span>
+  <span class="n">abg</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                      <span class="n">alternative</span> <span class="n">background</span> <span class="n">colour</span><span class="p">:</span> <span class="c1">#9A9A9A</span>
+  <span class="n">bbg</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                           <span class="n">border</span> <span class="n">background</span> <span class="n">colour</span><span class="p">:</span> <span class="c1">#a6a6a6</span>
+  <span class="n">bfg</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                           <span class="n">border</span> <span class="n">foreground</span> <span class="n">colour</span><span class="p">:</span> <span class="n">black</span>
+ <span class="n">ttxt</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                                         <span class="n">title</span> <span class="n">text</span><span class="p">:</span> <span class="n">Sea</span> <span class="n">Surface</span> <span class="n">Temperature</span> <span class="k">with</span> <span class="n">sea</span> <span class="n">ice</span>
+ <span class="n">stxt</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                                   <span class="n">scale</span> <span class="n">title</span> <span class="n">text</span><span class="p">:</span> <span class="n">SST</span>
+<span class="n">stxt2</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                   <span class="n">scale</span> <span class="n">title</span> <span class="n">text</span> <span class="k">for</span> <span class="n">overlay</span> <span class="n">var</span><span class="p">:</span> <span class="n">ice</span> <span class="n">conc</span><span class="o">.</span>
+ <span class="n">tfnt</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                                         <span class="n">title</span> <span class="n">font</span><span class="p">:</span> <span class="n">Handwriting</span><span class="o">---</span><span class="n">Dakota</span>
+ <span class="n">sfnt</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                                         <span class="n">scale</span> <span class="n">font</span><span class="p">:</span> <span class="n">Arial</span>
+<span class="n">stfnt</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                                   <span class="n">scale</span> <span class="n">title</span> <span class="n">font</span><span class="p">:</span> <span class="n">Arial</span>
+ <span class="n">logo</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                                    <span class="n">logo</span> <span class="n">image</span> <span class="n">file</span><span class="p">:</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">NOC_logo</span><span class="o">.</span><span class="n">png</span>
+<span class="n">annot</span><span class="p">(</span><span class="n">MAX_STR</span><span class="p">)</span> <span class="o">=</span>                                    <span class="n">annotation</span> <span class="n">text</span><span class="p">:</span>
 </pre></div>
 </div>
 <p>This list contains settings which obviously correspond to values supplied on the command
-line (e.g. <tt class="docutils literal"><span class="pre">tfnt</span></tt>, <tt class="docutils literal"><span class="pre">wi</span></tt>, <tt class="docutils literal"><span class="pre">ht</span></tt> etc.) but also contains many other values with less
+line (e.g. <code class="docutils literal notranslate"><span class="pre">tfnt</span></code>, <code class="docutils literal notranslate"><span class="pre">wi</span></code>, <code class="docutils literal notranslate"><span class="pre">ht</span></code> etc.) but also contains many other values with less
 obvious correspondence and/or default values. Before reviewing the correspondence between
 known and yet to be introduced command line options and the entries in this data structure
 it is useful to have a pictorial representation of some of the layout variables:</p>
 <a class="reference internal image-reference" href="_images/example12b.png"><img alt="_images/example12b.png" class="align-center" src="_images/example12b.png" style="width: 1024.0px; height: 727.0px;" /></a>
 <p>This diagram shows how the various layout variables are used to construct the image.
-Default values are set as fixed percentages of the main image size (<tt class="docutils literal"><span class="pre">wi</span></tt> x <tt class="docutils literal"><span class="pre">ht</span></tt>) which
-are the arguments given to the <tt class="docutils literal"><span class="pre">-r</span></tt> option. The values given to border widths and
+Default values are set as fixed percentages of the main image size (<code class="docutils literal notranslate"><span class="pre">wi</span></code> x <code class="docutils literal notranslate"><span class="pre">ht</span></code>) which
+are the arguments given to the <code class="docutils literal notranslate"><span class="pre">-r</span></code> option. The values given to border widths and
 heights depend on the selected position for the colourbar. If no colourbar is requested
-(<tt class="docutils literal"><span class="pre">-spos</span> <span class="pre">0</span></tt> then the default behaviour is to disable all borders. The following table
+(<code class="docutils literal notranslate"><span class="pre">-spos</span> <span class="pre">0</span></code> then the default behaviour is to disable all borders. The following table
 lists the default settings:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -349,8 +343,8 @@ for which the default settings are inappropriate. For these cases, explicit cont
 all the layout variables is provided via the command-line options. The next section lists
 the options and the corresponding internal variables that they set. For brevity some
 options set multiple variables so it may be necessary to supply default values (as given
-by the <tt class="docutils literal"><span class="pre">-info</span></tt> option) for those components you wish the leave unchanged. See the
-&#8216;Setting margins&#8217; section for an example of this.</p>
+by the <code class="docutils literal notranslate"><span class="pre">-info</span></code> option) for those components you wish the leave unchanged. See the
+‘Setting margins’ section for an example of this.</p>
 </div>
 <div class="section" id="matching-settings-to-command-line-options">
 <h2>3. Matching settings to command-line options<a class="headerlink" href="#matching-settings-to-command-line-options" title="Permalink to this headline">¶</a></h2>
@@ -506,16 +500,16 @@ it is now possible to take control over the layout and refine images according t
 personal taste.</p>
 <p>As a first example, consider a desire to reduce the external white space around the image
 whilst retaining all other relative sizes and positions. The obvious approach is to use
-either the <tt class="docutils literal"><span class="pre">-margins</span></tt> (absolute pixel values) or <tt class="docutils literal"><span class="pre">-Margins</span></tt> (% of image dimensions)
+either the <code class="docutils literal notranslate"><span class="pre">-margins</span></code> (absolute pixel values) or <code class="docutils literal notranslate"><span class="pre">-Margins</span></code> (% of image dimensions)
 option to set new border sizes. This will work in the bottom border case where all the
-default settings based on <tt class="docutils literal"><span class="pre">bb</span></tt> (<tt class="docutils literal"><span class="pre">sbb</span></tt>, <tt class="docutils literal"><span class="pre">stpx,</span> <span class="pre">stpy</span></tt>) will adjust correctly. The top
+default settings based on <code class="docutils literal notranslate"><span class="pre">bb</span></code> (<code class="docutils literal notranslate"><span class="pre">sbb</span></code>, <code class="docutils literal notranslate"><span class="pre">stpx,</span> <span class="pre">stpy</span></code>) will adjust correctly. The top
 border can also be reduced safely so long as care is taken to leave sufficient height to
 accommodate the logo height. However, changes to the side borders will change the
 appearance of the colorbars unless compensating changes are made to the scale margins (via
-<tt class="docutils literal"><span class="pre">-smargins</span></tt> or <tt class="docutils literal"><span class="pre">-Smargins</span></tt>). This is best demonstrated by a naive example to reduce
-all margins ( remembering their default values in this case are equivalent to <tt class="docutils literal"><span class="pre">-margins</span>
-<span class="pre">140</span> <span class="pre">140</span> <span class="pre">76</span> <span class="pre">76</span></tt> ):</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example12a.png -o example12c.png -margins 80 80 42 42
+<code class="docutils literal notranslate"><span class="pre">-smargins</span></code> or <code class="docutils literal notranslate"><span class="pre">-Smargins</span></code>). This is best demonstrated by a naive example to reduce
+all margins ( remembering their default values in this case are equivalent to <code class="docutils literal notranslate"><span class="pre">-margins</span>
+<span class="pre">140</span> <span class="pre">140</span> <span class="pre">76</span> <span class="pre">76</span></code> ):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">example12a</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">o</span> <span class="n">example12c</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">margins</span> <span class="mi">80</span> <span class="mi">80</span> <span class="mi">42</span> <span class="mi">42</span>
 </pre></div>
 </div>
 <p>To see the differences it is best to view this new image (left) alongside the orginal
@@ -529,21 +523,21 @@ colurbars and the slight vertical displacement of the title relative to the main
 <h2>5. Using scale margins to control colourbars<a class="headerlink" href="#using-scale-margins-to-control-colourbars" title="Permalink to this headline">¶</a></h2>
 <p>The original colourbars can be restored by noting that the thickness and length of the
 colourbar are given by:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">width</span>  <span class="o">=</span> <span class="n">bl</span> <span class="o">-</span> <span class="n">sbr</span> <span class="o">-</span> <span class="n">sbl</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">width</span>  <span class="o">=</span> <span class="n">bl</span> <span class="o">-</span> <span class="n">sbr</span> <span class="o">-</span> <span class="n">sbl</span>
 <span class="n">length</span> <span class="o">=</span> <span class="n">ht</span> <span class="o">+</span> <span class="n">bb</span> <span class="o">+</span> <span class="n">bt</span> <span class="o">-</span> <span class="n">sbt</span> <span class="o">-</span> <span class="n">sbb</span>
 </pre></div>
 </div>
 <p>which, for the original image, compute as:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">width</span>  <span class="o">=</span> <span class="mi">140</span> <span class="o">-</span> <span class="mi">28</span> <span class="o">-</span> <span class="mi">98</span>            <span class="o">=</span> <span class="mi">14</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">width</span>  <span class="o">=</span> <span class="mi">140</span> <span class="o">-</span> <span class="mi">28</span> <span class="o">-</span> <span class="mi">98</span>            <span class="o">=</span> <span class="mi">14</span>
 <span class="n">length</span> <span class="o">=</span> <span class="mi">640</span> <span class="o">+</span> <span class="mi">76</span> <span class="o">+</span> <span class="mi">76</span> <span class="o">-</span> <span class="mi">76</span> <span class="o">-</span> <span class="mi">226</span> <span class="o">=</span> <span class="mi">490</span>
 </pre></div>
 </div>
 <p>Thus these settings could be used to restore the original dimensions:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example12a.png -o example12d.png -margins 80 80 42 42 -smargins 14 52 42 192
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">example12a</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">o</span> <span class="n">example12d</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">margins</span> <span class="mi">80</span> <span class="mi">80</span> <span class="mi">42</span> <span class="mi">42</span> <span class="o">-</span><span class="n">smargins</span> <span class="mi">14</span> <span class="mi">52</span> <span class="mi">42</span> <span class="mi">192</span>
 </pre></div>
 </div>
 <p>since:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">width</span>  <span class="o">=</span> <span class="mi">80</span> <span class="o">-</span> <span class="mi">14</span> <span class="o">-</span> <span class="mi">52</span>             <span class="o">=</span> <span class="mi">14</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">width</span>  <span class="o">=</span> <span class="mi">80</span> <span class="o">-</span> <span class="mi">14</span> <span class="o">-</span> <span class="mi">52</span>             <span class="o">=</span> <span class="mi">14</span>
 <span class="n">length</span> <span class="o">=</span> <span class="mi">640</span> <span class="o">+</span> <span class="mi">42</span> <span class="o">+</span> <span class="mi">42</span> <span class="o">-</span> <span class="mi">42</span> <span class="o">-</span> <span class="mi">192</span> <span class="o">=</span> <span class="mi">490</span>
 </pre></div>
 </div>
@@ -553,7 +547,7 @@ colourbar are given by:</p>
 <p>Of course it is rarely necessary to match these dimensions precisely but the capability is
 there if required. Note similar calculations may be necessary if trying to match sizes for
 horizontal colourscales. In these cases the relevant widths and lengths will be given by:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">length</span>  <span class="o">=</span> <span class="n">wi</span> <span class="o">+</span> <span class="n">bl</span> <span class="o">+</span> <span class="n">br</span> <span class="o">-</span> <span class="n">sbl</span> <span class="o">-</span> <span class="n">sbr</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">length</span>  <span class="o">=</span> <span class="n">wi</span> <span class="o">+</span> <span class="n">bl</span> <span class="o">+</span> <span class="n">br</span> <span class="o">-</span> <span class="n">sbl</span> <span class="o">-</span> <span class="n">sbr</span>
 <span class="n">width</span>   <span class="o">=</span> <span class="n">bb</span> <span class="o">-</span> <span class="n">sbb</span> <span class="o">-</span> <span class="n">sbt</span>   <span class="ow">or</span>   <span class="n">bt</span> <span class="o">-</span> <span class="n">sbb</span> <span class="o">-</span> <span class="n">sbt</span>
 </pre></div>
 </div>
@@ -641,14 +635,14 @@ automatically take values for the opposite margin to that of the first:</p>
 </tbody>
 </table>
 <p>The default label placements will not suit all uses but these values are easily
-over-ridden using the <tt class="docutils literal"><span class="pre">-tpos</span></tt> and  <tt class="docutils literal"><span class="pre">-tjus</span></tt> options for the main title and the
-<tt class="docutils literal"><span class="pre">-stpos</span></tt>, <tt class="docutils literal"><span class="pre">-stjus</span></tt> and <tt class="docutils literal"><span class="pre">-stpos2</span></tt>, <tt class="docutils literal"><span class="pre">-stjus2</span></tt> paired options for the scale titles.</p>
+over-ridden using the <code class="docutils literal notranslate"><span class="pre">-tpos</span></code> and  <code class="docutils literal notranslate"><span class="pre">-tjus</span></code> options for the main title and the
+<code class="docutils literal notranslate"><span class="pre">-stpos</span></code>, <code class="docutils literal notranslate"><span class="pre">-stjus</span></code> and <code class="docutils literal notranslate"><span class="pre">-stpos2</span></code>, <code class="docutils literal notranslate"><span class="pre">-stjus2</span></code> paired options for the scale titles.</p>
 <p>Nine text justification options are provided as illustrated in this diagram:</p>
 <a class="reference internal image-reference" href="_images/justification.png"><img alt="_images/justification.png" class="align-center" src="_images/justification.png" style="width: 667.2px; height: 124.8px;" /></a>
-<p>where the blue dot represents a fixed <tt class="docutils literal"><span class="pre">-tpos</span></tt> coordinate with varying text justification
+<p>where the blue dot represents a fixed <code class="docutils literal notranslate"><span class="pre">-tpos</span></code> coordinate with varying text justification
 choices and the red rectangle shows the computed boundary text box.  Note that the use of
 these justification points depends on the <cite>ImageMagick</cite> calculation of text fontmetrics
-which provide a correctly sized bounding box for the text but not the box&#8217;s position.
+which provide a correctly sized bounding box for the text but not the box’s position.
 Consequently, there is scope for slight misplacement as demonstrated in the example above
 that does not bound the descending p correctly.  Generally, though the method is accurate
 enough for an approximate placement that can be refined, if neccessary, within one
@@ -660,33 +654,33 @@ iteration.</p>
 available will depend on the installation and may not even include all the fonts used in
 this cookbook. The <cite>ImageMagick</cite> utilities can be used to obtain a list of the available
 fonts:</p>
-<div class="highlight-python"><div class="highlight"><pre>identify -list font | grep &#39;Font:&#39; | sed -e &#39;s/.*: //&#39; &gt; fontlist
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">identify</span> <span class="o">-</span><span class="nb">list</span> <span class="n">font</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">&#39;Font:&#39;</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;s/.*: //&#39;</span> <span class="o">&gt;</span> <span class="n">fontlist</span>
 
-cat fontlist
-AvantGarde-Book
-AvantGarde-BookOblique
-AvantGarde-Demi
-AvantGarde-DemiOblique
-Bookman-Demi
-Bookman-DemiItalic
-Bookman-Light
-Bookman-LightItalic
-Courier-BoldOblique
-.
-.
-Yuppy-SC-Regular
-Yuppy-TC-Regular
-Zapf-Dingbats
-Zapfino
-ヒラギノ丸ゴ-Pro-W4
-ヒラギノ丸ゴ-ProN-W4
-ヒラギノ角ゴ-StdN-W8
+<span class="n">cat</span> <span class="n">fontlist</span>
+<span class="n">AvantGarde</span><span class="o">-</span><span class="n">Book</span>
+<span class="n">AvantGarde</span><span class="o">-</span><span class="n">BookOblique</span>
+<span class="n">AvantGarde</span><span class="o">-</span><span class="n">Demi</span>
+<span class="n">AvantGarde</span><span class="o">-</span><span class="n">DemiOblique</span>
+<span class="n">Bookman</span><span class="o">-</span><span class="n">Demi</span>
+<span class="n">Bookman</span><span class="o">-</span><span class="n">DemiItalic</span>
+<span class="n">Bookman</span><span class="o">-</span><span class="n">Light</span>
+<span class="n">Bookman</span><span class="o">-</span><span class="n">LightItalic</span>
+<span class="n">Courier</span><span class="o">-</span><span class="n">BoldOblique</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="n">Yuppy</span><span class="o">-</span><span class="n">SC</span><span class="o">-</span><span class="n">Regular</span>
+<span class="n">Yuppy</span><span class="o">-</span><span class="n">TC</span><span class="o">-</span><span class="n">Regular</span>
+<span class="n">Zapf</span><span class="o">-</span><span class="n">Dingbats</span>
+<span class="n">Zapfino</span>
+<span class="n">ヒラギノ丸ゴ</span><span class="o">-</span><span class="n">Pro</span><span class="o">-</span><span class="n">W4</span>
+<span class="n">ヒラギノ丸ゴ</span><span class="o">-</span><span class="n">ProN</span><span class="o">-</span><span class="n">W4</span>
+<span class="n">ヒラギノ角ゴ</span><span class="o">-</span><span class="n">StdN</span><span class="o">-</span><span class="n">W8</span>
 </pre></div>
 </div>
 <p>The list can be long and not particularly useful unless you are just looking to confirm
-the presence of a known font. As an alternative, the <tt class="docutils literal"><span class="pre">bin/fontimg.sh</span></tt> script is provided
+the presence of a known font. As an alternative, the <code class="docutils literal notranslate"><span class="pre">bin/fontimg.sh</span></code> script is provided
 to supply a visual illustration of the available fonts. In its basic form:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="nb">bin</span><span class="o">/</span><span class="n">fontimg</span><span class="o">.</span><span class="n">sh</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">fontimg</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 <p>will create a fontlist listing (using the identify command above) and then will produce
@@ -696,31 +690,31 @@ made with numeric arguments corresponding to list positions. In these cases an e
 view of the listed fonts will be produced. This secondary usage can be used in a single
 step to view known font families. For example, say you only wish to view the verdana fonts
 available on your system, then:</p>
-<div class="highlight-python"><div class="highlight"><pre>bin/fontimg.sh `grep -n -i verdana fontlist | sed -e&#39;s/:.*$//&#39;`
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bin/fontimg.sh `grep -n -i verdana fontlist | sed -e&#39;s/:.*$//&#39;`
 </pre></div>
 </div>
-<p>will produce a series of <tt class="docutils literal"><span class="pre">onefontNNN.png</span></tt> images such as these four:</p>
+<p>will produce a series of <code class="docutils literal notranslate"><span class="pre">onefontNNN.png</span></code> images such as these four:</p>
 <a class="reference internal image-reference" href="_images/example13a.png"><img alt="_images/example13a.png" class="align-center" src="_images/example13a.png" style="width: 800.0px; height: 320.0px;" /></a>
 <p>All the available fonts can be used for titles and scale labels by naming the required
-font via the <tt class="docutils literal"><span class="pre">-tfnt</span></tt> (title font) <tt class="docutils literal"><span class="pre">-stfnt</span></tt> (scale title font) <tt class="docutils literal"><span class="pre">-sfnt</span></tt> (scale font)
+font via the <code class="docutils literal notranslate"><span class="pre">-tfnt</span></code> (title font) <code class="docutils literal notranslate"><span class="pre">-stfnt</span></code> (scale title font) <code class="docutils literal notranslate"><span class="pre">-sfnt</span></code> (scale font)
 options. In all cases the argument is the full string given in the fontlist listing. These
 strings will most often need to be quoted due to the presence of hyphens. [TBD need
-<tt class="docutils literal"><span class="pre">-afnt</span></tt> option to control annotation font too].</p>
+<code class="docutils literal notranslate"><span class="pre">-afnt</span></code> option to control annotation font too].</p>
 </div>
 <div class="section" id="logo-placement-and-sizing">
 <h2>8. Logo placement and sizing<a class="headerlink" href="#logo-placement-and-sizing" title="Permalink to this headline">¶</a></h2>
 <p>A facility is provided for an external image to be read and overlaid in any position on
 the working canvas. This is intended for adding a single logo and works best with png
-images using a transparent background.  The <cite>ImageMagick</cite> tool, <tt class="docutils literal"><span class="pre">composite</span></tt>, should be
+images using a transparent background.  The <cite>ImageMagick</cite> tool, <code class="docutils literal notranslate"><span class="pre">composite</span></code>, should be
 used for more complex compositing of multiple images. The following three command-line
 options and arguments determine the source image, size and placement:</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">-logo</span> <span class="pre">logo_image_file</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">-lsize</span> <span class="pre">x_pixel_size</span> <span class="pre">y_pixel_size</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">-lpos</span> <span class="pre">x_pixel_position</span> <span class="pre">y_pixel_position</span></tt> (bottom left corner)</li>
+<li><code class="docutils literal notranslate"><span class="pre">-logo</span> <span class="pre">logo_image_file</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">-lsize</span> <span class="pre">x_pixel_size</span> <span class="pre">y_pixel_size</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">-lpos</span> <span class="pre">x_pixel_position</span> <span class="pre">y_pixel_position</span></code> (bottom left corner)</li>
 </ul>
 <p>The simple ratio scaling algorithm used will maintain the aspect ratio of the logo so the
-resultant logo size may not be exactly that requested by the <tt class="docutils literal"><span class="pre">-lsize</span></tt> arguments. The
+resultant logo size may not be exactly that requested by the <code class="docutils literal notranslate"><span class="pre">-lsize</span></code> arguments. The
 actual size will be determined by the limiting dimension. For example, if the logo source
 image is 511x113, a  requested size of 158x50 will provide a 158x35 pixel-sized logo.
 Whereas a requested size of 300x50 will provide a 226x50 pixel-sized logo.</p>
@@ -733,7 +727,7 @@ Whereas a requested size of 300x50 will provide a 226x50 pixel-sized logo.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -751,9 +745,9 @@ Whereas a requested size of 300x50 will provide a 226x50 pixel-sized logo.</p>
  
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

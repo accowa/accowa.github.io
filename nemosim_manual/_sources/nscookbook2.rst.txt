@@ -1,0 +1,343 @@
+.. _nscookbook2:
+
+NEMOSIM - Cook book (2) 
+=======================
+
+Increasing productivity
+-----------------------
+
+It will already be evident that producing high quality images is going to require: a
+moderate amount of computing power (dependent on target resolution); a long argument list
+(dependent on design complexity) or, most probably, both. Fortunately, NEMOSIM has options
+to help produce results more quickly and to reduce the user input required. Firstly, the
+computational task can be shared across multiple threads (where available). Secondly, the
+pixel-space to model index mapping matrix can be saved and reused for subsequent images
+that use the same view parameters.  Thirdly, NEMOSIM uses a command inheritance system
+which allows settings to be inherited from existing results. This section of the cookbook
+explains these options in more detail.
+
+
+1. Using multiple threads
+-------------------------
+
+When available, NEMOSIM will have been compiled with OpenMP support. Multiple computing
+threads are used to speed up the computation of the pixel-space to model index mapping
+which is the most computationally demanding part of the overall task (especially for high
+resolution images from high resolution model output). The user can assert control using
+the ``-np`` option to declare the number of OpenMP threads to use. Otherwise, the default
+is to use half the physical number available (or one in a single-core environment). This
+choice should suffice in most circumstances but different values may be beneficial in
+either sole-use environments or in heavily used shared environments. The number of threads
+available and the number used will be reported by NEMOSIM for any verbosity level greater
+than zero (set via the ``-rpt`` option). The following example illustrates the performance
+benefit of using increasing numbers of threads. Note in this relatively small example there
+are diminishing (but still beneficial) gains for more than a few threads::
+
+  ./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
+            -show -no_offset -rpt 1 -np 1
+          OMP threads/ max. threads/ num procs     :    1/ 1/12
+                           image creation time     =    6.773
+
+  ./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
+            -show -no_offset -rpt 1 -np 2
+          OMP threads/ max. threads/ num procs     :    2/ 2/12
+                           image creation time     =    4.923
+
+  ./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
+            -show -no_offset -rpt 1 -np 3
+          OMP threads/ max. threads/ num procs     :    3/ 3/12
+                           image creation time     =    4.350
+
+  ./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
+            -show -no_offset -rpt 1 -np 4
+          OMP threads/ max. threads/ num procs     :    4/ 4/12
+                           image creation time     =    4.298
+
+  ./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
+            -show -no_offset -rpt 1
+          OMP threads/ max. threads/ num procs     :    6/ 6/12   (default # threads)
+                           image creation time     =    3.914
+
+  ./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
+            -show -no_offset -rpt 1 -np 8
+          OMP threads/ max. threads/ num procs     :    8/ 8/12
+                           image creation time     =    4.074
+
+  ./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
+            -show -no_offset -rpt 1 -np 12
+          OMP threads/ max. threads/ num procs     :   12/12/12
+                           image creation time     =    3.881
+
+
+.. autoimage:: example4a
+    :scale-html: 50
+    :scale-latex: 50
+
+
+2. Reusing the mapping matrix
+-----------------------------
+
+NEMOSIM works by calculating a mapping from pixel-space to model grid-cell indices and
+then using the value of the model field in each identified grid-cell to determine the
+pixel colour. This approach allows for very high resolution images to be produced that
+faithfully represent the resolution of the source model. The method allows very large
+images to be produced (e.g. for display banners) without relying on software scaling of
+smaller images and suffering the inevitable blurring of crisp edges. However, calculating
+the mapping matrix can be computationally expensive; especially for high resolution
+image/high resolution model combinations. Continuing algorithmic improvements and
+multi-thread utilisation can help reduce the image creation time, but the overhead is
+still too large for some practical applications.
+
+Fortunately, the mapping matrix is a function of only the target image size, source model
+grid geometry and user view parameters. It is independent of the actual model field and
+all other user choices (such as scale type, scale limits, annotations, foreground and
+background colours, fonts and margin settings). This means, for example, that in the
+production of video frames for a timeseries of model results where only the model field
+data is changing, the mapping matrix can be calculated and stored when producing the first
+frame for re-use by all subsequent frames.
+
+It is in such uses that the scriptable nature of NEMOSIM truly comes into its own. The
+creation time for images can be reduced from minutes (sometimes, tens of minutes) to a few
+seconds or less when re-using the mapping matrix. For very long animated sequences the
+production of frames can even be carried out using simple task-farming techniques on a
+suitably configured cluster.
+
+The creation and subsequent re-use of a mapping matrix is triggered via the ``-usemap`` option.
+This option takes a single argument which is the name of a NetCDF file which will be either:
+
+ * created and filled with the mapping data and associated information (if it doesn't exist)
+ * opened and read to obtain the mapping data (if it already exists)
+
+The use of NetCDF means that these files are portable between systems and, crucially, can
+contain sufficient metadata for basic sanity checks. Before explaining this further it is
+useful to look at an example. Firstly, recreate the previous image but add the usemap option
+to save the mapping data::
+
+
+   ./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png -d isstempe -nomask -spos 3 -icosa \
+             -show -no_offset -rpt 1 -np 1 -usemap icosa.nc
+          OMP threads/ max. threads/ num procs     :    1/ 1/12
+                           image creation time     =     6.757
+
+Now with the mapping data we can recreate the image quickly and even change non-map
+related properties in the process. Here, for example, the colour palette is changed::
+
+   ./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4b.png -d isstempe -nomask -spos 3 -icosa \
+             -show -no_offset -rpt 1 -np 1 -usemap icosa.nc -cs brown2green.pal
+          OMP threads/ max. threads/ num procs     :    1/ 1/12
+                           image creation time     =     0.026
+
+
+.. autoimage:: example4b
+    :scale-html: 50
+    :scale-latex: 50
+
+Note how much more quickly the image was created this time even though we continue to
+employ just a single thread. We could continue to use this mapping data for any compatible
+data source and target image. Provided the grids match, different data fields could be
+read from different data files and all ancillary settings can be altered. Here we continue
+to plot the SST field but change the colour palette again and change scale and title
+settings::
+
+   ./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4c.png -d isstempe -nomask -spos 4 -icosa \
+             -show -no_offset -rpt 1 -np 1 -usemap icosa.nc -cs best64.pal -limits -2. 28. \
+             -title 'Sea Surface Temperature (C)' -stitle SST
+          OMP threads/ max. threads/ num procs     :    1/ 1/12
+                           image creation time     =     0.026
+
+.. autoimage:: example4c
+    :scale-html: 50
+    :scale-latex: 50
+
+It is worth noting the contents of the map file which is easy to reveal using the standard
+``ncdump`` netCDF utility::
+
+  ncdump -h icosa.nc
+  netcdf icosa {
+  dimensions:
+          x = 720 ;
+          y = 400 ;
+  variables:
+          int pix2ij(y, x) ;
+
+  //   global attributes:
+                :Source_size = 1442, 1021 ;
+                :Image_size = 720, 400 ;
+                :Command = "./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4c.png -d isstempe 
+                            -nomask -spos 3 -icosa -show -no_offset -rpt 1 -np 1 -usemap icosa.nc" ;
+                :Work_dir = "/Users/acc/NEMO/NEMOSIM/NemoSim" ;
+                :Utility = "nemosim created by acc@noc.ac.uk (National Oceanography Centre, UK)" ;
+  }
+
+
+The main content is an integer array (pix2ij), the same size and shape as the target
+image, which contains a combined i,j model index for each image pixel. Additional global
+attributes are stored which allow some simple sanity checks to be performed when the map is
+reused. For example, it is a detectable error to attempt to use the same map to generate a
+different size image::
+
+  ./nemosim -f ./data/ORCA025_2001m01I.nc -o tmpme.png -d isstempe -nomask -spos 3 -icosa -show \
+                                          -no_offset -np 1 -usemap icosa.nc -r 800 400
+   Sanity check failed in icosa.nc
+   Requested destination image size of:               800         400
+   Pixel to ij map is for a image size of:            720         400
+  STOP map mismatch
+
+Likewise it is a detectable error to employ the same map with different size input fields::
+
+  ./nemosim -f ./data/ORCA1_2006m09T.nc -o tmpme.png -d votemper -nomask -spos 3 -icosa -show \
+                                        -no_offset -np 1 -usemap icosa.nc 
+   Sanity check failed in icosa.nc
+   Supplied source size of:                          362         292
+   Pixel to ij map is for a source size of:         1442        1021
+  STOP map mismatch
+
+These are necessary checks but not sufficient to guarantee the expected results. For
+example, this attempt to produce an orthogonal projection image will ignore the
+projection parameters and reproduce the icosahedral projection image::
+
+  ./nemosim -f ./data/ORCA025_2001m01I.nc -o tmpme.png -d isstempe -nomask -spos 3 -ortho -eu1 80. \
+            -show -no_offset -rpt 1 -np 1 -usemap icosa.nc
+
+Other attributes include the current working directory that may help establish provenance
+should map files be moved later and a copy of the command which was invoked to produce the
+map file. This attribute may not be an exact replica of the command because redundant
+arguments will have been removed by ``nemosim``. Redundant arguments occur if an option is
+supplied more than once; only the last example of each option and its associated arguments
+will be retained. This is because the command-line parsing is performed from left to right
+and any recurring options will overwrite earlier settings. This behaviour is useful and
+important for the command inheritance functionality described in the next section.
+
+
+3. Command inheritance
+----------------------
+
+The range of options that nemosim supports and the complexity of the commands for
+well-crafted images is likely to discourage casual users from regular use. However, the
+command inheritance capability goes a long way to removing these burdens by providing a
+mechanism for constructing images based on previous work. In its simplest form the
+inheritance function (triggered by the ``-as`` option) can be used to repeat a previous
+command. Say, for example, that the example4c.png file had been accidently deleted. There
+is no need to worry about reconstructing the command because a copy exists in the map file
+and ``nemosim`` can be instructed to extract and execute this command with::
+
+  ./nemosim -as icosa.nc
+
+What may be less obvious is that an accidental deletion of the map file is also
+recoverable.  This is because, ``nemosim`` also uses the comment field available in JPEG
+and PNG images to store the image creation command. Thus::
+
+  ./nemosim -as examples/example4c.png
+
+will recreate the image either using the existing map file or from scratch (thereby
+recreating the map file) if it no longer exists. Currently, ``nemosim`` invokes an
+external script to access the comment field. This script (bin/rdimgcom) must be in the
+users ``$PATH`` for this to work AND ``nemosim`` needs to have been compiled with a
+FORTRAN 2008 standards compliant compiler. This is because the command is run via the
+``EXECUTE_COMMAND_LINE`` function that was introduced into the standard at that date.
+Users will be warned when this is attempted with older compilers and given instructions
+for a two-stage alternative which involves:
+
+ * Running rdimgcom manually and redirecting output to a text file
+ * Running ``nemosim`` with this text file as the argument to the ``-as`` option
+
+For example::
+
+   ./nemosim -as tmpme.png
+   ****************************************************
+   * Sorry EXECUTE_COMMAND_LINE is not available with *
+   * this fortran compiler. Cloning a previous image  *
+   * directly is not possible.                        *
+   * Run ./bin/rdimgcom ../tmpme.png manually,        *
+   * redirect the results into a text file, and       *
+   * rerun nemosim using this text file as the        *
+   * argument to the -as option instead. E.g.:        *
+   *     ./bin/rdimgcom tryme.png > tryme.cmd         *
+   *     ./nemosim -as tryme.cmd -o tryme2.png        *
+   ****************************************************
+
+It should be noted that the rdimgcom script creates a temporary file during its operation.
+This temporary file is subsequently deleted but it does mean that the script must be
+invoked within a working directory for which the user has write permission.  When running
+the script manually, the user may avoid this restriction by providing a 2nd argument
+naming a directory where temporary files may be created. For example::
+
+  mkdir noperms ; chmod a-w noperms ; cd noperms
+  ../bin/rdimgcom ../tmpme.png
+
+  Sorry. Unable to create temporary file:  ./1066_tmp.txt
+  Either the directory is not writable or the file already exists
+  You can try providing a directory for the temporary file as a 2nd argumnt
+
+  Usage: rdimgcom image_file [directory_for_temporary_file]
+
+  ../bin/rdimgcom ../tmpme.png ..
+
+  ./nemosim -f ./data/ORCA025_2001m01I.nc -o tmpme.png -d isstempe \ 
+            -nomask -spos 3 -ortho -eu1 80. -show -no_offset -rpt 1 -np 1 \ 
+            -usemap icosa.nc
+
+Note it is very unlikely that the temporary file already exists since it's name is formed
+using the process id which should be unique. When invoked internally via the
+``EXECUTE_COMMAND_LINE`` function there is currently no option for providing an
+alternative directory. Any difficulty in creating the temporary file will result in the
+same compiler-related error message as shown above and the user will have to resort to the
+two-stage method as instructed.
+
+In summary, ``nemosim`` can accept three sources of command inheritance via the ``-as``
+option:
+
+ * From the ``Command`` attribute stored within a netCDF map file
+ * From the comment field stored within a ``nemosim`` generated JPG or PNG
+ * From an ASCII text file containing just the command line text. This can be created
+   manually or from redirected output from the rdimgcom script. Long argument lists can
+   be provided across multiple, '\\'-terminated, lines 
+
+Note that subsequent manipulation of an image with other tools may remove comments within
+JPG and PNG files. If there is a risk of this then use ``rdimgcom`` to extract the command
+and save in a text file before operating on ``nemosim`` generated images. A second script
+is provided (``wrimgcom``) for reinserting comments from text files in these
+circumstances::
+
+  ./bin/wrimgcom cmd.txt tmpme.png
+
+So far we've used command inheritance to simply recreate images. Obviously it is useful to
+maintain a record of the creation command, and this is especially true when that record is
+carried within the image itself, but the facility is even more useful when combined with
+the ability of ``nemosim`` to ignore all but the last occurrence of each option-argument
+pairing. This means that creating images that are variations of existing ones can be
+easily achieved with minimal arguments. For example::
+
+  ./nemosim -as icosa.nc -d Bathy_level -f ./data/bathy_level.nc -o examples/example4d.png 
+
+.. autoimage:: example4d
+    :scale-html: 50
+    :scale-latex: 50
+
+Note that the command subsequently stored in the output image will have had any redundancy
+removed. Note also that the attribute in icosa.nc is unchanged::
+
+  ./bin/rdimgcom example4d.png 
+ 
+  ./nemosim -f ./data/bathy_level.nc -o examples/example4d.png -d \
+  Bathy_level -nomask -spos 3 -icosa -no_offset -np 1 -usemap icosa.nc
+
+Variations of this last image can be continued most simply by inheritance from the image itself::
+
+  ./nemosim -as examples/example4d.png -cs bathy.pal -bbg gray -o examples/example4e.png
+ 
+.. autoimage:: example4e
+    :scale-html: 50
+    :scale-latex: 50
+
+Finally, note that even the projection can be changed simply by naming a new map file
+(which will be created if it doesn't already exist)::
+
+  ./nemosim -as examples/example4e.png -usemap ortho.nc -ortho -eu2 70. -eu1 120. -o examples/example4f.png
+   usemap requested but ortho.nc does not exist. File will be created.
+
+.. autoimage:: example4f
+    :scale-html: 50
+    :scale-latex: 50
+
+

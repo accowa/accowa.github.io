@@ -1,0 +1,519 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>NEMOSIM - Cook book (8) &#8212; nemosim 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="NEMOSIM - Cook book (7)" href="nscookbook7.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="nscookbook7.html" title="NEMOSIM - Cook book (7)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NEMOSIM - Cook book (8)</a><ul>
+<li><a class="reference internal" href="#user-tutorial-on-jasmin">User tutorial on JASMIN</a></li>
+<li><a class="reference internal" href="#the-setup">1. The setup</a></li>
+<li><a class="reference internal" href="#decide-on-your-input-data">2. Decide on your input data</a></li>
+<li><a class="reference internal" href="#decide-on-the-output-image-size">3. Decide on the output image size</a></li>
+<li><a class="reference internal" href="#determine-the-mask-and-coordinate-options">4. Determine the mask and coordinate options</a></li>
+<li><a class="reference internal" href="#decide-on-variable-and-suitable-range">5. Decide on variable and suitable range</a></li>
+<li><a class="reference internal" href="#produce-a-trial-frame">6. Produce a trial frame</a></li>
+<li><a class="reference internal" href="#set-a-different-background-colour">Set a different background colour</a></li>
+<li><a class="reference internal" href="#adding-a-logo">Adding a logo</a></li>
+<li><a class="reference internal" href="#adding-a-date-clock">Adding a date clock</a></li>
+<li><a class="reference internal" href="#produce-the-first-complete-frame">Produce the first complete frame</a></li>
+<li><a class="reference internal" href="#producing-all-the-frames">Producing all the frames</a></li>
+<li><a class="reference internal" href="#encoding-the-video-sequence">Encoding the video sequence</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nscookbook7.html"
+                        title="previous chapter">NEMOSIM - Cook book (7)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nscookbook8.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nemosim-cook-book-8">
+<span id="nscookbook8"></span><h1>NEMOSIM - Cook book (8)<a class="headerlink" href="#nemosim-cook-book-8" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="user-tutorial-on-jasmin">
+<h2>User tutorial on JASMIN<a class="headerlink" href="#user-tutorial-on-jasmin" title="Permalink to this headline">¶</a></h2>
+<p>The quickest and easiest way to learn how best to use all the options available is to
+simply try a few projects for yourself. This page details how to get up and running
+quickly on JASMIN and guides you through the various steps from the interactive production
+of a single frame through to the parallel production of multiple frames using the LOTUS
+cluster and the final creation of a quality mp4 movie.</p>
+<p>Most of these steps have been mentioned in previous cookbook entries so this will provide
+a useful revision exercise and is presented as a simple recipe. Insights into the decision
+process at each stage are included so that users can easily adapt this recipe for their
+particular needs.</p>
+</div>
+<div class="section" id="the-setup">
+<h2>1. The setup<a class="headerlink" href="#the-setup" title="Permalink to this headline">¶</a></h2>
+<p>The first step is to make sure the environment is set correctly to enable access to the
+correct binaries and libraries. This applies to whichever of the scientific analysis machines
+you choose to login to (e.g. <code class="docutils literal notranslate"><span class="pre">sci2.jasmin.ac.uk</span></code> ). The following environment variables
+should be sufficient:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/home/users/acc/DEVTOOLS/bin:/home/users/acc/TOOLS/bin:$PATH
+export LD_LIBRARY_PATH=/home/users/acc/DEVTOOLS/lib:/home/users/acc/TOOLS/lib:$LD_LIBRARY_PATH
+</pre></div>
+</div>
+<p>which can be added to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> but may be best done on a session by session basis in
+case any of my other tools interfere with your own versions.</p>
+<p>For the purposes of this tutorial, you may also wish to create the following working directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">CB8_WORK</span>
+<span class="n">cd</span> <span class="n">CB8_WORK</span>
+<span class="n">cp</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">forMOCC</span><span class="o">/</span><span class="n">mxl_list</span> <span class="o">.</span>
+<span class="n">cp</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">forMOCC</span><span class="o">/</span><span class="n">CB8_examples</span> <span class="o">.</span>
+<span class="n">cp</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">forMOCC</span><span class="o">/</span><span class="n">mk_HD</span><span class="o">.</span><span class="n">slurm</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="decide-on-your-input-data">
+<h2>2. Decide on your input data<a class="headerlink" href="#decide-on-your-input-data" title="Permalink to this headline">¶</a></h2>
+<p>It is not strictly necessary to do this at this stage but given the dispersal of model output
+across multiple GWS’s it is useful to list the possible source datasets for a project. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">mxl_list</span>
+</pre></div>
+</div>
+<p>contains a list of 5-day mean biogeochemical prognostic variables for 10 years from 2006 relative to
+the:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">gws</span><span class="o">/</span><span class="n">nopw</span><span class="o">/</span><span class="n">j04</span><span class="o">/</span><span class="n">nemo_vol1</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N006</span><span class="o">/</span><span class="n">means</span>
+</pre></div>
+</div>
+<p>directory. I.e.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="mi">5</span> <span class="n">mxl_list</span>
+<span class="mi">2006</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N06_20060105d05P</span><span class="o">.</span><span class="n">nc</span>
+<span class="mi">2006</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N06_20060110d05P</span><span class="o">.</span><span class="n">nc</span>
+<span class="mi">2006</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N06_20060115d05P</span><span class="o">.</span><span class="n">nc</span>
+<span class="mi">2006</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N06_20060120d05P</span><span class="o">.</span><span class="n">nc</span>
+<span class="mi">2006</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N06_20060125d05P</span><span class="o">.</span><span class="n">nc</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="n">tail</span> <span class="o">-</span><span class="mi">5</span><span class="n">l</span> <span class="n">mxl_list</span>
+<span class="mi">2015</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N06_20151211d05P</span><span class="o">.</span><span class="n">nc</span>
+<span class="mi">2015</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N06_20151216d05P</span><span class="o">.</span><span class="n">nc</span>
+<span class="mi">2015</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N06_20151221d05P</span><span class="o">.</span><span class="n">nc</span>
+<span class="mi">2015</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N06_20151226d05P</span><span class="o">.</span><span class="n">nc</span>
+<span class="mi">2015</span><span class="o">/</span><span class="n">ORCA0083</span><span class="o">-</span><span class="n">N06_20151231d05P</span><span class="o">.</span><span class="n">nc</span>
+</pre></div>
+</div>
+<p>This will be the set of 1/12th degree input files used for this tutorial (actually this
+can be considered more of a template set since all the dataset types follow a common
+naming convention and the other types can be accessed by simple editing of these names)
+I.e.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>fileP=2006/ORCA0083-N06_20060105d05P.nc
+fileT=${fileP/d05P/d05T}
+fileU=${fileP/d05P/d05U}
+fileV=${fileP/d05P/d05V}
+fileW=${fileP/d05P/d05W}
+fileI=${fileP/d05P/d05I}
+fileD=${fileP/d05P/d05D}
+
+for f in $fileP $fileT $fileU $fileV $fileW $fileI $fileD; do echo $f; done
+2006/ORCA0083-N06_20060105d05P.nc
+2006/ORCA0083-N06_20060105d05T.nc
+2006/ORCA0083-N06_20060105d05U.nc
+2006/ORCA0083-N06_20060105d05V.nc
+2006/ORCA0083-N06_20060105d05W.nc
+2006/ORCA0083-N06_20060105d05I.nc
+2006/ORCA0083-N06_20060105d05D.nc
+</pre></div>
+</div>
+</div>
+<div class="section" id="decide-on-the-output-image-size">
+<h2>3. Decide on the output image size<a class="headerlink" href="#decide-on-the-output-image-size" title="Permalink to this headline">¶</a></h2>
+<p>The choice of output image size is determined by the end application. For the MOOC videos,
+for example, top-end 4kUHD resolution images were produced with each frame being 3840x2160
+pixels. This is 16:9 aspect ratio (widescreen) broadcast quality but excessive for most
+applications. Images destined for the PufferSphere need to have a 2:1 aspect ratio and the
+highest resolution for that device is 3840x1920. For many presentations and on-line
+applications, an HD resolution of 1920x960 is sufficient and is recommended here for
+exploratory work. Sticking to standard sizes means there is every likelihood that the
+mapping matrix will already exist and will not need to be created for each new project. To
+this end it is a good idea to store map files in a standard location. My map files, for
+example, are kept in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">acc</span><span class="o">/</span><span class="n">TOOLS</span><span class="o">/</span><span class="n">MAPS</span>
+</pre></div>
+</div>
+<p>and <code class="docutils literal notranslate"><span class="pre">ncdump</span></code> can be used to check their provenance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncdump</span> <span class="o">-</span><span class="n">h</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">acc</span><span class="o">/</span><span class="n">TOOLS</span><span class="o">/</span><span class="n">MAPS</span><span class="o">/</span><span class="n">latlon_1920_p083</span><span class="o">.</span><span class="n">nc</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">_size</span>
+<span class="p">:</span><span class="n">Source_size</span> <span class="o">=</span> <span class="mi">4322</span><span class="p">,</span> <span class="mi">3059</span> <span class="p">;</span>
+<span class="p">:</span><span class="n">Image_size</span> <span class="o">=</span> <span class="mi">1920</span><span class="p">,</span> <span class="mi">960</span> <span class="p">;</span>
+</pre></div>
+</div>
+<p>Which clearly identifies a mapping from the 1/12th degree model to a 1920x960 image.
+Don’t forget that if the mapping file doesn’t exist it will be created the first time
+it is needed; just be careful when parallelising frame production to either launch the
+first frame separately or to ensure the map file pre-exists.</p>
+</div>
+<div class="section" id="determine-the-mask-and-coordinate-options">
+<h2>4. Determine the mask and coordinate options<a class="headerlink" href="#determine-the-mask-and-coordinate-options" title="Permalink to this headline">¶</a></h2>
+<p>Although not essential, there is benefit in having a proper bathy_level mask file for the
+source grid. This allows nemosim to correctly distinguish between land and seabed areas for
+slices below the surface ocean. It also provides a reference for coordinates which avoids
+any concerns as to whether or not the source file contains complete coordinate fields. There
+can be, for example, issues with source data that was rebuilt from distributed fields
+produced using land suppression. In some cases, coordinate fields may be left unset over
+land-only regions. For the ORCA12 grid a suitable bathymetry exists in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">acc</span><span class="o">/</span><span class="n">forYOOL</span><span class="o">/</span><span class="n">dom0083</span><span class="o">/</span><span class="n">bathy_level</span><span class="o">.</span><span class="n">nc</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="decide-on-variable-and-suitable-range">
+<h2>5. Decide on variable and suitable range<a class="headerlink" href="#decide-on-variable-and-suitable-range" title="Permalink to this headline">¶</a></h2>
+<p>Choosing which variable to plot clearly depends on the project aim. Deciding on the limits
+for the colour scale can be trickier. In cases where the physical range over an annual
+cycle is well-known (such as surface temperature), it is possible to make a sensible
+choice straight off.  For less well-known properties or properties subject to drift over
+the course of a simulation, it may be necessary to resort to a trial and error approach.
+Sub-sampling the time-series is usually key to this; producing one frame per month for the
+first and last years should provide a clear indication of the suitability of the range
+set.</p>
+<p>This decision can also be influenced by the choice of colour-scale, since the human-eye
+has preferences for certain colours, so it is a good idea to try different palettes at
+this stage too.</p>
+</div>
+<div class="section" id="produce-a-trial-frame">
+<h2>6. Produce a trial frame<a class="headerlink" href="#produce-a-trial-frame" title="Permalink to this headline">¶</a></h2>
+<p>For this tutorial, we will keep things simple and use SST. Actually, its not so simple
+because the name changes during the course of the simulation from <code class="docutils literal notranslate"><span class="pre">potemp</span></code> to <code class="docutils literal notranslate"><span class="pre">thetao</span></code>,
+but more on that later. At least, the range and palette should be obvious choices. Here
+is a first pass at producing a decent image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nemosim</span> <span class="o">-</span><span class="n">usemap</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">acc</span><span class="o">/</span><span class="n">TOOLS</span><span class="o">/</span><span class="n">MAPS</span><span class="o">/</span><span class="n">latlon_1920_p083</span><span class="o">.</span><span class="n">nc</span> \
+        <span class="o">-</span><span class="n">k</span> <span class="mi">1</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span> <span class="o">-</span><span class="n">d</span> <span class="n">potemp</span> <span class="o">-</span><span class="n">limits</span> <span class="o">-</span><span class="mf">2.0</span> <span class="mf">30.00</span> \
+        <span class="o">-</span><span class="n">bcoord</span> <span class="o">-</span><span class="n">bathy</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">acc</span><span class="o">/</span><span class="n">forYOOL</span><span class="o">/</span><span class="n">dom0083</span><span class="o">/</span><span class="n">bathy_level</span><span class="o">.</span><span class="n">nc</span> \
+        <span class="o">-</span><span class="n">sw</span> <span class="mf">0.0</span> <span class="o">-</span><span class="mf">90.</span> <span class="o">-</span><span class="n">ne</span> <span class="mf">360.</span> <span class="mf">90.</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">r</span> <span class="mi">1920</span> <span class="mi">960</span> <span class="o">-</span><span class="n">cs</span> <span class="n">pastel2</span><span class="o">.</span><span class="n">pal</span> \
+        <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;/gws/nopw/j04/nemo_vol1/ORCA0083-N006/means/2006/ORCA0083-N06_20060105d05T.nc&quot;</span> \
+        <span class="o">-</span><span class="n">o</span> <span class="o">./</span><span class="n">example19a</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>which produces this:</p>
+<a class="reference internal image-reference" href="_images/example19a.png"><img alt="_images/example19a.png" class="align-center" src="_images/example19a.png" style="width: 480.0px; height: 240.0px;" /></a>
+<p>Here is a line by line explanation of the command:</p>
+<ul>
+<li><p class="first">Name the mapping file to be created (or in this case used, since it pre-exists):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nemosim</span> <span class="o">-</span><span class="n">usemap</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">acc</span><span class="o">/</span><span class="n">TOOLS</span><span class="o">/</span><span class="n">MAPS</span><span class="o">/</span><span class="n">latlon_1920_p083</span><span class="o">.</span><span class="n">nc</span> \
+</pre></div>
+</div>
+</li>
+<li><p class="first">Set the z-level and time-index for extraction; name the variable to be extracted and set
+the lower and upper bounds for the colour-scale:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">k</span> <span class="mi">1</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span> <span class="o">-</span><span class="n">d</span> <span class="n">potemp</span> <span class="o">-</span><span class="n">limits</span> <span class="o">-</span><span class="mf">2.0</span> <span class="mf">30.00</span> \
+</pre></div>
+</div>
+</li>
+<li><p class="first">Set to use coordinates from the bathy_level file and name this file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">bcoord</span> <span class="o">-</span><span class="n">bathy</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">acc</span><span class="o">/</span><span class="n">forYOOL</span><span class="o">/</span><span class="n">dom0083</span><span class="o">/</span><span class="n">bathy_level</span><span class="o">.</span><span class="n">nc</span> \
+</pre></div>
+</div>
+</li>
+<li><p class="first">Set the geographical limits for the image. Note this is important for PufferSphere
+content since the 2:1 aspect image must cover the global extent. If these bounds are not
+set explicitly, the image will be filled by the model’s coverage only and this does not
+extend down to the South Pole. Note, also, that these limits define the extent of the
+image but not necessarily the corners of the image. Because ORCA12’s first column is at
+around 73E the left-hand edge does not start at 0E. The <code class="docutils literal notranslate"><span class="pre">-no_offset</span></code> option ensures the
+image cyclicity is treated correctly. The remaining arguments define the image size and
+which colour palette to use.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">sw</span> <span class="mf">0.0</span> <span class="o">-</span><span class="mf">90.</span> <span class="o">-</span><span class="n">ne</span> <span class="mf">360.</span> <span class="mf">90.</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">r</span> <span class="mi">1920</span> <span class="mi">960</span> <span class="o">-</span><span class="n">cs</span> <span class="n">pastel2</span><span class="o">.</span><span class="n">pal</span> \
+</pre></div>
+</div>
+</li>
+<li><p class="first">Set the input source data file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">f</span> <span class="s2">&quot;/gws/nopw/j04/nemo_vol1/ORCA0083-N006/means/2006/ORCA0083-N06_20060105d05T.nc&quot;</span> \
+</pre></div>
+</div>
+</li>
+<li><p class="first">Finally, set the output image filename:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">o</span> <span class="o">./</span><span class="n">example19a</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Note, if you really need control over the longitude of the left-hand edge for global
+images then simply ‘roll’ the image after creation. The <code class="docutils literal notranslate"><span class="pre">ImageMagick</span></code> <code class="docutils literal notranslate"><span class="pre">mogrify</span></code>
+command will change existing images, but use the same arguments with <code class="docutils literal notranslate"><span class="pre">convert</span></code> to test
+settings first before overwriting existing images. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">convert</span> <span class="o">-</span><span class="n">roll</span> <span class="o">+</span><span class="mi">389</span><span class="o">+</span><span class="mi">0</span> <span class="n">example19a</span><span class="o">.</span><span class="n">png</span> <span class="n">example19b</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">389</span></code> is the result of: (1920.0/360.0 * 73.0), will roll the image by 73 degrees:</p>
+<a class="reference internal image-reference" href="_images/example19b.png"><img alt="_images/example19b.png" class="align-center" src="_images/example19b.png" style="width: 480.0px; height: 240.0px;" /></a>
+<p>This is also a good way to check that the image is truly cyclic since any edge effects
+will be easy to spot as discontinuities in the Indian Ocean. Any such edge effects will
+only be amplified on the PufferSphere which is why many other packages are unsuitable for
+generating images for this device.</p>
+</div>
+<div class="section" id="set-a-different-background-colour">
+<h2>Set a different background colour<a class="headerlink" href="#set-a-different-background-colour" title="Permalink to this headline">¶</a></h2>
+<p>This aside, we are happy with the original image as a base. The next stages are to add a
+little dressing. First up, is to consider the land regions. The default settings have
+these as flat black. We are probably content with this at this stage but may wish to
+consider other options in the future such as setting the land areas to be transparent and
+overlaying our ocean fields over orographic images. This may get trickier if we add other
+elements such as logos or date-clocks which contain black pixels. Setting a default
+background as a very dark gray creates a slightly softer image and allows land areas to be
+uniquely targetted in any future manipulation. Adding:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">bg</span> <span class="s2">&quot;#131313&quot;</span>
+</pre></div>
+</div>
+<p>will achieve this.</p>
+</div>
+<div class="section" id="adding-a-logo">
+<h2>Adding a logo<a class="headerlink" href="#adding-a-logo" title="Permalink to this headline">¶</a></h2>
+<p>The decision to add a logo is largely project-specific. However, it is probably easier to
+mask or remove a logo than it is to add one later so I’d recommend adding one to every
+project.  The caveat here is that any logo should be applied to a region of fixed colour
+(i.e. land) so that any future masking is simple to achieve. For PufferSphere applications,
+the placement needs to be as close as possible to the equator to avoid shape distortion.
+West Africa is the ideal location but this is better used for a date clock (see next section),
+so South Asia is the next best option. Sizing and positioning the logo can take a few trys so
+experiment on the trial image until you get it right. Here’s what I ended up with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">logo</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">DEVTOOLS</span><span class="o">/</span><span class="n">NEMOSIM</span><span class="o">/</span><span class="n">NemoSim</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">NOC_logo_white</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">lsize</span> <span class="mi">240</span> <span class="mi">77</span> <span class="o">-</span><span class="n">lpos</span> <span class="mi">0</span> <span class="mi">265</span>
+</pre></div>
+</div>
+<p>Note, the size used here maintans the aspect ratio of the original logo image which is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">identify</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">DEVTOOLS</span><span class="o">/</span><span class="n">NEMOSIM</span><span class="o">/</span><span class="n">NemoSim</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">NOC_logo_white</span><span class="o">.</span><span class="n">png</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">acc</span><span class="o">/</span><span class="n">DEVTOOLS</span><span class="o">/</span><span class="n">NEMOSIM</span><span class="o">/</span><span class="n">NemoSim</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">NOC_logo_white</span><span class="o">.</span><span class="n">png</span> <span class="n">PNG</span> <span class="mi">522</span><span class="n">x168</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-a-date-clock">
+<h2>Adding a date clock<a class="headerlink" href="#adding-a-date-clock" title="Permalink to this headline">¶</a></h2>
+<p>The final element which is vital for providing animations with a visual indication of time
+progression is the date-clock. As well as suitable positioning and sizing arguments, we
+also need to provide the date for each frame. In the current example, the simplest way to
+extract this information is from the filename itself. This bit of <code class="docutils literal notranslate"><span class="pre">sed</span></code> prepares the
+day, month, year argument (ddmmyyyy) from the filename:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>fr=&quot;/gws/nopw/j04/nemo_vol1/ORCA0083-N006/means/2006/ORCA0083-N06_20060105d05T.nc&quot;
+dstr=`echo $fr | sed -e &#39;s/.*ORCA0083-N06_\(....\)\(..\)\(..\).*/\3\2\1/&#39;`
+</pre></div>
+</div>
+<p>And the complete date-clock is set as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>-dateclk 56 1538 373 ${dstr}
+</pre></div>
+</div>
+</div>
+<div class="section" id="produce-the-first-complete-frame">
+<h2>Produce the first complete frame<a class="headerlink" href="#produce-the-first-complete-frame" title="Permalink to this headline">¶</a></h2>
+<p>Putting this all together completes the first frame:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bathyf=&quot;/home/users/acc/forYOOL/dom0083/bathy_level.nc&quot;
+logof=&quot;/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim/data/NOC_logo_white.png&quot;
+fr=&quot;/gws/nopw/j04/nemo_vol1/ORCA0083-N006/means/2006/ORCA0083-N06_20060105d05T.nc&quot;
+dstr=`echo $fr | sed -e &#39;s/.*ORCA0083-N06_\(....\)\(..\)\(..\).*/\3\2\1/&#39;`
+nemosim -usemap /home/users/acc/TOOLS/MAPS/latlon_1920_p083.nc \
+        -k 1 -t 1 -d potemp -limits -2.0 30.00 \
+        -bcoord -bathy ${bathyf} \
+        -sw 0.0 -90. -ne 360. 90. -no_offset -r 1920 960 -cs pastel2.pal \
+        -bg &quot;#131313&quot; -logo ${logof} -lsize 240 77 -lpos 0 265 \
+        -dateclk 56 1538 373 ${dstr} \
+        -f ${fr} -o ./example19c.png
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/example19c.png"><img alt="_images/example19c.png" class="align-center" src="_images/example19c.png" style="width: 480.0px; height: 240.0px;" /></a>
+</div>
+<div class="section" id="producing-all-the-frames">
+<h2>Producing all the frames<a class="headerlink" href="#producing-all-the-frames" title="Permalink to this headline">¶</a></h2>
+<p>We now have all the elements required to produce the complete frame sequence. With some
+simple scripting techniques a series of numbered frames can easily be produced. However,
+on JASMIN we have access to the LOTUS cluster and can do better than a simple serial
+script. This example uses the <code class="docutils literal notranslate"><span class="pre">test</span></code> queue which supports up to 8 core, 4 hour jobs and
+will run through the sequence producing 8 frames simultaneously. It may be possible to be
+even more ambitious than this but this will already process a 10 year sequence in under 20
+minutes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cat mk_HD.slurm
+#!/bin/bash
+#SBATCH --job-name=mkframe
+#SBATCH --time=00:20:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=8
+#SBATCH --partition=test
+#
+# need jaspy for ncks:
+module load jaspy
+#
+# function to return an uncluttered list of variables:
+function ncvarlst { ncks --trd -m ${1} | grep -E &#39;: type&#39; | cut -f 1 -d &#39; &#39; | sed &#39;s/://&#39; | sort ; }
+#
+# setup
+export OMP_NUM_THREADS=1
+export PATH=/work/n01/n01/acc/TOOLS/bin:$PATH
+export LD_LIBRARY_PATH=/work/n01/n01/acc/TOOLS/lib:$LD_LIBRARY_PATH
+#
+  OUTDIR=./HD/TEM_p083
+  MAPDIR=/home/users/acc/TOOLS/MAPS      # needs to be changed if creating new maps
+#
+  DTADIR=/gws/nopw/j04/nemo_vol1/ORCA0083-N006/means
+  BINDIR=/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim
+  LOGO=/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim/data/NOC_logo_white.png
+  BATHY=/home/users/acc/forYOOL/dom0083/bathy_level.nc
+  # cs=brown2green.pal
+  # cs=rev/seasonal_25.pal
+  # cs=div_blue2darkred_18.pal
+  # cs=rev/darkgreenscale_25.pal
+  # cs=GMT_sealand_x20.pal
+  # cs=gurvan.pal
+  # cs=div_blue2darkred_86.pal
+  cs=pastel2.pal
+  if [ ! -d ${OUTDIR} ] ; then mkdir -p  ${OUTDIR} ; fi
+  tsklist=${OUTDIR}/tasklist
+  if [ ! -e $tsklist ] ; then rm $tsklist ; fi
+#
+  basecmd=(${BINDIR}/nemosim -usemap ${MAPDIR}/latlon_1920_p083.nc -k 1 -t 1 \
+            -limits -2.0 30.00 -bcoord -bathy ${BATHY} \
+            -sw 0.0 -90. -ne 360. 90.  -no_offset -r 1920 960 \
+            -cs ${cs} -logo ${LOGO} -lsize 240 77 -lpos 0 265 -bg \&quot;#131313\&quot;)
+n=0
+m=0
+for fr in `cat mxl_list | sed -e&#39;s/d05P/d05T/g&#39;`
+do
+  nn=`printf &quot;%4.4d&quot; $n`
+  outf=$OUTDIR/temp083_$nn.png
+      if [ ! -f ${outf} ]; then
+        dstr=`echo $fr | sed -e &#39;s/.*ORCA0083-N06_\(....\)\(..\)\(..\).*/\3\2\1/&#39;`
+        var=potemp
+        if [ $( ncvarlst ${DTADIR}/$fr | grep -c thetao ) -eq 1 ] ; then var=thetao ; fi
+        echo $m  ${basecmd[@]} -d ${var} -f ${DTADIR}/$fr -o ${outf} -dateclk 56 1538 373 ${dstr} &gt;&gt; $tsklist
+        m=$(( $m + 1 ))
+      fi
+  n=$(( $n + 1 ))
+  if [ $m -eq 8 ]; then
+   echo &quot;A========Running srun===========&quot;$nn
+   head -1l $tsklist
+   srun --gres=gpu:0 --mpi=none --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07, \
+         --ntasks=$m  --multi-prog $tsklist  &amp;
+   wait
+   echo &quot;=========Finished srun==========&quot;
+   m=0
+   rm $tsklist
+  fi
+done
+if [ $m -gt 0 ]; then
+ echo &quot;B========Running srun===========&quot;
+ head -1l $tsklist
+ srun --gres=gpu:0 --mpi=none --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07, \
+      --ntasks=$m  --multi-prog $tsklist &amp;
+ wait
+ echo &quot;=========Finished srun==========&quot;
+ m=0
+ rm $tsklist
+fi
+#
+
+sbatch mk_HD.slurm
+</pre></div>
+</div>
+<p>There is plenty of scope for improving on this: exploring other queue optionsr; different
+placements, the use of OpenMP threads etc. Please feedback any advances.</p>
+<p>Note the script includes a simple check that the variable (in this case: potemp) exists
+within each input data file. It uses ncks at the heart of this which requires the jaspy
+module to be loaded. There is an unfortunate change in the name of the variable part way
+through the sequence which is caught by this check and the correct alternative (thetao)
+is substituted as needed.</p>
+</div>
+<div class="section" id="encoding-the-video-sequence">
+<h2>Encoding the video sequence<a class="headerlink" href="#encoding-the-video-sequence" title="Permalink to this headline">¶</a></h2>
+<p>There are many ways to turn a numbered sequence of images into an encoded video and many
+of these methods will produce poor quality results unless some control is exercised over
+default settings. Chiefly this is because most techniques are meant for encoding video
+streams of real-world images where natural features are not unduly altered by slight
+blurring or fuzziness. When crisper edges are required and parts of the image remain
+static then it is often necessary to increase quality demands and except the larger files
+that result.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> utility provides one of the simplest methods and is readily available:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ffmpeg</span> <span class="o">-</span><span class="n">i</span> <span class="n">temp083_</span><span class="o">%</span><span class="mi">04</span><span class="n">d</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">vcodec</span> <span class="n">mpeg4</span> <span class="o">-</span><span class="n">vb</span> <span class="mi">20</span><span class="n">M</span> <span class="n">temp083</span><span class="o">.</span><span class="n">mp4</span>
+</pre></div>
+</div>
+<p>Here the quality is controlled by the <code class="docutils literal notranslate"><span class="pre">-vb</span></code> option (video bitrate). Try leaving this
+option out and compare the results. This movie file will have to be copied off JASMIN
+for viewing.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="nscookbook7.html" title="NEMOSIM - Cook book (7)"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="contents.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

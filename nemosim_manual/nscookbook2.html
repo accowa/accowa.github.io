@@ -1,39 +1,32 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>NEMOSIM - Cook book (2) &mdash; nemosim 1.0 documentation</title>
-    
+    <title>NEMOSIM - Cook book (2) &#8212; nemosim 1.0 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="nemosim 1.0 documentation" href="index.html" />
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="NEMOSIM - Cook book (3)" href="nscookbook3.html" />
     <link rel="prev" title="NEMOSIM - Cook book (1)" href="nscookbook.html" /> 
-  </head>
-  <body>
+  </head><body>
 
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
 </div>
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -52,9 +45,9 @@
       </ul>
     </div>
 
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">NEMOSIM - Cook book (2)</a><ul>
 <li><a class="reference internal" href="#increasing-productivity">Increasing productivity</a></li>
@@ -71,22 +64,23 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="nscookbook3.html"
                         title="next chapter">NEMOSIM - Cook book (3)</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/nscookbook2.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nscookbook2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -95,7 +89,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="nemosim-cook-book-2">
 <span id="nscookbook2"></span><h1>NEMOSIM - Cook book (2)<a class="headerlink" href="#nemosim-cook-book-2" title="Permalink to this headline">¶</a></h1>
@@ -117,48 +111,48 @@ explains these options in more detail.</p>
 threads are used to speed up the computation of the pixel-space to model index mapping
 which is the most computationally demanding part of the overall task (especially for high
 resolution images from high resolution model output). The user can assert control using
-the <tt class="docutils literal"><span class="pre">-np</span></tt> option to declare the number of OpenMP threads to use. Otherwise, the default
+the <code class="docutils literal notranslate"><span class="pre">-np</span></code> option to declare the number of OpenMP threads to use. Otherwise, the default
 is to use half the physical number available (or one in a single-core environment). This
 choice should suffice in most circumstances but different values may be beneficial in
 either sole-use environments or in heavily used shared environments. The number of threads
 available and the number used will be reported by NEMOSIM for any verbosity level greater
-than zero (set via the <tt class="docutils literal"><span class="pre">-rpt</span></tt> option). The following example illustrates the performance
+than zero (set via the <code class="docutils literal notranslate"><span class="pre">-rpt</span></code> option). The following example illustrates the performance
 benefit of using increasing numbers of threads. Note in this relatively small example there
 are diminishing (but still beneficial) gains for more than a few threads:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
-          -show -no_offset -rpt 1 -np 1
-        OMP threads/ max. threads/ num procs     :    1/ 1/12
-                         image creation time     =    6.773
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4a</span><span class="o">.</span><span class="n">png</span>  <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">1</span>
+        <span class="n">OMP</span> <span class="n">threads</span><span class="o">/</span> <span class="nb">max</span><span class="o">.</span> <span class="n">threads</span><span class="o">/</span> <span class="n">num</span> <span class="n">procs</span>     <span class="p">:</span>    <span class="mi">1</span><span class="o">/</span> <span class="mi">1</span><span class="o">/</span><span class="mi">12</span>
+                         <span class="n">image</span> <span class="n">creation</span> <span class="n">time</span>     <span class="o">=</span>    <span class="mf">6.773</span>
 
-./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
-          -show -no_offset -rpt 1 -np 2
-        OMP threads/ max. threads/ num procs     :    2/ 2/12
-                         image creation time     =    4.923
+<span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4a</span><span class="o">.</span><span class="n">png</span>  <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">2</span>
+        <span class="n">OMP</span> <span class="n">threads</span><span class="o">/</span> <span class="nb">max</span><span class="o">.</span> <span class="n">threads</span><span class="o">/</span> <span class="n">num</span> <span class="n">procs</span>     <span class="p">:</span>    <span class="mi">2</span><span class="o">/</span> <span class="mi">2</span><span class="o">/</span><span class="mi">12</span>
+                         <span class="n">image</span> <span class="n">creation</span> <span class="n">time</span>     <span class="o">=</span>    <span class="mf">4.923</span>
 
-./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
-          -show -no_offset -rpt 1 -np 3
-        OMP threads/ max. threads/ num procs     :    3/ 3/12
-                         image creation time     =    4.350
+<span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4a</span><span class="o">.</span><span class="n">png</span>  <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">3</span>
+        <span class="n">OMP</span> <span class="n">threads</span><span class="o">/</span> <span class="nb">max</span><span class="o">.</span> <span class="n">threads</span><span class="o">/</span> <span class="n">num</span> <span class="n">procs</span>     <span class="p">:</span>    <span class="mi">3</span><span class="o">/</span> <span class="mi">3</span><span class="o">/</span><span class="mi">12</span>
+                         <span class="n">image</span> <span class="n">creation</span> <span class="n">time</span>     <span class="o">=</span>    <span class="mf">4.350</span>
 
-./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
-          -show -no_offset -rpt 1 -np 4
-        OMP threads/ max. threads/ num procs     :    4/ 4/12
-                         image creation time     =    4.298
+<span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4a</span><span class="o">.</span><span class="n">png</span>  <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">4</span>
+        <span class="n">OMP</span> <span class="n">threads</span><span class="o">/</span> <span class="nb">max</span><span class="o">.</span> <span class="n">threads</span><span class="o">/</span> <span class="n">num</span> <span class="n">procs</span>     <span class="p">:</span>    <span class="mi">4</span><span class="o">/</span> <span class="mi">4</span><span class="o">/</span><span class="mi">12</span>
+                         <span class="n">image</span> <span class="n">creation</span> <span class="n">time</span>     <span class="o">=</span>    <span class="mf">4.298</span>
 
-./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
-          -show -no_offset -rpt 1
-        OMP threads/ max. threads/ num procs     :    6/ 6/12   (default # threads)
-                         image creation time     =    3.914
+<span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4a</span><span class="o">.</span><span class="n">png</span>  <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span>
+        <span class="n">OMP</span> <span class="n">threads</span><span class="o">/</span> <span class="nb">max</span><span class="o">.</span> <span class="n">threads</span><span class="o">/</span> <span class="n">num</span> <span class="n">procs</span>     <span class="p">:</span>    <span class="mi">6</span><span class="o">/</span> <span class="mi">6</span><span class="o">/</span><span class="mi">12</span>   <span class="p">(</span><span class="n">default</span> <span class="c1"># threads)</span>
+                         <span class="n">image</span> <span class="n">creation</span> <span class="n">time</span>     <span class="o">=</span>    <span class="mf">3.914</span>
 
-./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
-          -show -no_offset -rpt 1 -np 8
-        OMP threads/ max. threads/ num procs     :    8/ 8/12
-                         image creation time     =    4.074
+<span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4a</span><span class="o">.</span><span class="n">png</span>  <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">8</span>
+        <span class="n">OMP</span> <span class="n">threads</span><span class="o">/</span> <span class="nb">max</span><span class="o">.</span> <span class="n">threads</span><span class="o">/</span> <span class="n">num</span> <span class="n">procs</span>     <span class="p">:</span>    <span class="mi">8</span><span class="o">/</span> <span class="mi">8</span><span class="o">/</span><span class="mi">12</span>
+                         <span class="n">image</span> <span class="n">creation</span> <span class="n">time</span>     <span class="o">=</span>    <span class="mf">4.074</span>
 
-./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png  -d isstempe -nomask -spos 3 -icosa \
-          -show -no_offset -rpt 1 -np 12
-        OMP threads/ max. threads/ num procs     :   12/12/12
-                         image creation time     =    3.881
+<span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4a</span><span class="o">.</span><span class="n">png</span>  <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">12</span>
+        <span class="n">OMP</span> <span class="n">threads</span><span class="o">/</span> <span class="nb">max</span><span class="o">.</span> <span class="n">threads</span><span class="o">/</span> <span class="n">num</span> <span class="n">procs</span>     <span class="p">:</span>   <span class="mi">12</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">12</span>
+                         <span class="n">image</span> <span class="n">creation</span> <span class="n">time</span>     <span class="o">=</span>    <span class="mf">3.881</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example4a.png"><img alt="_images/example4a.png" class="align-center" src="_images/example4a.png" style="width: 477.0px; height: 250.0px;" /></a>
@@ -187,11 +181,11 @@ creation time for images can be reduced from minutes (sometimes, tens of minutes
 seconds or less when re-using the mapping matrix. For very long animated sequences the
 production of frames can even be carried out using simple task-farming techniques on a
 suitably configured cluster.</p>
-<p>The creation and subsequent re-use of a mapping matrix is triggered via the <tt class="docutils literal"><span class="pre">-usemap</span></tt> option.
+<p>The creation and subsequent re-use of a mapping matrix is triggered via the <code class="docutils literal notranslate"><span class="pre">-usemap</span></code> option.
 This option takes a single argument which is the name of a NetCDF file which will be either:</p>
 <blockquote>
 <div><ul class="simple">
-<li>created and filled with the mapping data and associated information (if it doesn&#8217;t exist)</li>
+<li>created and filled with the mapping data and associated information (if it doesn’t exist)</li>
 <li>opened and read to obtain the mapping data (if it already exists)</li>
 </ul>
 </div></blockquote>
@@ -199,18 +193,18 @@ This option takes a single argument which is the name of a NetCDF file which wil
 contain sufficient metadata for basic sanity checks. Before explaining this further it is
 useful to look at an example. Firstly, recreate the previous image but add the usemap option
 to save the mapping data:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4a.png -d isstempe -nomask -spos 3 -icosa \
-          -show -no_offset -rpt 1 -np 1 -usemap icosa.nc
-       OMP threads/ max. threads/ num procs     :    1/ 1/12
-                        image creation time     =     6.757
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4a</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">1</span> <span class="o">-</span><span class="n">usemap</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span>
+       <span class="n">OMP</span> <span class="n">threads</span><span class="o">/</span> <span class="nb">max</span><span class="o">.</span> <span class="n">threads</span><span class="o">/</span> <span class="n">num</span> <span class="n">procs</span>     <span class="p">:</span>    <span class="mi">1</span><span class="o">/</span> <span class="mi">1</span><span class="o">/</span><span class="mi">12</span>
+                        <span class="n">image</span> <span class="n">creation</span> <span class="n">time</span>     <span class="o">=</span>     <span class="mf">6.757</span>
 </pre></div>
 </div>
 <p>Now with the mapping data we can recreate the image quickly and even change non-map
 related properties in the process. Here, for example, the colour palette is changed:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4b.png -d isstempe -nomask -spos 3 -icosa \
-          -show -no_offset -rpt 1 -np 1 -usemap icosa.nc -cs brown2green.pal
-       OMP threads/ max. threads/ num procs     :    1/ 1/12
-                        image creation time     =     0.026
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4b</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">1</span> <span class="o">-</span><span class="n">usemap</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">cs</span> <span class="n">brown2green</span><span class="o">.</span><span class="n">pal</span>
+       <span class="n">OMP</span> <span class="n">threads</span><span class="o">/</span> <span class="nb">max</span><span class="o">.</span> <span class="n">threads</span><span class="o">/</span> <span class="n">num</span> <span class="n">procs</span>     <span class="p">:</span>    <span class="mi">1</span><span class="o">/</span> <span class="mi">1</span><span class="o">/</span><span class="mi">12</span>
+                        <span class="n">image</span> <span class="n">creation</span> <span class="n">time</span>     <span class="o">=</span>     <span class="mf">0.026</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example4b.png"><img alt="_images/example4b.png" class="align-center" src="_images/example4b.png" style="width: 477.0px; height: 250.0px;" /></a>
@@ -220,32 +214,32 @@ data source and target image. Provided the grids match, different data fields co
 read from different data files and all ancillary settings can be altered. Here we continue
 to plot the SST field but change the colour palette again and change scale and title
 settings:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4c.png -d isstempe -nomask -spos 4 -icosa \
-          -show -no_offset -rpt 1 -np 1 -usemap icosa.nc -cs best64.pal -limits -2. 28. \
-          -title &#39;Sea Surface Temperature (C)&#39; -stitle SST
-       OMP threads/ max. threads/ num procs     :    1/ 1/12
-                        image creation time     =     0.026
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4c</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">4</span> <span class="o">-</span><span class="n">icosa</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">1</span> <span class="o">-</span><span class="n">usemap</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">cs</span> <span class="n">best64</span><span class="o">.</span><span class="n">pal</span> <span class="o">-</span><span class="n">limits</span> <span class="o">-</span><span class="mf">2.</span> <span class="mf">28.</span> \
+          <span class="o">-</span><span class="n">title</span> <span class="s1">&#39;Sea Surface Temperature (C)&#39;</span> <span class="o">-</span><span class="n">stitle</span> <span class="n">SST</span>
+       <span class="n">OMP</span> <span class="n">threads</span><span class="o">/</span> <span class="nb">max</span><span class="o">.</span> <span class="n">threads</span><span class="o">/</span> <span class="n">num</span> <span class="n">procs</span>     <span class="p">:</span>    <span class="mi">1</span><span class="o">/</span> <span class="mi">1</span><span class="o">/</span><span class="mi">12</span>
+                        <span class="n">image</span> <span class="n">creation</span> <span class="n">time</span>     <span class="o">=</span>     <span class="mf">0.026</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example4c.png"><img alt="_images/example4c.png" class="align-center" src="_images/example4c.png" style="width: 477.0px; height: 250.0px;" /></a>
 <p>It is worth noting the contents of the map file which is easy to reveal using the standard
-<tt class="docutils literal"><span class="pre">ncdump</span></tt> netCDF utility:</p>
-<div class="highlight-python"><div class="highlight"><pre>ncdump -h icosa.nc
-netcdf icosa {
-dimensions:
-        x = 720 ;
-        y = 400 ;
-variables:
-        int pix2ij(y, x) ;
+<code class="docutils literal notranslate"><span class="pre">ncdump</span></code> netCDF utility:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncdump</span> <span class="o">-</span><span class="n">h</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">netcdf</span> <span class="n">icosa</span> <span class="p">{</span>
+<span class="n">dimensions</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">720</span> <span class="p">;</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="mi">400</span> <span class="p">;</span>
+<span class="n">variables</span><span class="p">:</span>
+        <span class="nb">int</span> <span class="n">pix2ij</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="p">;</span>
 
-//   global attributes:
-              :Source_size = 1442, 1021 ;
-              :Image_size = 720, 400 ;
-              :Command = &quot;./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4c.png -d isstempe
-                          -nomask -spos 3 -icosa -show -no_offset -rpt 1 -np 1 -usemap icosa.nc&quot; ;
-              :Work_dir = &quot;/Users/acc/NEMO/NEMOSIM/NemoSim&quot; ;
-              :Utility = &quot;nemosim created by acc@noc.ac.uk (National Oceanography Centre, UK)&quot; ;
-}
+<span class="o">//</span>   <span class="k">global</span> <span class="n">attributes</span><span class="p">:</span>
+              <span class="p">:</span><span class="n">Source_size</span> <span class="o">=</span> <span class="mi">1442</span><span class="p">,</span> <span class="mi">1021</span> <span class="p">;</span>
+              <span class="p">:</span><span class="n">Image_size</span> <span class="o">=</span> <span class="mi">720</span><span class="p">,</span> <span class="mi">400</span> <span class="p">;</span>
+              <span class="p">:</span><span class="n">Command</span> <span class="o">=</span> <span class="s2">&quot;./nemosim -f ./data/ORCA025_2001m01I.nc -o examples/example4c.png -d isstempe</span>
+                          <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">1</span> <span class="o">-</span><span class="n">usemap</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span><span class="s2">&quot; ;</span>
+              <span class="p">:</span><span class="n">Work_dir</span> <span class="o">=</span> <span class="s2">&quot;/Users/acc/NEMO/NEMOSIM/NemoSim&quot;</span> <span class="p">;</span>
+              <span class="p">:</span><span class="n">Utility</span> <span class="o">=</span> <span class="s2">&quot;nemosim created by acc@noc.ac.uk (National Oceanography Centre, UK)&quot;</span> <span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The main content is an integer array (pix2ij), the same size and shape as the target
@@ -253,34 +247,34 @@ image, which contains a combined i,j model index for each image pixel. Additiona
 attributes are stored which allow some simple sanity checks to be performed when the map is
 reused. For example, it is a detectable error to attempt to use the same map to generate a
 different size image:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o tmpme.png -d isstempe -nomask -spos 3 -icosa -show \
-                                        -no_offset -np 1 -usemap icosa.nc -r 800 400
- Sanity check failed in icosa.nc
- Requested destination image size of:               800         400
- Pixel to ij map is for a image size of:            720         400
-STOP map mismatch
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">tmpme</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> <span class="o">-</span><span class="n">show</span> \
+                                        <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">np</span> <span class="mi">1</span> <span class="o">-</span><span class="n">usemap</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">r</span> <span class="mi">800</span> <span class="mi">400</span>
+ <span class="n">Sanity</span> <span class="n">check</span> <span class="n">failed</span> <span class="ow">in</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span>
+ <span class="n">Requested</span> <span class="n">destination</span> <span class="n">image</span> <span class="n">size</span> <span class="n">of</span><span class="p">:</span>               <span class="mi">800</span>         <span class="mi">400</span>
+ <span class="n">Pixel</span> <span class="n">to</span> <span class="n">ij</span> <span class="nb">map</span> <span class="ow">is</span> <span class="k">for</span> <span class="n">a</span> <span class="n">image</span> <span class="n">size</span> <span class="n">of</span><span class="p">:</span>            <span class="mi">720</span>         <span class="mi">400</span>
+<span class="n">STOP</span> <span class="nb">map</span> <span class="n">mismatch</span>
 </pre></div>
 </div>
 <p>Likewise it is a detectable error to employ the same map with different size input fields:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA1_2006m09T.nc -o tmpme.png -d votemper -nomask -spos 3 -icosa -show \
-                                      -no_offset -np 1 -usemap icosa.nc
- Sanity check failed in icosa.nc
- Supplied source size of:                          362         292
- Pixel to ij map is for a source size of:         1442        1021
-STOP map mismatch
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA1_2006m09T</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">tmpme</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">votemper</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> <span class="o">-</span><span class="n">show</span> \
+                                      <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">np</span> <span class="mi">1</span> <span class="o">-</span><span class="n">usemap</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span>
+ <span class="n">Sanity</span> <span class="n">check</span> <span class="n">failed</span> <span class="ow">in</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span>
+ <span class="n">Supplied</span> <span class="n">source</span> <span class="n">size</span> <span class="n">of</span><span class="p">:</span>                          <span class="mi">362</span>         <span class="mi">292</span>
+ <span class="n">Pixel</span> <span class="n">to</span> <span class="n">ij</span> <span class="nb">map</span> <span class="ow">is</span> <span class="k">for</span> <span class="n">a</span> <span class="n">source</span> <span class="n">size</span> <span class="n">of</span><span class="p">:</span>         <span class="mi">1442</span>        <span class="mi">1021</span>
+<span class="n">STOP</span> <span class="nb">map</span> <span class="n">mismatch</span>
 </pre></div>
 </div>
 <p>These are necessary checks but not sufficient to guarantee the expected results. For
 example, this attempt to produce an orthogonal projection image will ignore the
 projection parameters and reproduce the icosahedral projection image:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/ORCA025_2001m01I.nc -o tmpme.png -d isstempe -nomask -spos 3 -ortho -eu1 80. \
-          -show -no_offset -rpt 1 -np 1 -usemap icosa.nc
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">tmpme</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">ortho</span> <span class="o">-</span><span class="n">eu1</span> <span class="mf">80.</span> \
+          <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">1</span> <span class="o">-</span><span class="n">usemap</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span>
 </pre></div>
 </div>
 <p>Other attributes include the current working directory that may help establish provenance
 should map files be moved later and a copy of the command which was invoked to produce the
 map file. This attribute may not be an exact replica of the command because redundant
-arguments will have been removed by <tt class="docutils literal"><span class="pre">nemosim</span></tt>. Redundant arguments occur if an option is
+arguments will have been removed by <code class="docutils literal notranslate"><span class="pre">nemosim</span></code>. Redundant arguments occur if an option is
 supplied more than once; only the last example of each option and its associated arguments
 will be retained. This is because the command-line parsing is performed from left to right
 and any recurring options will overwrite earlier settings. This behaviour is useful and
@@ -292,46 +286,46 @@ important for the command inheritance functionality described in the next sectio
 well-crafted images is likely to discourage casual users from regular use. However, the
 command inheritance capability goes a long way to removing these burdens by providing a
 mechanism for constructing images based on previous work. In its simplest form the
-inheritance function (triggered by the <tt class="docutils literal"><span class="pre">-as</span></tt> option) can be used to repeat a previous
+inheritance function (triggered by the <code class="docutils literal notranslate"><span class="pre">-as</span></code> option) can be used to repeat a previous
 command. Say, for example, that the example4c.png file had been accidently deleted. There
 is no need to worry about reconstructing the command because a copy exists in the map file
-and <tt class="docutils literal"><span class="pre">nemosim</span></tt> can be instructed to extract and execute this command with:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as icosa.nc
+and <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> can be instructed to extract and execute this command with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span>
 </pre></div>
 </div>
 <p>What may be less obvious is that an accidental deletion of the map file is also
-recoverable.  This is because, <tt class="docutils literal"><span class="pre">nemosim</span></tt> also uses the comment field available in JPEG
+recoverable.  This is because, <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> also uses the comment field available in JPEG
 and PNG images to store the image creation command. Thus:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as examples/example4c.png
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4c</span><span class="o">.</span><span class="n">png</span>
 </pre></div>
 </div>
 <p>will recreate the image either using the existing map file or from scratch (thereby
-recreating the map file) if it no longer exists. Currently, <tt class="docutils literal"><span class="pre">nemosim</span></tt> invokes an
+recreating the map file) if it no longer exists. Currently, <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> invokes an
 external script to access the comment field. This script (bin/rdimgcom) must be in the
-users <tt class="docutils literal"><span class="pre">$PATH</span></tt> for this to work AND <tt class="docutils literal"><span class="pre">nemosim</span></tt> needs to have been compiled with a
+users <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> for this to work AND <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> needs to have been compiled with a
 FORTRAN 2008 standards compliant compiler. This is because the command is run via the
-<tt class="docutils literal"><span class="pre">EXECUTE_COMMAND_LINE</span></tt> function that was introduced into the standard at that date.
+<code class="docutils literal notranslate"><span class="pre">EXECUTE_COMMAND_LINE</span></code> function that was introduced into the standard at that date.
 Users will be warned when this is attempted with older compilers and given instructions
 for a two-stage alternative which involves:</p>
 <blockquote>
 <div><ul class="simple">
 <li>Running rdimgcom manually and redirecting output to a text file</li>
-<li>Running <tt class="docutils literal"><span class="pre">nemosim</span></tt> with this text file as the argument to the <tt class="docutils literal"><span class="pre">-as</span></tt> option</li>
+<li>Running <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> with this text file as the argument to the <code class="docutils literal notranslate"><span class="pre">-as</span></code> option</li>
 </ul>
 </div></blockquote>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as tmpme.png
-****************************************************
-* Sorry EXECUTE_COMMAND_LINE is not available with *
-* this fortran compiler. Cloning a previous image  *
-* directly is not possible.                        *
-* Run ./bin/rdimgcom ../tmpme.png manually,        *
-* redirect the results into a text file, and       *
-* rerun nemosim using this text file as the        *
-* argument to the -as option instead. E.g.:        *
-*     ./bin/rdimgcom tryme.png &gt; tryme.cmd         *
-*     ./nemosim -as tryme.cmd -o tryme2.png        *
-****************************************************
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">tmpme</span><span class="o">.</span><span class="n">png</span>
+<span class="o">****************************************************</span>
+<span class="o">*</span> <span class="n">Sorry</span> <span class="n">EXECUTE_COMMAND_LINE</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">available</span> <span class="k">with</span> <span class="o">*</span>
+<span class="o">*</span> <span class="n">this</span> <span class="n">fortran</span> <span class="n">compiler</span><span class="o">.</span> <span class="n">Cloning</span> <span class="n">a</span> <span class="n">previous</span> <span class="n">image</span>  <span class="o">*</span>
+<span class="o">*</span> <span class="n">directly</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">possible</span><span class="o">.</span>                        <span class="o">*</span>
+<span class="o">*</span> <span class="n">Run</span> <span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">rdimgcom</span> <span class="o">../</span><span class="n">tmpme</span><span class="o">.</span><span class="n">png</span> <span class="n">manually</span><span class="p">,</span>        <span class="o">*</span>
+<span class="o">*</span> <span class="n">redirect</span> <span class="n">the</span> <span class="n">results</span> <span class="n">into</span> <span class="n">a</span> <span class="n">text</span> <span class="n">file</span><span class="p">,</span> <span class="ow">and</span>       <span class="o">*</span>
+<span class="o">*</span> <span class="n">rerun</span> <span class="n">nemosim</span> <span class="n">using</span> <span class="n">this</span> <span class="n">text</span> <span class="n">file</span> <span class="k">as</span> <span class="n">the</span>        <span class="o">*</span>
+<span class="o">*</span> <span class="n">argument</span> <span class="n">to</span> <span class="n">the</span> <span class="o">-</span><span class="k">as</span> <span class="n">option</span> <span class="n">instead</span><span class="o">.</span> <span class="n">E</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">:</span>        <span class="o">*</span>
+<span class="o">*</span>     <span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">rdimgcom</span> <span class="n">tryme</span><span class="o">.</span><span class="n">png</span> <span class="o">&gt;</span> <span class="n">tryme</span><span class="o">.</span><span class="n">cmd</span>         <span class="o">*</span>
+<span class="o">*</span>     <span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">tryme</span><span class="o">.</span><span class="n">cmd</span> <span class="o">-</span><span class="n">o</span> <span class="n">tryme2</span><span class="o">.</span><span class="n">png</span>        <span class="o">*</span>
+<span class="o">****************************************************</span>
 </pre></div>
 </div>
 <p>It should be noted that the rdimgcom script creates a temporary file during its operation.
@@ -339,74 +333,74 @@ This temporary file is subsequently deleted but it does mean that the script mus
 invoked within a working directory for which the user has write permission.  When running
 the script manually, the user may avoid this restriction by providing a 2nd argument
 naming a directory where temporary files may be created. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>mkdir noperms ; chmod a-w noperms ; cd noperms
-../bin/rdimgcom ../tmpme.png
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">noperms</span> <span class="p">;</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">-</span><span class="n">w</span> <span class="n">noperms</span> <span class="p">;</span> <span class="n">cd</span> <span class="n">noperms</span>
+<span class="o">../</span><span class="nb">bin</span><span class="o">/</span><span class="n">rdimgcom</span> <span class="o">../</span><span class="n">tmpme</span><span class="o">.</span><span class="n">png</span>
 
-Sorry. Unable to create temporary file:  ./1066_tmp.txt
-Either the directory is not writable or the file already exists
-You can try providing a directory for the temporary file as a 2nd argumnt
+<span class="n">Sorry</span><span class="o">.</span> <span class="n">Unable</span> <span class="n">to</span> <span class="n">create</span> <span class="n">temporary</span> <span class="n">file</span><span class="p">:</span>  <span class="o">./</span><span class="mi">1066</span><span class="n">_tmp</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Either</span> <span class="n">the</span> <span class="n">directory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">writable</span> <span class="ow">or</span> <span class="n">the</span> <span class="n">file</span> <span class="n">already</span> <span class="n">exists</span>
+<span class="n">You</span> <span class="n">can</span> <span class="k">try</span> <span class="n">providing</span> <span class="n">a</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">the</span> <span class="n">temporary</span> <span class="n">file</span> <span class="k">as</span> <span class="n">a</span> <span class="mi">2</span><span class="n">nd</span> <span class="n">argumnt</span>
 
-Usage: rdimgcom image_file [directory_for_temporary_file]
+<span class="n">Usage</span><span class="p">:</span> <span class="n">rdimgcom</span> <span class="n">image_file</span> <span class="p">[</span><span class="n">directory_for_temporary_file</span><span class="p">]</span>
 
-../bin/rdimgcom ../tmpme.png ..
+<span class="o">../</span><span class="nb">bin</span><span class="o">/</span><span class="n">rdimgcom</span> <span class="o">../</span><span class="n">tmpme</span><span class="o">.</span><span class="n">png</span> <span class="o">..</span>
 
-./nemosim -f ./data/ORCA025_2001m01I.nc -o tmpme.png -d isstempe \
-          -nomask -spos 3 -ortho -eu1 80. -show -no_offset -rpt 1 -np 1 \
-          -usemap icosa.nc
+<span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">ORCA025_2001m01I</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">tmpme</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">isstempe</span> \
+          <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">ortho</span> <span class="o">-</span><span class="n">eu1</span> <span class="mf">80.</span> <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">rpt</span> <span class="mi">1</span> <span class="o">-</span><span class="n">np</span> <span class="mi">1</span> \
+          <span class="o">-</span><span class="n">usemap</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span>
 </pre></div>
 </div>
-<p>Note it is very unlikely that the temporary file already exists since it&#8217;s name is formed
+<p>Note it is very unlikely that the temporary file already exists since it’s name is formed
 using the process id which should be unique. When invoked internally via the
-<tt class="docutils literal"><span class="pre">EXECUTE_COMMAND_LINE</span></tt> function there is currently no option for providing an
+<code class="docutils literal notranslate"><span class="pre">EXECUTE_COMMAND_LINE</span></code> function there is currently no option for providing an
 alternative directory. Any difficulty in creating the temporary file will result in the
 same compiler-related error message as shown above and the user will have to resort to the
 two-stage method as instructed.</p>
-<p>In summary, <tt class="docutils literal"><span class="pre">nemosim</span></tt> can accept three sources of command inheritance via the <tt class="docutils literal"><span class="pre">-as</span></tt>
+<p>In summary, <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> can accept three sources of command inheritance via the <code class="docutils literal notranslate"><span class="pre">-as</span></code>
 option:</p>
 <blockquote>
 <div><ul class="simple">
-<li>From the <tt class="docutils literal"><span class="pre">Command</span></tt> attribute stored within a netCDF map file</li>
-<li>From the comment field stored within a <tt class="docutils literal"><span class="pre">nemosim</span></tt> generated JPG or PNG</li>
+<li>From the <code class="docutils literal notranslate"><span class="pre">Command</span></code> attribute stored within a netCDF map file</li>
+<li>From the comment field stored within a <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> generated JPG or PNG</li>
 <li>From an ASCII text file containing just the command line text. This can be created
 manually or from redirected output from the rdimgcom script. Long argument lists can
-be provided across multiple, &#8216;\&#8217;-terminated, lines</li>
+be provided across multiple, ‘'-terminated, lines</li>
 </ul>
 </div></blockquote>
 <p>Note that subsequent manipulation of an image with other tools may remove comments within
-JPG and PNG files. If there is a risk of this then use <tt class="docutils literal"><span class="pre">rdimgcom</span></tt> to extract the command
-and save in a text file before operating on <tt class="docutils literal"><span class="pre">nemosim</span></tt> generated images. A second script
-is provided (<tt class="docutils literal"><span class="pre">wrimgcom</span></tt>) for reinserting comments from text files in these
+JPG and PNG files. If there is a risk of this then use <code class="docutils literal notranslate"><span class="pre">rdimgcom</span></code> to extract the command
+and save in a text file before operating on <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> generated images. A second script
+is provided (<code class="docutils literal notranslate"><span class="pre">wrimgcom</span></code>) for reinserting comments from text files in these
 circumstances:</p>
-<div class="highlight-python"><div class="highlight"><pre>./bin/wrimgcom cmd.txt tmpme.png
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">wrimgcom</span> <span class="n">cmd</span><span class="o">.</span><span class="n">txt</span> <span class="n">tmpme</span><span class="o">.</span><span class="n">png</span>
 </pre></div>
 </div>
-<p>So far we&#8217;ve used command inheritance to simply recreate images. Obviously it is useful to
+<p>So far we’ve used command inheritance to simply recreate images. Obviously it is useful to
 maintain a record of the creation command, and this is especially true when that record is
 carried within the image itself, but the facility is even more useful when combined with
-the ability of <tt class="docutils literal"><span class="pre">nemosim</span></tt> to ignore all but the last occurrence of each option-argument
+the ability of <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> to ignore all but the last occurrence of each option-argument
 pairing. This means that creating images that are variations of existing ones can be
 easily achieved with minimal arguments. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as icosa.nc -d Bathy_level -f ./data/bathy_level.nc -o examples/example4d.png
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">d</span> <span class="n">Bathy_level</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">bathy_level</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4d</span><span class="o">.</span><span class="n">png</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example4d.png"><img alt="_images/example4d.png" class="align-center" src="_images/example4d.png" style="width: 477.0px; height: 250.0px;" /></a>
 <p>Note that the command subsequently stored in the output image will have had any redundancy
 removed. Note also that the attribute in icosa.nc is unchanged:</p>
-<div class="highlight-python"><div class="highlight"><pre>./bin/rdimgcom example4d.png
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">rdimgcom</span> <span class="n">example4d</span><span class="o">.</span><span class="n">png</span>
 
-./nemosim -f ./data/bathy_level.nc -o examples/example4d.png -d \
-Bathy_level -nomask -spos 3 -icosa -no_offset -np 1 -usemap icosa.nc
+<span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">bathy_level</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4d</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> \
+<span class="n">Bathy_level</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">icosa</span> <span class="o">-</span><span class="n">no_offset</span> <span class="o">-</span><span class="n">np</span> <span class="mi">1</span> <span class="o">-</span><span class="n">usemap</span> <span class="n">icosa</span><span class="o">.</span><span class="n">nc</span>
 </pre></div>
 </div>
 <p>Variations of this last image can be continued most simply by inheritance from the image itself:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as examples/example4d.png -cs bathy.pal -bbg gray -o examples/example4e.png
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4d</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">cs</span> <span class="n">bathy</span><span class="o">.</span><span class="n">pal</span> <span class="o">-</span><span class="n">bbg</span> <span class="n">gray</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4e</span><span class="o">.</span><span class="n">png</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example4e.png"><img alt="_images/example4e.png" class="align-center" src="_images/example4e.png" style="width: 475.0px; height: 248.0px;" /></a>
 <p>Finally, note that even the projection can be changed simply by naming a new map file
-(which will be created if it doesn&#8217;t already exist):</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as examples/example4e.png -usemap ortho.nc -ortho -eu2 70. -eu1 120. -o examples/example4f.png
- usemap requested but ortho.nc does not exist. File will be created.
+(which will be created if it doesn’t already exist):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4e</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">usemap</span> <span class="n">ortho</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">ortho</span> <span class="o">-</span><span class="n">eu2</span> <span class="mf">70.</span> <span class="o">-</span><span class="n">eu1</span> <span class="mf">120.</span> <span class="o">-</span><span class="n">o</span> <span class="n">examples</span><span class="o">/</span><span class="n">example4f</span><span class="o">.</span><span class="n">png</span>
+ <span class="n">usemap</span> <span class="n">requested</span> <span class="n">but</span> <span class="n">ortho</span><span class="o">.</span><span class="n">nc</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">exist</span><span class="o">.</span> <span class="n">File</span> <span class="n">will</span> <span class="n">be</span> <span class="n">created</span><span class="o">.</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example4f.png"><img alt="_images/example4f.png" class="align-center" src="_images/example4f.png" style="width: 475.0px; height: 248.0px;" /></a>
@@ -419,7 +413,7 @@ Bathy_level -nomask -spos 3 -icosa -no_offset -np 1 -usemap icosa.nc
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -437,9 +431,9 @@ Bathy_level -nomask -spos 3 -icosa -no_offset -np 1 -usemap icosa.nc
  
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

@@ -1,39 +1,32 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>NEMOSIM - Cook book (6) &mdash; nemosim 1.0 documentation</title>
-    
+    <title>NEMOSIM - Cook book (6) &#8212; nemosim 1.0 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="nemosim 1.0 documentation" href="index.html" />
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="NEMOSIM - Cook book (7)" href="nscookbook7.html" />
     <link rel="prev" title="NEMOSIM - Cook book (5)" href="nscookbook5.html" /> 
-  </head>
-  <body>
+  </head><body>
 
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
 </div>
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -52,9 +45,9 @@
       </ul>
     </div>
 
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">NEMOSIM - Cook book (6)</a><ul>
 <li><a class="reference internal" href="#example-video-frame-production">Example video frame production</a></li>
@@ -71,22 +64,23 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="nscookbook7.html"
                         title="next chapter">NEMOSIM - Cook book (7)</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/nscookbook6.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nscookbook6.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -95,21 +89,21 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="nemosim-cook-book-6">
 <span id="nscookbook6"></span><h1>NEMOSIM - Cook book (6)<a class="headerlink" href="#nemosim-cook-book-6" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="example-video-frame-production">
 <h2>Example video frame production<a class="headerlink" href="#example-video-frame-production" title="Permalink to this headline">¶</a></h2>
 <p>The last example in the previous section provides a useful starting point for
-demonstrating the use of <tt class="docutils literal"><span class="pre">nemosim</span></tt> in scripts to generate animation frames. The example
+demonstrating the use of <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> in scripts to generate animation frames. The example
 data used in the previous section, and included in the software release, was originally
 part of a 60 day sequence of daily means held in a single file. The steps required to
 produce an animated sequence from such a file can be summarised in the following menu:</p>
 <blockquote>
 <div><ul class="simple">
 <li>Produce a sample frame with content tuned as required AND save the mapping matrix
-using the <tt class="docutils literal"><span class="pre">-usemap</span></tt> option</li>
+using the <code class="docutils literal notranslate"><span class="pre">-usemap</span></code> option</li>
 <li>Script a loop command that produces successive numbered frames from each time level.
 Re-use of the mapping matrix within this loop ensures both consistency between the
 frames and speed of production.</li>
@@ -119,19 +113,19 @@ frames and speed of production.</li>
 <p>For a high quality video it is best to start with a slightly larger image than the previous
 example. Here is a suitable sample frame which repeats the example from the previous section
 with tweaked sizes and positions:</p>
-<div class="highlight-python"><div class="highlight"><pre>nemosim -f ./data/AMM60_1d_20121018_20121216_grid_T.nc -d sst -o amm60.png -nomask \
-        -r 1000 1200 -ortho -eu1 356. -eu2 53. -eu3 -1. -gsize 30 \
-        -vmask 100. 0.0  -stfs 24 -sfs 18 -margins 10 160 50 50 -grid 5 5  \
-        -limits 0.0 19.0 -spos 2 -bbg black -bfg white -cs blue2red_b.pal \
-        -title &quot;AMM60 Sea Surface Temperature&quot; -stitle C -stjus 7 -stpos 1010 1250 \
-        -logo ./data/NOC_logo_white.png -lsize 198 100 -lpos 5 10 \
-        -usemap amm60_ortho.nc
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">AMM60_1d_20121018_20121216_grid_T</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">d</span> <span class="n">sst</span> <span class="o">-</span><span class="n">o</span> <span class="n">amm60</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">nomask</span> \
+        <span class="o">-</span><span class="n">r</span> <span class="mi">1000</span> <span class="mi">1200</span> <span class="o">-</span><span class="n">ortho</span> <span class="o">-</span><span class="n">eu1</span> <span class="mf">356.</span> <span class="o">-</span><span class="n">eu2</span> <span class="mf">53.</span> <span class="o">-</span><span class="n">eu3</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="n">gsize</span> <span class="mi">30</span> \
+        <span class="o">-</span><span class="n">vmask</span> <span class="mf">100.</span> <span class="mf">0.0</span>  <span class="o">-</span><span class="n">stfs</span> <span class="mi">24</span> <span class="o">-</span><span class="n">sfs</span> <span class="mi">18</span> <span class="o">-</span><span class="n">margins</span> <span class="mi">10</span> <span class="mi">160</span> <span class="mi">50</span> <span class="mi">50</span> <span class="o">-</span><span class="n">grid</span> <span class="mi">5</span> <span class="mi">5</span>  \
+        <span class="o">-</span><span class="n">limits</span> <span class="mf">0.0</span> <span class="mf">19.0</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">2</span> <span class="o">-</span><span class="n">bbg</span> <span class="n">black</span> <span class="o">-</span><span class="n">bfg</span> <span class="n">white</span> <span class="o">-</span><span class="n">cs</span> <span class="n">blue2red_b</span><span class="o">.</span><span class="n">pal</span> \
+        <span class="o">-</span><span class="n">title</span> <span class="s2">&quot;AMM60 Sea Surface Temperature&quot;</span> <span class="o">-</span><span class="n">stitle</span> <span class="n">C</span> <span class="o">-</span><span class="n">stjus</span> <span class="mi">7</span> <span class="o">-</span><span class="n">stpos</span> <span class="mi">1010</span> <span class="mi">1250</span> \
+        <span class="o">-</span><span class="n">logo</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">NOC_logo_white</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">lsize</span> <span class="mi">198</span> <span class="mi">100</span> <span class="o">-</span><span class="n">lpos</span> <span class="mi">5</span> <span class="mi">10</span> \
+        <span class="o">-</span><span class="n">usemap</span> <span class="n">amm60_ortho</span><span class="o">.</span><span class="n">nc</span>
 </pre></div>
 </div>
-<p>Note the addition of the <tt class="docutils literal"><span class="pre">-usemap</span></tt> option and the change in data source to the
+<p>Note the addition of the <code class="docutils literal notranslate"><span class="pre">-usemap</span></code> option and the change in data source to the
 original, multi-time-level file. No particular time-level is requested here so the
-default choice of the first time-level will be extracted. This isn&#8217;t important here
-since the frame isn&#8217;t actually going to be used; the purpose of this step is only to
+default choice of the first time-level will be extracted. This isn’t important here
+since the frame isn’t actually going to be used; the purpose of this step is only to
 generate the mapping matrix.</p>
 </div>
 <div class="section" id="adding-a-date-clock">
@@ -142,31 +136,31 @@ provide a sense of movement but without a clear time indicator there is no refer
 the actual time scale involved. All NEMO output will include the time_counter variable
 which timestamps each time-level with the number of seconds since a reference date. In the
 case of the AMM60 data the units are:</p>
-<div class="highlight-python"><div class="highlight"><pre>time_counter:units = &quot;seconds since 1950-01-01 00:00:00&quot; ;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_counter</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;seconds since 1950-01-01 00:00:00&quot;</span> <span class="p">;</span>
 </pre></div>
 </div>
 <p>For display purposes, a calendar date provides a better visual aid to the passage of time
 since most frames are produced at intervals of at least one model day. Converting
 time_counter values to calendar dates is a task beyond the scope of this cookbook but
-assuming you have access to a utility such as <tt class="docutils literal"><span class="pre">nocstfinder</span></tt> shown here:</p>
-<div class="highlight-python"><div class="highlight"><pre>nocstfinder -f ./data/AMM60_1d_20121018_20121216_grid_T.nc  -e 0 -l -r
-18102012 19102012 20102012 21102012 22102012 23102012 24102012
-25102012 26102012 27102012 28102012 29102012 30102012 31102012
-01112012 02112012 03112012 04112012 05112012 06112012 07112012
-08112012 09112012 10112012 11112012 12112012 13112012 14112012
-15112012 16112012 17112012 18112012 19112012 20112012 21112012
-22112012 23112012 24112012 25112012 26112012 27112012 28112012
-29112012 30112012 01122012 02122012 03122012 04122012 05122012
-06122012 07122012 08122012 09122012 10122012 11122012 12122012
-13122012 14122012 15122012 16122012
+assuming you have access to a utility such as <code class="docutils literal notranslate"><span class="pre">nocstfinder</span></code> shown here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nocstfinder</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">AMM60_1d_20121018_20121216_grid_T</span><span class="o">.</span><span class="n">nc</span>  <span class="o">-</span><span class="n">e</span> <span class="mi">0</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">r</span>
+<span class="mi">18102012</span> <span class="mi">19102012</span> <span class="mi">20102012</span> <span class="mi">21102012</span> <span class="mi">22102012</span> <span class="mi">23102012</span> <span class="mi">24102012</span>
+<span class="mi">25102012</span> <span class="mi">26102012</span> <span class="mi">27102012</span> <span class="mi">28102012</span> <span class="mi">29102012</span> <span class="mi">30102012</span> <span class="mi">31102012</span>
+<span class="mi">01112012</span> <span class="mi">02112012</span> <span class="mi">03112012</span> <span class="mi">04112012</span> <span class="mi">05112012</span> <span class="mi">06112012</span> <span class="mi">07112012</span>
+<span class="mi">08112012</span> <span class="mi">09112012</span> <span class="mi">10112012</span> <span class="mi">11112012</span> <span class="mi">12112012</span> <span class="mi">13112012</span> <span class="mi">14112012</span>
+<span class="mi">15112012</span> <span class="mi">16112012</span> <span class="mi">17112012</span> <span class="mi">18112012</span> <span class="mi">19112012</span> <span class="mi">20112012</span> <span class="mi">21112012</span>
+<span class="mi">22112012</span> <span class="mi">23112012</span> <span class="mi">24112012</span> <span class="mi">25112012</span> <span class="mi">26112012</span> <span class="mi">27112012</span> <span class="mi">28112012</span>
+<span class="mi">29112012</span> <span class="mi">30112012</span> <span class="mi">01122012</span> <span class="mi">02122012</span> <span class="mi">03122012</span> <span class="mi">04122012</span> <span class="mi">05122012</span>
+<span class="mi">06122012</span> <span class="mi">07122012</span> <span class="mi">08122012</span> <span class="mi">09122012</span> <span class="mi">10122012</span> <span class="mi">11122012</span> <span class="mi">12122012</span>
+<span class="mi">13122012</span> <span class="mi">14122012</span> <span class="mi">15122012</span> <span class="mi">16122012</span>
 </pre></div>
 </div>
 <p>then obtaining a list of dates associated with the data should be possible. For reference,
-the arguments shown here to the command: request the end of each averaging period (<tt class="docutils literal"><span class="pre">-e</span>
-<span class="pre">0</span></tt>); specify a gregorian leap-year calendar (<tt class="docutils literal"><span class="pre">-l</span></tt>) and request dates as DDMMYYY in
-reverse to the normal NEMO presentation of YYYYMMDD (<tt class="docutils literal"><span class="pre">-r</span></tt>).</p>
-<p>The date format requested here is precisely that required for the <tt class="docutils literal"><span class="pre">-dateclk</span></tt> option to
-<tt class="docutils literal"><span class="pre">nemosim</span></tt> which can be used to size, position and annotate a date clock representation
+the arguments shown here to the command: request the end of each averaging period (<code class="docutils literal notranslate"><span class="pre">-e</span>
+<span class="pre">0</span></code>); specify a gregorian leap-year calendar (<code class="docutils literal notranslate"><span class="pre">-l</span></code>) and request dates as DDMMYYY in
+reverse to the normal NEMO presentation of YYYYMMDD (<code class="docutils literal notranslate"><span class="pre">-r</span></code>).</p>
+<p>The date format requested here is precisely that required for the <code class="docutils literal notranslate"><span class="pre">-dateclk</span></code> option to
+<code class="docutils literal notranslate"><span class="pre">nemosim</span></code> which can be used to size, position and annotate a date clock representation
 of the date on the output image. The date clock is a circular element with calendar months
 marked around the circumference, the year written in the centre and a circular black bar
 indicating current progress through the year.</p>
@@ -176,7 +170,7 @@ indicating current progress through the year.</p>
 <p>We now have all the elements required to produce the complete frame sequence. With some
 simple scripting techniques a series of numbered frames can easily be produced. Here is
 a bash script example that combines all the elements so far discussed:</p>
-<div class="highlight-python"><div class="highlight"><pre>#!/bin/bash
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
 nemosim -f ./data/AMM60_1d_20121018_20121216_grid_T.nc -d sst -o amm60.png -nomask \
         -r 1000 1200 -ortho -eu1 356. -eu2 53. -eu3 -1. -gsize 30 \
         -vmask 100. 0.0  -stfs 24 -sfs 18 -margins 10 160 50 50 -grid 5 5  \
@@ -202,9 +196,9 @@ done
 <li>Frame numbers are produced as a zero padded 4-digit string. This ensures they are
 both numerically and alphabetically ordered since some encoding software packages
 may rely on unix file ordering when ingesting frames.</li>
-<li>The elements of the bash array <tt class="docutils literal"><span class="pre">dates</span></tt> are 0-indexed whereas the index supplied
-to the <tt class="docutils literal"><span class="pre">-t</span></tt> option of <tt class="docutils literal"><span class="pre">nemosim</span></tt> refers to the first time-level as index 1. Hence
-the need to have <tt class="docutils literal"><span class="pre">nt</span></tt> leading <tt class="docutils literal"><span class="pre">n</span></tt> by 1.</li>
+<li>The elements of the bash array <code class="docutils literal notranslate"><span class="pre">dates</span></code> are 0-indexed whereas the index supplied
+to the <code class="docutils literal notranslate"><span class="pre">-t</span></code> option of <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> refers to the first time-level as index 1. Hence
+the need to have <code class="docutils literal notranslate"><span class="pre">nt</span></code> leading <code class="docutils literal notranslate"><span class="pre">n</span></code> by 1.</li>
 </ul>
 </div></blockquote>
 <p>Here is an example frame from the sequence (click on the image to view the full-size
@@ -220,11 +214,11 @@ streams of real-world images where natural features are not unduly altered by sl
 blurring or fuzziness. When crisper edges are required and parts of the image remain
 static then it is often necessary to increase quality demands and except the larger files
 that result.</p>
-<p>The <tt class="docutils literal"><span class="pre">ffmpeg</span></tt> utility provides one of the simplest methods and is readily available:</p>
-<div class="highlight-python"><div class="highlight"><pre>ffmpeg -i amm60_sst_%04d.png -vcodec mpeg4 -vb 20M amm60SST.mp4
+<p>The <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> utility provides one of the simplest methods and is readily available:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ffmpeg</span> <span class="o">-</span><span class="n">i</span> <span class="n">amm60_sst_</span><span class="o">%</span><span class="mi">04</span><span class="n">d</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">vcodec</span> <span class="n">mpeg4</span> <span class="o">-</span><span class="n">vb</span> <span class="mi">20</span><span class="n">M</span> <span class="n">amm60SST</span><span class="o">.</span><span class="n">mp4</span>
 </pre></div>
 </div>
-<p>Here the quality is controlled by the <tt class="docutils literal"><span class="pre">-vb</span></tt> option (video bitrate). Try leaving this
+<p>Here the quality is controlled by the <code class="docutils literal notranslate"><span class="pre">-vb</span></code> option (video bitrate). Try leaving this
 option out and compare the results.</p>
 </div>
 </div>
@@ -235,7 +229,7 @@ option out and compare the results.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -253,9 +247,9 @@ option out and compare the results.</p>
  
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

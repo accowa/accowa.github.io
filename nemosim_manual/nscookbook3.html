@@ -1,39 +1,32 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>NEMOSIM - Cook book (3) &mdash; nemosim 1.0 documentation</title>
-    
+    <title>NEMOSIM - Cook book (3) &#8212; nemosim 1.0 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="nemosim 1.0 documentation" href="index.html" />
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="NEMOSIM - Cook book (4)" href="nscookbook4.html" />
     <link rel="prev" title="NEMOSIM - Cook book (2)" href="nscookbook2.html" /> 
-  </head>
-  <body>
+  </head><body>
 
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
 </div>
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -52,9 +45,9 @@
       </ul>
     </div>
 
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">NEMOSIM - Cook book (3)</a><ul>
 <li><a class="reference internal" href="#the-orthogonal-projection">The Orthogonal projection</a></li>
@@ -72,22 +65,23 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="nscookbook4.html"
                         title="next chapter">NEMOSIM - Cook book (4)</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/nscookbook3.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nscookbook3.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -96,22 +90,22 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="nemosim-cook-book-3">
 <span id="nscookbook3"></span><h1>NEMOSIM - Cook book (3)<a class="headerlink" href="#nemosim-cook-book-3" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-orthogonal-projection">
 <h2>The Orthogonal projection<a class="headerlink" href="#the-orthogonal-projection" title="Permalink to this headline">¶</a></h2>
-<p>Several examples used to illustrate NEMOSIM&#8217;s feature have already introduced some of the map projections available. These include the last example in the previous section which used the orthogonal map projection. The following sections demonstrate the controls available to the user that affect the final view.</p>
+<p>Several examples used to illustrate NEMOSIM’s feature have already introduced some of the map projections available. These include the last example in the previous section which used the orthogonal map projection. The following sections demonstrate the controls available to the user that affect the final view.</p>
 </div>
 <div class="section" id="using-the-euler-angles">
 <h2>1. Using the Euler angles<a class="headerlink" href="#using-the-euler-angles" title="Permalink to this headline">¶</a></h2>
 <p>The default view is a side-on view with the Greenwich Meridian on the vertical centre-line
 and the Equator as the horizontal centreline. This view can be rotated in three planes
-using three angular controls: <tt class="docutils literal"><span class="pre">-eu1</span>&nbsp; <span class="pre">-eu2</span></tt> and <tt class="docutils literal"><span class="pre">-eu3</span></tt>. Each takes a parameter in
-degrees. Firstly, <tt class="docutils literal"><span class="pre">-eu1</span></tt> sets the east-west rotation. The following sequence shows the
+using three angular controls: <code class="docutils literal notranslate"><span class="pre">-eu1</span>&#160; <span class="pre">-eu2</span></code> and <code class="docutils literal notranslate"><span class="pre">-eu3</span></code>. Each takes a parameter in
+degrees. Firstly, <code class="docutils literal notranslate"><span class="pre">-eu1</span></code> sets the east-west rotation. The following sequence shows the
 result of changing values from 0. (the default) to 360. in steps of 30 degrees. For this
-sequence <tt class="docutils literal"><span class="pre">-eu2</span></tt> and <tt class="docutils literal"><span class="pre">-eu3</span></tt> retain their defaults values of 0. :</p>
+sequence <code class="docutils literal notranslate"><span class="pre">-eu2</span></code> and <code class="docutils literal notranslate"><span class="pre">-eu3</span></code> retain their defaults values of 0. :</p>
 <a class="reference internal image-reference" href="_images/example5a.png"><img alt="_images/example5a.png" class="align-center" src="_images/example5a.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example5b.png"><img alt="_images/example5b.png" class="align-center" src="_images/example5b.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example5c.png"><img alt="_images/example5c.png" class="align-center" src="_images/example5c.png" style="width: 237.5px; height: 124.0px;" /></a>
@@ -126,14 +120,14 @@ sequence <tt class="docutils literal"><span class="pre">-eu2</span></tt> and <tt
 <a class="reference internal image-reference" href="_images/example5l.png"><img alt="_images/example5l.png" class="align-center" src="_images/example5l.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example5m.png"><img alt="_images/example5m.png" class="align-center" src="_images/example5m.png" style="width: 237.5px; height: 124.0px;" /></a>
 <p>As a typical example, the third image is generated by:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/bathy_level.nc -o example5c.png -d Bathy_level \
--nomask -spos 3 -cs ps.pal -bbg gray -ortho -show -eu1 60 -eu2 0 -eu3 0 \
--grid 30. 15. -abg black -annotate 115 30 &quot;eu1=60 eu2=0 eu3=0&quot; -afs 15
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">bathy_level</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">example5c</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">Bathy_level</span> \
+<span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">cs</span> <span class="n">ps</span><span class="o">.</span><span class="n">pal</span> <span class="o">-</span><span class="n">bbg</span> <span class="n">gray</span> <span class="o">-</span><span class="n">ortho</span> <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">eu1</span> <span class="mi">60</span> <span class="o">-</span><span class="n">eu2</span> <span class="mi">0</span> <span class="o">-</span><span class="n">eu3</span> <span class="mi">0</span> \
+<span class="o">-</span><span class="n">grid</span> <span class="mf">30.</span> <span class="mf">15.</span> <span class="o">-</span><span class="n">abg</span> <span class="n">black</span> <span class="o">-</span><span class="n">annotate</span> <span class="mi">115</span> <span class="mi">30</span> <span class="s2">&quot;eu1=60 eu2=0 eu3=0&quot;</span> <span class="o">-</span><span class="n">afs</span> <span class="mi">15</span>
 </pre></div>
 </div>
-<p>Secondly, <tt class="docutils literal"><span class="pre">-eu2</span></tt> sets the north-south rotation. The following sequence shows the result
+<p>Secondly, <code class="docutils literal notranslate"><span class="pre">-eu2</span></code> sets the north-south rotation. The following sequence shows the result
 of changing values from -90. through 0. (the default) to 90. in steps of 30 degrees. For
-this sequence <tt class="docutils literal"><span class="pre">-eu1</span></tt> and <tt class="docutils literal"><span class="pre">-eu3</span></tt> retain their defaults values of 0. :</p>
+this sequence <code class="docutils literal notranslate"><span class="pre">-eu1</span></code> and <code class="docutils literal notranslate"><span class="pre">-eu3</span></code> retain their defaults values of 0. :</p>
 <a class="reference internal image-reference" href="_images/example6a.png"><img alt="_images/example6a.png" class="align-center" src="_images/example6a.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example6b.png"><img alt="_images/example6b.png" class="align-center" src="_images/example6b.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example6c.png"><img alt="_images/example6c.png" class="align-center" src="_images/example6c.png" style="width: 237.5px; height: 124.0px;" /></a>
@@ -141,9 +135,9 @@ this sequence <tt class="docutils literal"><span class="pre">-eu1</span></tt> an
 <a class="reference internal image-reference" href="_images/example6e.png"><img alt="_images/example6e.png" class="align-center" src="_images/example6e.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example6f.png"><img alt="_images/example6f.png" class="align-center" src="_images/example6f.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example6g.png"><img alt="_images/example6g.png" class="align-center" src="_images/example6g.png" style="width: 237.5px; height: 124.0px;" /></a>
-<p>Thirdly, <tt class="docutils literal"><span class="pre">-eu3</span></tt> sets a left-right tilt. The following sequence shows the result
+<p>Thirdly, <code class="docutils literal notranslate"><span class="pre">-eu3</span></code> sets a left-right tilt. The following sequence shows the result
 of changing values from -90. through 0. (the default) to 90. in steps of 30 degrees. For
-this sequence <tt class="docutils literal"><span class="pre">-eu1</span></tt> and <tt class="docutils literal"><span class="pre">-eu2</span></tt> retain their defaults values of 0. :</p>
+this sequence <code class="docutils literal notranslate"><span class="pre">-eu1</span></code> and <code class="docutils literal notranslate"><span class="pre">-eu2</span></code> retain their defaults values of 0. :</p>
 <a class="reference internal image-reference" href="_images/example7a.png"><img alt="_images/example7a.png" class="align-center" src="_images/example7a.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example7b.png"><img alt="_images/example7b.png" class="align-center" src="_images/example7b.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example7c.png"><img alt="_images/example7c.png" class="align-center" src="_images/example7c.png" style="width: 237.5px; height: 124.0px;" /></a>
@@ -151,18 +145,18 @@ this sequence <tt class="docutils literal"><span class="pre">-eu1</span></tt> an
 <a class="reference internal image-reference" href="_images/example7e.png"><img alt="_images/example7e.png" class="align-center" src="_images/example7e.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example7f.png"><img alt="_images/example7f.png" class="align-center" src="_images/example7f.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example7g.png"><img alt="_images/example7g.png" class="align-center" src="_images/example7g.png" style="width: 237.5px; height: 124.0px;" /></a>
-<p>Thus <tt class="docutils literal"><span class="pre">-eu1</span></tt> and <tt class="docutils literal"><span class="pre">-eu2</span></tt> can be used to centre the view over a known geographical location. For example, given that the Kerguelen islands are situated at 69.5 degrees east and 49.25 degrees south, a view centred on the islands will be obtained with:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/bathy_level.nc -o example8a.png -d Bathy_level \
--nomask -spos 3 -cs ps.pal -bbg gray -ortho -show -eu1 69.5 -eu2 -49.25 \
--eu3 0 -grid 30. 15. -abg black -annotate 115 30 &quot;eu1=69.5 eu2=-49.25 eu3=0&quot; -afs 15
+<p>Thus <code class="docutils literal notranslate"><span class="pre">-eu1</span></code> and <code class="docutils literal notranslate"><span class="pre">-eu2</span></code> can be used to centre the view over a known geographical location. For example, given that the Kerguelen islands are situated at 69.5 degrees east and 49.25 degrees south, a view centred on the islands will be obtained with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">bathy_level</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">example8a</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">Bathy_level</span> \
+<span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">cs</span> <span class="n">ps</span><span class="o">.</span><span class="n">pal</span> <span class="o">-</span><span class="n">bbg</span> <span class="n">gray</span> <span class="o">-</span><span class="n">ortho</span> <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">eu1</span> <span class="mf">69.5</span> <span class="o">-</span><span class="n">eu2</span> <span class="o">-</span><span class="mf">49.25</span> \
+<span class="o">-</span><span class="n">eu3</span> <span class="mi">0</span> <span class="o">-</span><span class="n">grid</span> <span class="mf">30.</span> <span class="mf">15.</span> <span class="o">-</span><span class="n">abg</span> <span class="n">black</span> <span class="o">-</span><span class="n">annotate</span> <span class="mi">115</span> <span class="mi">30</span> <span class="s2">&quot;eu1=69.5 eu2=-49.25 eu3=0&quot;</span> <span class="o">-</span><span class="n">afs</span> <span class="mi">15</span>
 </pre></div>
 </div>
 <p>I.e.:</p>
 <a class="reference internal image-reference" href="_images/example8a.png"><img alt="_images/example8a.png" class="align-center" src="_images/example8a.png" style="width: 475.0px; height: 248.0px;" /></a>
 <p>And the third angle can be used to tilt around this point, e.g.:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/bathy_level.nc -o example8b.png -d Bathy_level \
--nomask -spos 3 -cs ps.pal -bbg gray -ortho -show -eu1 69.5 -eu2 -49.25 \
--eu3 60 -grid 30. 15. -abg black -annotate 115 30 &quot;eu1=69.5 eu2=-49.25 eu3=60.&quot; -afs 15
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">bathy_level</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">example8b</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">Bathy_level</span> \
+<span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">spos</span> <span class="mi">3</span> <span class="o">-</span><span class="n">cs</span> <span class="n">ps</span><span class="o">.</span><span class="n">pal</span> <span class="o">-</span><span class="n">bbg</span> <span class="n">gray</span> <span class="o">-</span><span class="n">ortho</span> <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">eu1</span> <span class="mf">69.5</span> <span class="o">-</span><span class="n">eu2</span> <span class="o">-</span><span class="mf">49.25</span> \
+<span class="o">-</span><span class="n">eu3</span> <span class="mi">60</span> <span class="o">-</span><span class="n">grid</span> <span class="mf">30.</span> <span class="mf">15.</span> <span class="o">-</span><span class="n">abg</span> <span class="n">black</span> <span class="o">-</span><span class="n">annotate</span> <span class="mi">115</span> <span class="mi">30</span> <span class="s2">&quot;eu1=69.5 eu2=-49.25 eu3=60.&quot;</span> <span class="o">-</span><span class="n">afs</span> <span class="mi">15</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example8b.png"><img alt="_images/example8b.png" class="align-center" src="_images/example8b.png" style="width: 475.0px; height: 248.0px;" /></a>
@@ -170,12 +164,12 @@ this sequence <tt class="docutils literal"><span class="pre">-eu1</span></tt> an
 <div class="section" id="pan-and-zoom-options">
 <h2>2. Pan and zoom options<a class="headerlink" href="#pan-and-zoom-options" title="Permalink to this headline">¶</a></h2>
 <p>By default the globe is sized to almost fit the minimum dimension of the image canvas. The
-viewpoint can be raised or lowered from this setting by use of the <tt class="docutils literal"><span class="pre">-gsize</span></tt> option. This
+viewpoint can be raised or lowered from this setting by use of the <code class="docutils literal notranslate"><span class="pre">-gsize</span></code> option. This
 option takes a single argument which is a non-dimensional scaling. The default view is
 obtained with a value of 80. Lowering this value moves the viewpoint towards the globe
-centre (an effective &#8216;zoom-in&#8217;). Raising this value moves the viewpoint away (an effective
-&#8216;zoom-out&#8217;). The following sequence of images uses the last example to illustrate this
-with <tt class="docutils literal"><span class="pre">-gsize</span></tt> values of 10, 20, 40, 60, 80 (default), 100, 120, and 140 respectively:</p>
+centre (an effective ‘zoom-in’). Raising this value moves the viewpoint away (an effective
+‘zoom-out’). The following sequence of images uses the last example to illustrate this
+with <code class="docutils literal notranslate"><span class="pre">-gsize</span></code> values of 10, 20, 40, 60, 80 (default), 100, 120, and 140 respectively:</p>
 <a class="reference internal image-reference" href="_images/example9a.png"><img alt="_images/example9a.png" class="align-center" src="_images/example9a.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example9b.png"><img alt="_images/example9b.png" class="align-center" src="_images/example9b.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example9c.png"><img alt="_images/example9c.png" class="align-center" src="_images/example9c.png" style="width: 237.5px; height: 124.0px;" /></a>
@@ -186,10 +180,10 @@ with <tt class="docutils literal"><span class="pre">-gsize</span></tt> values of
 <a class="reference internal image-reference" href="_images/example9h.png"><img alt="_images/example9h.png" class="align-center" src="_images/example9h.png" style="width: 237.5px; height: 124.0px;" /></a>
 <p>Note the first few examples clearly verify that the Kerguelen Islands are at the centre of the
 image.</p>
-<p>The globe can also be moved off-centre using the <tt class="docutils literal"><span class="pre">-td</span></tt> (translation distance) and
-<tt class="docutils literal"><span class="pre">-ta</span></tt> (translation angle) options. The default value for both these parameters is
-zero. The single argument to the <tt class="docutils literal"><span class="pre">-td</span></tt> option is a non-dimensional distance with a
-useful range between 0 and 20. The single argument to the <tt class="docutils literal"><span class="pre">-ta</span></tt> option is an angle in
+<p>The globe can also be moved off-centre using the <code class="docutils literal notranslate"><span class="pre">-td</span></code> (translation distance) and
+<code class="docutils literal notranslate"><span class="pre">-ta</span></code> (translation angle) options. The default value for both these parameters is
+zero. The single argument to the <code class="docutils literal notranslate"><span class="pre">-td</span></code> option is a non-dimensional distance with a
+useful range between 0 and 20. The single argument to the <code class="docutils literal notranslate"><span class="pre">-ta</span></code> option is an angle in
 degrees measured from the horizontal. The following sequence of images varies the
 translation distance from 5 to 20 with the default translation angle. The result moves
 the globe to the right:</p>
@@ -204,25 +198,25 @@ fixed translation distance of 15:</p>
 <a class="reference internal image-reference" href="_images/example9n.png"><img alt="_images/example9n.png" class="align-center" src="_images/example9n.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example9o.png"><img alt="_images/example9o.png" class="align-center" src="_images/example9o.png" style="width: 237.5px; height: 124.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example9p.png"><img alt="_images/example9p.png" class="align-center" src="_images/example9p.png" style="width: 237.5px; height: 124.0px;" /></a>
-<p>Finally, the offset distance and angle are most commonly used with a &#8216;zoomed-in&#8217; image to
+<p>Finally, the offset distance and angle are most commonly used with a ‘zoomed-in’ image to
 recover a sense of curvature. This is demonstrated in this final example which is a
-variation of an earlier example used to illustrate the <tt class="docutils literal"><span class="pre">-gsize</span></tt> option with a value of
+variation of an earlier example used to illustrate the <code class="docutils literal notranslate"><span class="pre">-gsize</span></code> option with a value of
 40:</p>
 <a class="reference internal image-reference" href="_images/example9q.png"><img alt="_images/example9q.png" class="align-center" src="_images/example9q.png" style="width: 475.0px; height: 248.0px;" /></a>
 </div>
 <div class="section" id="adding-grid-lines">
 <h2>3. Adding grid-lines<a class="headerlink" href="#adding-grid-lines" title="Permalink to this headline">¶</a></h2>
 <p>One option has been used in all these examples which is yet to get a mention. This is the
-<tt class="docutils literal"><span class="pre">-grid</span></tt> option which overlays equally spaced lines of longitude and latitude. The option
+<code class="docutils literal notranslate"><span class="pre">-grid</span></code> option which overlays equally spaced lines of longitude and latitude. The option
 takes two arguments which are the longitudional and latitudinal spacing (in degrees)
 respectively.  These examples have used the recommended settings of 30. and 15. degrees
 respectively. Obviously, smaller spacings may be more appropriate for zoomed in views. For
-example, this variation of an earlier example with <tt class="docutils literal"><span class="pre">-grid</span> <span class="pre">15.</span> <span class="pre">10.</span></tt>:</p>
+example, this variation of an earlier example with <code class="docutils literal notranslate"><span class="pre">-grid</span> <span class="pre">15.</span> <span class="pre">10.</span></code>:</p>
 <a class="reference internal image-reference" href="_images/example10a.png"><img alt="_images/example10a.png" class="align-center" src="_images/example10a.png" style="width: 475.0px; height: 248.0px;" /></a>
 <p>The mechanism for drawing these lines is relatively crude, the lines are produced by
 plotting regularly spaced dots along each requested line of constant longitude or
 latitude. By default the dots are spaced 0.125 degrees apart. In many cases this provides
-the appearance of continuous lines. However, the option: <tt class="docutils literal"><span class="pre">-gridstep</span></tt> can be used to fine
+the appearance of continuous lines. However, the option: <code class="docutils literal notranslate"><span class="pre">-gridstep</span></code> can be used to fine
 tune this by either:</p>
 <blockquote>
 <div><ul class="simple">
@@ -230,10 +224,10 @@ tune this by either:</p>
 <li>using a coarser angular step to reduce the visual significance of the grid lines</li>
 </ul>
 </div></blockquote>
-<p>For example, specifying <tt class="docutils literal"><span class="pre">-gridstep</span> <span class="pre">0.025</span> <span class="pre">0.025</span></tt> produces continuous lines in the current
+<p>For example, specifying <code class="docutils literal notranslate"><span class="pre">-gridstep</span> <span class="pre">0.025</span> <span class="pre">0.025</span></code> produces continuous lines in the current
 example:</p>
 <a class="reference internal image-reference" href="_images/example10b.png"><img alt="_images/example10b.png" class="align-center" src="_images/example10b.png" style="width: 475.0px; height: 248.0px;" /></a>
-<p>Whereas, specifying <tt class="docutils literal"><span class="pre">-gridstep</span> <span class="pre">3.0</span> <span class="pre">2.0</span></tt> produces a more subtle effect:</p>
+<p>Whereas, specifying <code class="docutils literal notranslate"><span class="pre">-gridstep</span> <span class="pre">3.0</span> <span class="pre">2.0</span></code> produces a more subtle effect:</p>
 <a class="reference internal image-reference" href="_images/example10c.png"><img alt="_images/example10c.png" class="align-center" src="_images/example10c.png" style="width: 475.0px; height: 248.0px;" /></a>
 </div>
 <div class="section" id="arc-colour-scale-options">
@@ -241,17 +235,17 @@ example:</p>
 <p>It is worth noting that the default image size/aspect ratio results in some redundant
 border areas for the whole globe images. A more compact image is obtained using a square
 canvas but this can compress the colour-bar and is aesthetically less pleasing. An
-alternative, &#8216;arc&#8217; form of the colour-scale is provided for these cases. The colour-scale
+alternative, ‘arc’ form of the colour-scale is provided for these cases. The colour-scale
 can be positioned in any of the four quadrants using the values 5 through 8 of the
-<tt class="docutils literal"><span class="pre">-spos</span></tt> scale-position option. These cases are illustrated here:</p>
+<code class="docutils literal notranslate"><span class="pre">-spos</span></code> scale-position option. These cases are illustrated here:</p>
 <a class="reference internal image-reference" href="_images/example11c.png"><img alt="_images/example11c.png" class="align-center" src="_images/example11c.png" style="width: 248.0px; height: 248.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example11d.png"><img alt="_images/example11d.png" class="align-center" src="_images/example11d.png" style="width: 248.0px; height: 248.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example11a.png"><img alt="_images/example11a.png" class="align-center" src="_images/example11a.png" style="width: 248.0px; height: 248.0px;" /></a>
 <a class="reference internal image-reference" href="_images/example11b.png"><img alt="_images/example11b.png" class="align-center" src="_images/example11b.png" style="width: 248.0px; height: 248.0px;" /></a>
 <p>Note also that with all the non-rectangular map projections an alternative background
-colour can be set for the &#8216;white-space&#8217; around each map. Land areas within the map are set
-by the <tt class="docutils literal"><span class="pre">-bg</span></tt> option; border areas are coloured according to the <tt class="docutils literal"><span class="pre">-bbg</span></tt> option and the
-&#8216;non-mapped&#8217; areas of the image area are coloured according to the <tt class="docutils literal"><span class="pre">-abg</span></tt> option. The
+colour can be set for the ‘white-space’ around each map. Land areas within the map are set
+by the <code class="docutils literal notranslate"><span class="pre">-bg</span></code> option; border areas are coloured according to the <code class="docutils literal notranslate"><span class="pre">-bbg</span></code> option and the
+‘non-mapped’ areas of the image area are coloured according to the <code class="docutils literal notranslate"><span class="pre">-abg</span></code> option. The
 default colour is a mid-gray. The four images above use both a white border and
 alternative background; all previous examples in this section have used a black canvas
 with gray borders. Because the arc scale will overlap part of the border area, the best
@@ -259,16 +253,16 @@ results are obtained when borders and blackground colours are the same. Dark bac
 will require changing the font colour used for annotations. For example:</p>
 <a class="reference internal image-reference" href="_images/example11e.png"><img alt="_images/example11e.png" class="align-center" src="_images/example11e.png" style="width: 248.0px; height: 248.0px;" /></a>
 <p>which was created using:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/bathy_level.nc -o example11e.png -d Bathy_level -nomask -cs ps.pal \
-          -bbg black -ortho -show -eu1 69.5 -eu2 -49.25 -eu3 60 -grid 30. 15.          \
-          -annotate 115 478 &quot;eu1=69.5 eu2=-49.25 eu3=60. spos=6&quot; -afs 15 -gsize 80     \
-          -spos 6 -r 400 400 -bfg white -fg white -abg black
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">bathy_level</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">o</span> <span class="n">example11e</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">d</span> <span class="n">Bathy_level</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">cs</span> <span class="n">ps</span><span class="o">.</span><span class="n">pal</span> \
+          <span class="o">-</span><span class="n">bbg</span> <span class="n">black</span> <span class="o">-</span><span class="n">ortho</span> <span class="o">-</span><span class="n">show</span> <span class="o">-</span><span class="n">eu1</span> <span class="mf">69.5</span> <span class="o">-</span><span class="n">eu2</span> <span class="o">-</span><span class="mf">49.25</span> <span class="o">-</span><span class="n">eu3</span> <span class="mi">60</span> <span class="o">-</span><span class="n">grid</span> <span class="mf">30.</span> <span class="mf">15.</span>          \
+          <span class="o">-</span><span class="n">annotate</span> <span class="mi">115</span> <span class="mi">478</span> <span class="s2">&quot;eu1=69.5 eu2=-49.25 eu3=60. spos=6&quot;</span> <span class="o">-</span><span class="n">afs</span> <span class="mi">15</span> <span class="o">-</span><span class="n">gsize</span> <span class="mi">80</span>     \
+          <span class="o">-</span><span class="n">spos</span> <span class="mi">6</span> <span class="o">-</span><span class="n">r</span> <span class="mi">400</span> <span class="mi">400</span> <span class="o">-</span><span class="n">bfg</span> <span class="n">white</span> <span class="o">-</span><span class="n">fg</span> <span class="n">white</span> <span class="o">-</span><span class="n">abg</span> <span class="n">black</span>
 </pre></div>
 </div>
 <p>But choosing a dark background which is different to the land colour allows better determination of the map edges:</p>
 <a class="reference internal image-reference" href="_images/example11f.png"><img alt="_images/example11f.png" class="align-center" src="_images/example11f.png" style="width: 248.0px; height: 248.0px;" /></a>
 <p>which differs from the previous example only by:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example11e.png -o example11f.png -bbg midnightblue -abg midnightblue
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">example11e</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">o</span> <span class="n">example11f</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">bbg</span> <span class="n">midnightblue</span> <span class="o">-</span><span class="n">abg</span> <span class="n">midnightblue</span>
 </pre></div>
 </div>
 </div>
@@ -280,7 +274,7 @@ will require changing the font colour used for annotations. For example:</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -298,9 +292,9 @@ will require changing the font colour used for annotations. For example:</p>
  
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

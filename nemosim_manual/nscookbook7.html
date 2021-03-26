@@ -1,43 +1,40 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>NEMOSIM - Cook book (7) &mdash; nemosim 1.0 documentation</title>
-    
+    <title>NEMOSIM - Cook book (7) &#8212; nemosim 1.0 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="nemosim 1.0 documentation" href="index.html" />
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="NEMOSIM - Cook book (8)" href="nscookbook8.html" />
     <link rel="prev" title="NEMOSIM - Cook book (6)" href="nscookbook6.html" /> 
-  </head>
-  <body>
+  </head><body>
 
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
 <a href="index.html"><img src="_images/NEMO-Website.png" border="0" alt="nemosim"/></a>
 </div>
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="nscookbook8.html" title="NEMOSIM - Cook book (8)"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="nscookbook6.html" title="NEMOSIM - Cook book (6)"
              accesskey="P">previous</a> |</li>
@@ -48,9 +45,9 @@
       </ul>
     </div>
 
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">NEMOSIM - Cook book (7)</a><ul>
 <li><a class="reference internal" href="#working-with-non-nemo-output">Working with non-NEMO output</a></li>
@@ -67,22 +64,26 @@
   <h4>Previous topic</h4>
   <p class="topless"><a href="nscookbook6.html"
                         title="previous chapter">NEMOSIM - Cook book (6)</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/nscookbook7.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nscookbook8.html"
+                        title="next chapter">NEMOSIM - Cook book (8)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nscookbook7.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -91,13 +92,13 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="nemosim-cook-book-7">
 <span id="nscookbook7"></span><h1>NEMOSIM - Cook book (7)<a class="headerlink" href="#nemosim-cook-book-7" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="working-with-non-nemo-output">
 <h2>Working with non-NEMO output<a class="headerlink" href="#working-with-non-nemo-output" title="Permalink to this headline">¶</a></h2>
-<p>Although intended for use with NEMO output there is little to prevent <tt class="docutils literal"><span class="pre">nemosim</span></tt> being
+<p>Although intended for use with NEMO output there is little to prevent <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> being
 used with any other gridded dataset that represents geospatial data. The main requirements
 that need to be met are:</p>
 <blockquote>
@@ -115,91 +116,91 @@ plenty of internet resources dedicated to the subject. Suggestions for ensuring 
 two criteria can be met will be presented using an example dataset obtained from a
 near-global configuration of WaveWatch III (WW-III)</p>
 <p>Firstly, lets examine the raw data file:</p>
-<div class="highlight-python"><div class="highlight"><pre>ncdump -h ./data/hs_197903.nc
-netcdf hs_197903 {
-dimensions:
-     time = UNLIMITED ; // (1 currently)
-     latitude = 344 ;
-     longitude = 512 ;
-variables:
-     short hs(time, latitude, longitude) ;
-             hs:long_name = &quot;significant_wave_height&quot; ;
-             hs:standard_name = &quot;significant_height_of_wind_and_swell_waves&quot; ;
-             hs:units = &quot;m&quot; ;
-             hs:_FillValue = -32767s ;
-             hs:scale_factor = 0.002f ;
-             hs:add_offset = 0.f ;
-             hs:valid_min = 0 ;
-             hs:valid_max = 32000 ;
-     float latitude(latitude) ;
-             latitude:units = &quot;degree_north&quot; ;
-             latitude:long_name = &quot;latitude&quot; ;
-             latitude:standard_name = &quot;latitude&quot; ;
-             latitude:valid_min = -90.f ;
-             latitude:valid_max = 90.f ;
-             latitude:axis = &quot;Y&quot; ;
-     float longitude(longitude) ;
-             longitude:units = &quot;degree_east&quot; ;
-             longitude:long_name = &quot;longitude&quot; ;
-             longitude:standard_name = &quot;longitude&quot; ;
-             longitude:valid_min = -180.f ;
-             longitude:valid_max = 180.f ;
-             longitude:axis = &quot;X&quot; ;
-     double time(time) ;
-             time:long_name = &quot;julian day (UT)&quot; ;
-             time:standard_name = &quot;time&quot; ;
-             time:units = &quot;days since 1990-01-01T00:00:00Z&quot; ;
-             time:conventions = &quot;relative julian days with decimal part (as parts of the day )&quot; ;
-             time:axis = &quot;T&quot; ;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncdump</span> <span class="o">-</span><span class="n">h</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">hs_197903</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">netcdf</span> <span class="n">hs_197903</span> <span class="p">{</span>
+<span class="n">dimensions</span><span class="p">:</span>
+     <span class="n">time</span> <span class="o">=</span> <span class="n">UNLIMITED</span> <span class="p">;</span> <span class="o">//</span> <span class="p">(</span><span class="mi">1</span> <span class="n">currently</span><span class="p">)</span>
+     <span class="n">latitude</span> <span class="o">=</span> <span class="mi">344</span> <span class="p">;</span>
+     <span class="n">longitude</span> <span class="o">=</span> <span class="mi">512</span> <span class="p">;</span>
+<span class="n">variables</span><span class="p">:</span>
+     <span class="n">short</span> <span class="n">hs</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span> <span class="p">;</span>
+             <span class="n">hs</span><span class="p">:</span><span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;significant_wave_height&quot;</span> <span class="p">;</span>
+             <span class="n">hs</span><span class="p">:</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s2">&quot;significant_height_of_wind_and_swell_waves&quot;</span> <span class="p">;</span>
+             <span class="n">hs</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;m&quot;</span> <span class="p">;</span>
+             <span class="n">hs</span><span class="p">:</span><span class="n">_FillValue</span> <span class="o">=</span> <span class="o">-</span><span class="mi">32767</span><span class="n">s</span> <span class="p">;</span>
+             <span class="n">hs</span><span class="p">:</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">0.002</span><span class="n">f</span> <span class="p">;</span>
+             <span class="n">hs</span><span class="p">:</span><span class="n">add_offset</span> <span class="o">=</span> <span class="mf">0.</span><span class="n">f</span> <span class="p">;</span>
+             <span class="n">hs</span><span class="p">:</span><span class="n">valid_min</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
+             <span class="n">hs</span><span class="p">:</span><span class="n">valid_max</span> <span class="o">=</span> <span class="mi">32000</span> <span class="p">;</span>
+     <span class="nb">float</span> <span class="n">latitude</span><span class="p">(</span><span class="n">latitude</span><span class="p">)</span> <span class="p">;</span>
+             <span class="n">latitude</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;degree_north&quot;</span> <span class="p">;</span>
+             <span class="n">latitude</span><span class="p">:</span><span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;latitude&quot;</span> <span class="p">;</span>
+             <span class="n">latitude</span><span class="p">:</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s2">&quot;latitude&quot;</span> <span class="p">;</span>
+             <span class="n">latitude</span><span class="p">:</span><span class="n">valid_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">90.</span><span class="n">f</span> <span class="p">;</span>
+             <span class="n">latitude</span><span class="p">:</span><span class="n">valid_max</span> <span class="o">=</span> <span class="mf">90.</span><span class="n">f</span> <span class="p">;</span>
+             <span class="n">latitude</span><span class="p">:</span><span class="n">axis</span> <span class="o">=</span> <span class="s2">&quot;Y&quot;</span> <span class="p">;</span>
+     <span class="nb">float</span> <span class="n">longitude</span><span class="p">(</span><span class="n">longitude</span><span class="p">)</span> <span class="p">;</span>
+             <span class="n">longitude</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;degree_east&quot;</span> <span class="p">;</span>
+             <span class="n">longitude</span><span class="p">:</span><span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;longitude&quot;</span> <span class="p">;</span>
+             <span class="n">longitude</span><span class="p">:</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s2">&quot;longitude&quot;</span> <span class="p">;</span>
+             <span class="n">longitude</span><span class="p">:</span><span class="n">valid_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">180.</span><span class="n">f</span> <span class="p">;</span>
+             <span class="n">longitude</span><span class="p">:</span><span class="n">valid_max</span> <span class="o">=</span> <span class="mf">180.</span><span class="n">f</span> <span class="p">;</span>
+             <span class="n">longitude</span><span class="p">:</span><span class="n">axis</span> <span class="o">=</span> <span class="s2">&quot;X&quot;</span> <span class="p">;</span>
+     <span class="n">double</span> <span class="n">time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="p">;</span>
+             <span class="n">time</span><span class="p">:</span><span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;julian day (UT)&quot;</span> <span class="p">;</span>
+             <span class="n">time</span><span class="p">:</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span> <span class="p">;</span>
+             <span class="n">time</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;days since 1990-01-01T00:00:00Z&quot;</span> <span class="p">;</span>
+             <span class="n">time</span><span class="p">:</span><span class="n">conventions</span> <span class="o">=</span> <span class="s2">&quot;relative julian days with decimal part (as parts of the day )&quot;</span> <span class="p">;</span>
+             <span class="n">time</span><span class="p">:</span><span class="n">axis</span> <span class="o">=</span> <span class="s2">&quot;T&quot;</span> <span class="p">;</span>
 
-// global attributes:
-             :product_name = &quot;197903.nc&quot; ;
-             :area = &quot;*** SMC 50k Global Model ***&quot; ;
-             :latitude_resolution = &quot;   0.4687500&quot; ;
-             :longitude_resolution = &quot;   0.7031250&quot; ;
-             :southernmost_latitude = &quot;-78.0468750&quot; ;
-             :northernmost_latitude = &quot;82.7343750&quot; ;
-             :westernmost_longitude = &quot;0.3515630&quot; ;
-             :easternmost_longitude = &quot;359.6484375&quot; ;
-             :minimum_altitude = &quot;-12000 m&quot; ;
-             :maximum_altitude = &quot;9000 m&quot; ;
-             :altitude_resolution = &quot;n/a&quot; ;
-             :start_date = &quot;1979-03-01T00:00:00Z&quot; ;
-             :stop_date = &quot;1979-03-31T23:00:00Z&quot; ;
-             :history = &quot;Thu Feb 23 17:02:16 2017: ncks -v hs -d time,0,0,1 197903.nc hs_197903.nc\n&quot;,
-                     &quot;&quot; ;
-             :NCO = &quot;\&quot;4.5.5\&quot;&quot; ;
-}
+<span class="o">//</span> <span class="k">global</span> <span class="n">attributes</span><span class="p">:</span>
+             <span class="p">:</span><span class="n">product_name</span> <span class="o">=</span> <span class="s2">&quot;197903.nc&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">area</span> <span class="o">=</span> <span class="s2">&quot;*** SMC 50k Global Model ***&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">latitude_resolution</span> <span class="o">=</span> <span class="s2">&quot;   0.4687500&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">longitude_resolution</span> <span class="o">=</span> <span class="s2">&quot;   0.7031250&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">southernmost_latitude</span> <span class="o">=</span> <span class="s2">&quot;-78.0468750&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">northernmost_latitude</span> <span class="o">=</span> <span class="s2">&quot;82.7343750&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">westernmost_longitude</span> <span class="o">=</span> <span class="s2">&quot;0.3515630&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">easternmost_longitude</span> <span class="o">=</span> <span class="s2">&quot;359.6484375&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">minimum_altitude</span> <span class="o">=</span> <span class="s2">&quot;-12000 m&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">maximum_altitude</span> <span class="o">=</span> <span class="s2">&quot;9000 m&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">altitude_resolution</span> <span class="o">=</span> <span class="s2">&quot;n/a&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;1979-03-01T00:00:00Z&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">stop_date</span> <span class="o">=</span> <span class="s2">&quot;1979-03-31T23:00:00Z&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">history</span> <span class="o">=</span> <span class="s2">&quot;Thu Feb 23 17:02:16 2017: ncks -v hs -d time,0,0,1 197903.nc hs_197903.nc</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                     <span class="s2">&quot;&quot;</span> <span class="p">;</span>
+             <span class="p">:</span><span class="n">NCO</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">4.5.5</span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This meets the first criterion since the longitude and latitude dimensions clearly specify
-the size of the 2-dimensional field to be imaged. By default, <tt class="docutils literal"><span class="pre">nemosim</span></tt> expects these
-dimension variables to be named &#8216;x&#8217; and &#8216;y&#8217; so without further input, <tt class="docutils literal"><span class="pre">nemosim</span></tt> will be
+the size of the 2-dimensional field to be imaged. By default, <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> expects these
+dimension variables to be named ‘x’ and ‘y’ so without further input, <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> will be
 unable to identify the correct dimensions:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/hs_197903.nc -d hs -o nocoord.png -nomask
- NetCDF: Invalid dimension ID or name
-STOP Stopped
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">hs_197903</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">d</span> <span class="n">hs</span> <span class="o">-</span><span class="n">o</span> <span class="n">nocoord</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">nomask</span>
+ <span class="n">NetCDF</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">dimension</span> <span class="n">ID</span> <span class="ow">or</span> <span class="n">name</span>
+<span class="n">STOP</span> <span class="n">Stopped</span>
 </pre></div>
 </div>
-<p>This first hurdle can be overcome by explicitly naming the dimension variables using the <tt class="docutils literal"><span class="pre">-xdim</span></tt>
-and <tt class="docutils literal"><span class="pre">-ydim</span></tt> options. E.g.:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/hs_197903.nc -d hs -o nocoord.png -nomask -xdim longitude -ydim latitude
- Error: need both nav_lon and nav_lat fields to proceed.
- Processing terminated
+<p>This first hurdle can be overcome by explicitly naming the dimension variables using the <code class="docutils literal notranslate"><span class="pre">-xdim</span></code>
+and <code class="docutils literal notranslate"><span class="pre">-ydim</span></code> options. E.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">hs_197903</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">d</span> <span class="n">hs</span> <span class="o">-</span><span class="n">o</span> <span class="n">nocoord</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">nomask</span> <span class="o">-</span><span class="n">xdim</span> <span class="n">longitude</span> <span class="o">-</span><span class="n">ydim</span> <span class="n">latitude</span>
+ <span class="n">Error</span><span class="p">:</span> <span class="n">need</span> <span class="n">both</span> <span class="n">nav_lon</span> <span class="ow">and</span> <span class="n">nav_lat</span> <span class="n">fields</span> <span class="n">to</span> <span class="n">proceed</span><span class="o">.</span>
+ <span class="n">Processing</span> <span class="n">terminated</span>
 </pre></div>
 </div>
-<p>The problem now is that <tt class="docutils literal"><span class="pre">nemosim</span></tt> expects the 2-dimensional arrays containing the coordinate data to be
+<p>The problem now is that <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> expects the 2-dimensional arrays containing the coordinate data to be
 named nav_lon and nav_lat and to be available in the main dataset. In the current case, the data does
 not contain 2-d coordinate fields since the grid is regular and described by two 1-d arrays.</p>
-<p>We can overcome this restriction by taking advantage of <tt class="docutils literal"><span class="pre">nemosim</span></tt>&#8216;s tiered approach to
+<p>We can overcome this restriction by taking advantage of <code class="docutils literal notranslate"><span class="pre">nemosim</span></code>’s tiered approach to
 locating the coordinate fields. The 2-dimensional fields expected are always named
-&#8216;nav_lon&#8217; and &#8216;nav_lat&#8217; but these may be extracted from any of three possible sources:</p>
+‘nav_lon’ and ‘nav_lat’ but these may be extracted from any of three possible sources:</p>
 <blockquote>
 <div><ul class="simple">
-<li>The main dataset named by the <tt class="docutils literal"><span class="pre">-f</span></tt> option (default)</li>
-<li>The bathymetry file as named by the <tt class="docutils literal"><span class="pre">-bathy</span></tt> option (or NEMOBATHYFILE environment variable)
-(iThe selection of coordinates from the bathymetry file is activated by the <tt class="docutils literal"><span class="pre">-bcoord</span></tt> option)</li>
-<li>A named coordinate dataset as specified by the <tt class="docutils literal"><span class="pre">-coordf</span></tt> option</li>
+<li>The main dataset named by the <code class="docutils literal notranslate"><span class="pre">-f</span></code> option (default)</li>
+<li>The bathymetry file as named by the <code class="docutils literal notranslate"><span class="pre">-bathy</span></code> option (or NEMOBATHYFILE environment variable)
+(iThe selection of coordinates from the bathymetry file is activated by the <code class="docutils literal notranslate"><span class="pre">-bcoord</span></code> option)</li>
+<li>A named coordinate dataset as specified by the <code class="docutils literal notranslate"><span class="pre">-coordf</span></code> option</li>
 </ul>
 </div></blockquote>
 </div>
@@ -208,88 +209,88 @@ locating the coordinate fields. The 2-dimensional fields expected are always nam
 <p>The previous command did not name a bathymetry or coordinate file and failed to find the
 required nav_lon and nav_lat fields in the main dataset. The easiest solution, which avoids changing
 the source data is to construct 2-d coordinate fields in a separate file and provide this to
-<tt class="docutils literal"><span class="pre">nemosim</span></tt>. A short python script is as good a way as any to achieve this:</p>
-<div class="highlight-python"><div class="highlight"><pre>cat navadd.py
-from netCDF4 import Dataset
-import numpy as np
-import sys
+<code class="docutils literal notranslate"><span class="pre">nemosim</span></code>. A short python script is as good a way as any to achieve this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">navadd</span><span class="o">.</span><span class="n">py</span>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="k">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
-pathin =  sys.argv[1]
-pathout =  sys.argv[2]
+<span class="n">pathin</span> <span class="o">=</span>  <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">pathout</span> <span class="o">=</span>  <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
-fw = Dataset(pathin)
-hs = fw.variables[&#39;hs&#39;][:,:,:]
-lon = fw.variables[&#39;longitude&#39;][:]
-lat = fw.variables[&#39;latitude&#39;][:]
-fw.close()
+<span class="n">fw</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">pathin</span><span class="p">)</span>
+<span class="n">hs</span> <span class="o">=</span> <span class="n">fw</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;hs&#39;</span><span class="p">][:,:,:]</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">fw</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">fw</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>
+<span class="n">fw</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-nx = hs.shape[2]
-ny = hs.shape[1]
+<span class="n">nx</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-nav_lon = np.zeros((ny,nx))
-nav_lat = np.zeros((ny,nx))
-for nnx in range(nx):
-  for nny in range(ny):
-    nav_lon[nny,nnx] = lon[nnx]
-    nav_lat[nny,nnx] = lat[nny]
+<span class="n">nav_lon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+<span class="n">nav_lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">nnx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">nny</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ny</span><span class="p">):</span>
+    <span class="n">nav_lon</span><span class="p">[</span><span class="n">nny</span><span class="p">,</span><span class="n">nnx</span><span class="p">]</span> <span class="o">=</span> <span class="n">lon</span><span class="p">[</span><span class="n">nnx</span><span class="p">]</span>
+    <span class="n">nav_lat</span><span class="p">[</span><span class="n">nny</span><span class="p">,</span><span class="n">nnx</span><span class="p">]</span> <span class="o">=</span> <span class="n">lat</span><span class="p">[</span><span class="n">nny</span><span class="p">]</span>
 
-pathstart = pathout
-fo = Dataset(pathstart, &#39;w&#39;, format=&#39;NETCDF4&#39;)
-nxo = fo.createDimension(&#39;x&#39;, nx)
-nyo = fo.createDimension(&#39;y&#39;, ny)
-lono = fo.createVariable(&#39;nav_lon&#39;, &#39;f4&#39;,(&#39;y&#39;,&#39;x&#39;))
-lato = fo.createVariable(&#39;nav_lat&#39;, &#39;f4&#39;,(&#39;y&#39;,&#39;x&#39;))
+<span class="n">pathstart</span> <span class="o">=</span> <span class="n">pathout</span>
+<span class="n">fo</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">pathstart</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF4&#39;</span><span class="p">)</span>
+<span class="n">nxo</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+<span class="n">nyo</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+<span class="n">lono</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;nav_lon&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">,(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">))</span>
+<span class="n">lato</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;nav_lat&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">,(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">))</span>
 
-lono[:,:] = nav_lon
-lono.long_name = &#39;longitude&#39;
-lono.standard_name = &#39;longitude&#39;
-lono.units = &#39;degrees_east&#39;
-#
-lato[:,:] = nav_lat
-lato.long_name = &#39;latitude&#39;
-lato.standard_name = &#39;latitude&#39;
-lato.units = &#39;degrees_north&#39;
-#
-fo.close()
+<span class="n">lono</span><span class="p">[:,:]</span> <span class="o">=</span> <span class="n">nav_lon</span>
+<span class="n">lono</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;longitude&#39;</span>
+<span class="n">lono</span><span class="o">.</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s1">&#39;longitude&#39;</span>
+<span class="n">lono</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;degrees_east&#39;</span>
+<span class="c1">#</span>
+<span class="n">lato</span><span class="p">[:,:]</span> <span class="o">=</span> <span class="n">nav_lat</span>
+<span class="n">lato</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;latitude&#39;</span>
+<span class="n">lato</span><span class="o">.</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s1">&#39;latitude&#39;</span>
+<span class="n">lato</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;degrees_north&#39;</span>
+<span class="c1">#</span>
+<span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Such a script can be used (i.e. python2.7 navadd.py ./data/hs_197903.nc navout.nc) to
 produce a navout.nc file containing:</p>
-<div class="highlight-python"><div class="highlight"><pre>ncdump -h navout.nc
-netcdf navout {
-dimensions:
-     x = 512 ;
-     y = 344 ;
-variables:
-     float nav_lon(y, x) ;
-             nav_lon:long_name = &quot;longitude&quot; ;
-             nav_lon:standard_name = &quot;longitude&quot; ;
-             nav_lon:units = &quot;degrees_east&quot; ;
-     float nav_lat(y, x) ;
-             nav_lat:long_name = &quot;latitude&quot; ;
-             nav_lat:standard_name = &quot;latitude&quot; ;
-             nav_lat:units = &quot;degrees_north&quot; ;
-}
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncdump</span> <span class="o">-</span><span class="n">h</span> <span class="n">navout</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">netcdf</span> <span class="n">navout</span> <span class="p">{</span>
+<span class="n">dimensions</span><span class="p">:</span>
+     <span class="n">x</span> <span class="o">=</span> <span class="mi">512</span> <span class="p">;</span>
+     <span class="n">y</span> <span class="o">=</span> <span class="mi">344</span> <span class="p">;</span>
+<span class="n">variables</span><span class="p">:</span>
+     <span class="nb">float</span> <span class="n">nav_lon</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="p">;</span>
+             <span class="n">nav_lon</span><span class="p">:</span><span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;longitude&quot;</span> <span class="p">;</span>
+             <span class="n">nav_lon</span><span class="p">:</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s2">&quot;longitude&quot;</span> <span class="p">;</span>
+             <span class="n">nav_lon</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;degrees_east&quot;</span> <span class="p">;</span>
+     <span class="nb">float</span> <span class="n">nav_lat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="p">;</span>
+             <span class="n">nav_lat</span><span class="p">:</span><span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;latitude&quot;</span> <span class="p">;</span>
+             <span class="n">nav_lat</span><span class="p">:</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s2">&quot;latitude&quot;</span> <span class="p">;</span>
+             <span class="n">nav_lat</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;degrees_north&quot;</span> <span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="using-the-external-coordinate-file">
 <h2>Using the external coordinate file<a class="headerlink" href="#using-the-external-coordinate-file" title="Permalink to this headline">¶</a></h2>
 <p>Now armed with this external coordinate field the first image can be produced:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/hs_197903.nc -d hs -o example18a.png -nomask \
-          -xdim longitude -ydim latitude -coordf navout.nc
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">hs_197903</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">d</span> <span class="n">hs</span> <span class="o">-</span><span class="n">o</span> <span class="n">example18a</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">nomask</span> \
+          <span class="o">-</span><span class="n">xdim</span> <span class="n">longitude</span> <span class="o">-</span><span class="n">ydim</span> <span class="n">latitude</span> <span class="o">-</span><span class="n">coordf</span> <span class="n">navout</span><span class="o">.</span><span class="n">nc</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example18a.png"><img alt="_images/example18a.png" class="align-center" src="_images/example18a.png" style="width: 360.0px; height: 200.0px;" /></a>
 <p>There are still some issues with this image. Firstly lets apply a better mask which will
 remove the large negative values assigned as a FillValue from the data range calculation.
-This can be done by declaring the undefined value using the <tt class="docutils literal"><span class="pre">-vmask</span></tt> option:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/hs_197903.nc -d hs -o example18b.png -nomask \
-          -xdim longitude -ydim latitude -coordf navout.nc -vmask -32767 0.0
+This can be done by declaring the undefined value using the <code class="docutils literal notranslate"><span class="pre">-vmask</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">hs_197903</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">d</span> <span class="n">hs</span> <span class="o">-</span><span class="n">o</span> <span class="n">example18b</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">nomask</span> \
+          <span class="o">-</span><span class="n">xdim</span> <span class="n">longitude</span> <span class="o">-</span><span class="n">ydim</span> <span class="n">latitude</span> <span class="o">-</span><span class="n">coordf</span> <span class="n">navout</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">vmask</span> <span class="o">-</span><span class="mi">32767</span> <span class="mf">0.0</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example18b.png"><img alt="_images/example18b.png" class="align-center" src="_images/example18b.png" style="width: 360.0px; height: 200.0px;" /></a>
-<p>This still isn&#8217;t ideal because the FillValue here is used both for land (masked) points
+<p>This still isn’t ideal because the FillValue here is used both for land (masked) points
 and missing data points where wave heights are not available in ice covered regions. Ways
 of creating a distinction between these regions will be explored later but a more worrying
 issue at the Greenwich Meridion needs addressing next.</p>
@@ -297,22 +298,22 @@ issue at the Greenwich Meridion needs addressing next.</p>
 <div class="section" id="dealing-with-overlap-rows-and-columns">
 <h2>Dealing with overlap rows and columns<a class="headerlink" href="#dealing-with-overlap-rows-and-columns" title="Permalink to this headline">¶</a></h2>
 <p>The odd behaviour at the Greenwich Meridion arises because of another assumption that
-<tt class="docutils literal"><span class="pre">nemosim</span></tt> has made about the dataset provided. That is, a global dataset is assumed to
+<code class="docutils literal notranslate"><span class="pre">nemosim</span></code> has made about the dataset provided. That is, a global dataset is assumed to
 have two overlap columns in the longitudinal direction such that:</p>
-<div class="highlight-python"><div class="highlight"><pre>array(1 ,:) = array(nx-1,:)
-array(nx,:) = array(2   ,:)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">(</span><span class="mi">1</span> <span class="p">,:)</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:)</span>
+<span class="n">array</span><span class="p">(</span><span class="n">nx</span><span class="p">,:)</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="mi">2</span>   <span class="p">,:)</span>
 </pre></div>
 </div>
 <p>where nx is the length of the longitudinal dimension. There is also an assumption that the
 northern most row is folded in an ORCA-style tripolar grid fashion but that is not evident
 here since the wave model does not cover the northern section of the Arctic basin. With
 the example wave data, the longitudinal coverage is a complete 360 degrees but without the
-overlap columns. An option, <tt class="docutils literal"><span class="pre">-nooverl</span></tt>, is provided for this case which adds the
-expected columns and populates them with duplicated data so that <tt class="docutils literal"><span class="pre">nemosim</span></tt>&#8216;s standard
+overlap columns. An option, <code class="docutils literal notranslate"><span class="pre">-nooverl</span></code>, is provided for this case which adds the
+expected columns and populates them with duplicated data so that <code class="docutils literal notranslate"><span class="pre">nemosim</span></code>’s standard
 mapping algorithms will work correctly.:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/hs_197903.nc -d hs -o example18c.png -nomask \
-          -xdim longitude -ydim latitude -coordf navout.nc -vmask -32767 0.0 \
-          -nooverl
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">hs_197903</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">d</span> <span class="n">hs</span> <span class="o">-</span><span class="n">o</span> <span class="n">example18c</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">nomask</span> \
+          <span class="o">-</span><span class="n">xdim</span> <span class="n">longitude</span> <span class="o">-</span><span class="n">ydim</span> <span class="n">latitude</span> <span class="o">-</span><span class="n">coordf</span> <span class="n">navout</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">vmask</span> <span class="o">-</span><span class="mi">32767</span> <span class="mf">0.0</span> \
+          <span class="o">-</span><span class="n">nooverl</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example18c.png"><img alt="_images/example18c.png" class="align-center" src="_images/example18c.png" style="width: 360.0px; height: 200.0px;" /></a>
@@ -322,14 +323,14 @@ mapping algorithms will work correctly.:</p>
 <p>To distinguish between the land points and missing data regions it will be necessary to
 introduce a land mask.  In this case a simple land mask can be derived from the depth field
 which WW-III outputs with large negative values over land:</p>
-<div class="highlight-python"><div class="highlight"><pre>ncap2 -s &quot;Bathy_level=Depth; where(Bathy_level &gt; 0) Bathy_level = 1; elsewhere Bathy_level = 0&quot; \
-          Depth.nc Bathy.nc
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncap2</span> <span class="o">-</span><span class="n">s</span> <span class="s2">&quot;Bathy_level=Depth; where(Bathy_level &gt; 0) Bathy_level = 1; elsewhere Bathy_level = 0&quot;</span> \
+          <span class="n">Depth</span><span class="o">.</span><span class="n">nc</span> <span class="n">Bathy</span><span class="o">.</span><span class="n">nc</span>
 </pre></div>
 </div>
 <p>and this mask can be applied instead of defining the fillvalue:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/hs_197903.nc -d hs -o example18d.png   \
-          -xdim longitude -ydim latitude -coordf navout.nc \
-          -nooverl -bathy ./data/Bathy.nc
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">hs_197903</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">d</span> <span class="n">hs</span> <span class="o">-</span><span class="n">o</span> <span class="n">example18d</span><span class="o">.</span><span class="n">png</span>   \
+          <span class="o">-</span><span class="n">xdim</span> <span class="n">longitude</span> <span class="o">-</span><span class="n">ydim</span> <span class="n">latitude</span> <span class="o">-</span><span class="n">coordf</span> <span class="n">navout</span><span class="o">.</span><span class="n">nc</span> \
+          <span class="o">-</span><span class="n">nooverl</span> <span class="o">-</span><span class="n">bathy</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">Bathy</span><span class="o">.</span><span class="n">nc</span>
 </pre></div>
 </div>
 <p>The result certainly distinguishes the missing data regions:</p>
@@ -342,23 +343,23 @@ creative use of the overlay functionality.</p>
 <div class="section" id="using-an-overlay-to-distinguish-regions">
 <h2>Using an overlay to distinguish regions<a class="headerlink" href="#using-an-overlay-to-distinguish-regions" title="Permalink to this headline">¶</a></h2>
 <p>The problem here is that a single FillValue has been used for both land and missing data
-regions and <tt class="docutils literal"><span class="pre">nemosim</span></tt> can&#8217;t employ a bathymetry mask and a missing value mask at the
+regions and <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> can’t employ a bathymetry mask and a missing value mask at the
 same time. We can, however, use the land mask as an overlay dataset to create the
 impression of distinct Fillvalues. To do this we require the inverse of the land mask
 (i.e. 1 over land, 0 over ocean) and a two tone palette which is white in its lower half
 and black in the upper half (twotone.pal). Creating the inverse mask is a simple variation
 on the earlier command:</p>
-<div class="highlight-python"><div class="highlight"><pre>ncap2 -s &quot;Bathy_level=Depth; where(Bathy_level &gt; 0) Bathy_level = 0; elsewhere Bathy_level = 1&quot; \
-          Depth.nc Bathy2.nc
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncap2</span> <span class="o">-</span><span class="n">s</span> <span class="s2">&quot;Bathy_level=Depth; where(Bathy_level &gt; 0) Bathy_level = 0; elsewhere Bathy_level = 1&quot;</span> \
+          <span class="n">Depth</span><span class="o">.</span><span class="n">nc</span> <span class="n">Bathy2</span><span class="o">.</span><span class="n">nc</span>
 </pre></div>
 </div>
 <p>Now we can re-instate the FillValue, this time as the second vmask entry to provide a gray
 fill, and employ the inverse mask as an overlay. Also, for good measure, define the image
 size to give a 2:1 aspect ratio:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -f ./data/hs_197903.nc -d hs -o example18e.png -nomask  \
-          -xdim longitude -ydim latitude -coordf navout.nc -vmask -50.0 -32767 \
-          -nooverl -f2 ./data/Bathy2.nc -d2 Bathy_level -limits2 0.25 0.75 \
-          -overlay -cs2 twotone.pal -r 800 400
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">hs_197903</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">d</span> <span class="n">hs</span> <span class="o">-</span><span class="n">o</span> <span class="n">example18e</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">nomask</span>  \
+          <span class="o">-</span><span class="n">xdim</span> <span class="n">longitude</span> <span class="o">-</span><span class="n">ydim</span> <span class="n">latitude</span> <span class="o">-</span><span class="n">coordf</span> <span class="n">navout</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">vmask</span> <span class="o">-</span><span class="mf">50.0</span> <span class="o">-</span><span class="mi">32767</span> \
+          <span class="o">-</span><span class="n">nooverl</span> <span class="o">-</span><span class="n">f2</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">Bathy2</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">d2</span> <span class="n">Bathy_level</span> <span class="o">-</span><span class="n">limits2</span> <span class="mf">0.25</span> <span class="mf">0.75</span> \
+          <span class="o">-</span><span class="n">overlay</span> <span class="o">-</span><span class="n">cs2</span> <span class="n">twotone</span><span class="o">.</span><span class="n">pal</span> <span class="o">-</span><span class="n">r</span> <span class="mi">800</span> <span class="mi">400</span>
 </pre></div>
 </div>
 <p>Note The first vmask entry is set to -50. to avoid any danger of valid data points being
@@ -370,15 +371,15 @@ will be transparent in the overlay. All points set to one will be set to the fin
 </div>
 <div class="section" id="adding-texture-to-land-areas">
 <h2>Adding texture to land areas<a class="headerlink" href="#adding-texture-to-land-areas" title="Permalink to this headline">¶</a></h2>
-<p>As a final dressing it is often useful to provide more detail over land areas. This isn&#8217;t
-needed for scientific purposes but can give a more familiar &#8216;atlas-style&#8217; appearance to
-images used for public outreach purposes. <tt class="docutils literal"><span class="pre">nemosim</span></tt> supports this requirement by
-providing the <tt class="docutils literal"><span class="pre">-transp_bg</span></tt> option which makes any pixels with the background colour
+<p>As a final dressing it is often useful to provide more detail over land areas. This isn’t
+needed for scientific purposes but can give a more familiar ‘atlas-style’ appearance to
+images used for public outreach purposes. <code class="docutils literal notranslate"><span class="pre">nemosim</span></code> supports this requirement by
+providing the <code class="docutils literal notranslate"><span class="pre">-transp_bg</span></code> option which makes any pixels with the background colour
 transparent. Note that the output image format must support transparency for this to be
 effective; currently that limits the output format choice to png (the default). Here is an
 example of this in action:</p>
-<div class="highlight-python"><div class="highlight"><pre>./nemosim -as example18e.png -o example18f.png  \
-          -transp_bg -dateclk 24 453 187 01031979
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">nemosim</span> <span class="o">-</span><span class="k">as</span> <span class="n">example18e</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">o</span> <span class="n">example18f</span><span class="o">.</span><span class="n">png</span>  \
+          <span class="o">-</span><span class="n">transp_bg</span> <span class="o">-</span><span class="n">dateclk</span> <span class="mi">24</span> <span class="mi">453</span> <span class="mi">187</span> <span class="mi">01031979</span>
 </pre></div>
 </div>
 <p>where a date clock has also been added for good measure. Depending on your browser, the
@@ -390,12 +391,12 @@ dataset which shows the orography over land. The land relief should be shown in 
 range that is not prevalent in the oceanic data colour-scale; the image size and aspect
 ratio must match and the longitude of the lefthand edges should match so that the land
 masses align. This last point is sometimes easier to achieve after producing a base image
-by using the <tt class="docutils literal"><span class="pre">-roll</span></tt> option of the <tt class="docutils literal"><span class="pre">ImageMagick</span></tt> utility: <tt class="docutils literal"><span class="pre">mogrify</span></tt>. In fact, for
+by using the <code class="docutils literal notranslate"><span class="pre">-roll</span></code> option of the <code class="docutils literal notranslate"><span class="pre">ImageMagick</span></code> utility: <code class="docutils literal notranslate"><span class="pre">mogrify</span></code>. In fact, for
 this purpose I keep a base image at the highest resolution that I am likely to use
 (2048x1024) and rescale and roll a copy to fit as needed. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>cp gebcolike_2048.png gebcolike_sm.png
-mogrify -resize 800x400 gebcolike_sm.png
-mogrify -roll +69+0 gebcolike_sm.png
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">gebcolike_2048</span><span class="o">.</span><span class="n">png</span> <span class="n">gebcolike_sm</span><span class="o">.</span><span class="n">png</span>
+<span class="n">mogrify</span> <span class="o">-</span><span class="n">resize</span> <span class="mi">800</span><span class="n">x400</span> <span class="n">gebcolike_sm</span><span class="o">.</span><span class="n">png</span>
+<span class="n">mogrify</span> <span class="o">-</span><span class="n">roll</span> <span class="o">+</span><span class="mi">69</span><span class="o">+</span><span class="mi">0</span> <span class="n">gebcolike_sm</span><span class="o">.</span><span class="n">png</span>
 </pre></div>
 </div>
 <p>which produces:</p>
@@ -403,7 +404,7 @@ mogrify -roll +69+0 gebcolike_sm.png
 <p>Note this image has been especially prepared for the WW-III data with ivory coloured
 regions in the polar regions that the wave model does not cover and a black circle in the
 date clock location. Compositing the two images together produces the final image:</p>
-<div class="highlight-python"><div class="highlight"><pre>composite example18f.png ./doc/figs/gebcolike_sm.png example18g.png
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">composite</span> <span class="n">example18f</span><span class="o">.</span><span class="n">png</span> <span class="o">./</span><span class="n">doc</span><span class="o">/</span><span class="n">figs</span><span class="o">/</span><span class="n">gebcolike_sm</span><span class="o">.</span><span class="n">png</span> <span class="n">example18g</span><span class="o">.</span><span class="n">png</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/example18g.png"><img alt="_images/example18g.png" class="align-center" src="_images/example18g.png" style="width: 600.0px; height: 300.0px;" /></a>
@@ -416,12 +417,15 @@ date clock location. Compositing the two images together produces the final imag
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="nscookbook8.html" title="NEMOSIM - Cook book (8)"
+             >next</a> |</li>
         <li class="right" >
           <a href="nscookbook6.html" title="NEMOSIM - Cook book (6)"
              >previous</a> |</li>
@@ -431,9 +435,9 @@ date clock location. Compositing the two images together produces the final imag
  
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Andrew C. Coward, National Oceanography Centre, UK.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>
