@@ -58,6 +58,7 @@
 <li><a class="reference internal" href="#adding-a-date-clock">Adding a date clock</a></li>
 <li><a class="reference internal" href="#produce-the-first-complete-frame">Produce the first complete frame</a></li>
 <li><a class="reference internal" href="#producing-all-the-frames">Producing all the frames</a></li>
+<li><a class="reference internal" href="#suggested-improvements">Suggested improvements</a></li>
 <li><a class="reference internal" href="#encoding-the-video-sequence">Encoding the video sequence</a></li>
 </ul>
 </li>
@@ -379,12 +380,12 @@ simple scripting techniques a series of numbered frames can easily be produced. 
 on JASMIN we have access to the LOTUS cluster and can do better than a simple serial
 script. This example uses the <code class="docutils literal notranslate"><span class="pre">test</span></code> queue which supports up to 8 core, 4 hour jobs and
 will run through the sequence producing 8 frames simultaneously. It may be possible to be
-even more ambitious than this but this will already process a 10 year sequence in under 20
+even more ambitious than this but this will already process a 10 year sequence in around 30
 minutes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cat mk_HD.slurm
 #!/bin/bash
 #SBATCH --job-name=mkframe
-#SBATCH --time=00:20:00
+#SBATCH --time=00:35:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=8
 #SBATCH --partition=test
@@ -417,12 +418,13 @@ export LD_LIBRARY_PATH=/work/n01/n01/acc/TOOLS/lib:$LD_LIBRARY_PATH
   cs=pastel2.pal
   if [ ! -d ${OUTDIR} ] ; then mkdir -p  ${OUTDIR} ; fi
   tsklist=${OUTDIR}/tasklist
-  if [ ! -e $tsklist ] ; then rm $tsklist ; fi
+  if [ -e $tsklist ] ; then rm $tsklist ; fi
 #
   basecmd=(${BINDIR}/nemosim -usemap ${MAPDIR}/latlon_1920_p083.nc -k 1 -t 1 \
             -limits -2.0 30.00 -bcoord -bathy ${BATHY} \
             -sw 0.0 -90. -ne 360. 90.  -no_offset -r 1920 960 \
-            -cs ${cs} -logo ${LOGO} -lsize 240 77 -lpos 0 265 -bg \&quot;#131313\&quot;)
+            -cs ${cs} -logo ${LOGO} -lsize 240 77 -lpos 0 265 \
+            -np ${OMP_NUM_THREADS} -bg \&quot;#131313\&quot;)
 n=0
 m=0
 for fr in `cat mxl_list | sed -e&#39;s/d05P/d05T/g&#39;`
@@ -463,13 +465,336 @@ fi
 sbatch mk_HD.slurm
 </pre></div>
 </div>
-<p>There is plenty of scope for improving on this: exploring other queue optionsr; different
+<p>There is plenty of scope for improving on this: exploring other queue options; different
 placements, the use of OpenMP threads etc. Please feedback any advances.</p>
 <p>Note the script includes a simple check that the variable (in this case: potemp) exists
 within each input data file. It uses ncks at the heart of this which requires the jaspy
 module to be loaded. There is an unfortunate change in the name of the variable part way
 through the sequence which is caught by this check and the correct alternative (thetao)
 is substituted as needed.</p>
+<p>Update: an important fact discovered during subsequent investigations is that the
+<code class="docutils literal notranslate"><span class="pre">ncvarlst</span></code> command forms a serial bottleneck in the above script. If you choose to make
+no other changes, you should, at least, substitute these lines for the variable name check:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># ncvarlst is a bit slow. Since we know when the change occurs (01/01/2013; n =509) just use the frame counter
+#       if [ $( ncvarlst ${DTADIR}/$fr | grep -c thetao ) -eq 1 ] ; then var=thetao ; fi
+        if [ $n -gt 508 ] ; then var=thetao ; fi
+</pre></div>
+</div>
+</div>
+<div class="section" id="suggested-improvements">
+<h2>Suggested improvements<a class="headerlink" href="#suggested-improvements" title="Permalink to this headline">¶</a></h2>
+<p>One quick gain can be obtained by switching production to the /work/scratch-pw workspace.
+This is true scratch space which will be wiped periodically (and, therefore, shouldn’t be
+assumed to exist much beyond the duration of the job) but is more performant than the
+no_pw disks. This minor variation of the first slurm script makes use of this space:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#SBATCH --job-name=mkframe
+#SBATCH --time=00:35:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=8
+#SBATCH --partition=test
+#
+# need jaspy for ncks:
+module load jaspy
+#
+# function to return an uncluttered list of variables:
+function ncvarlst { ncks --trd -m ${1} | grep -E &#39;: type&#39; | cut -f 1 -d &#39; &#39; | sed &#39;s/://&#39; | sort ; }
+#
+# setup
+export OMP_NUM_THREADS=1
+export PATH=/work/n01/n01/acc/TOOLS/bin:$PATH
+export LD_LIBRARY_PATH=/work/n01/n01/acc/TOOLS/lib:$LD_LIBRARY_PATH
+#
+  OUTDIR=/work/scratch-pw/${USER}/HD/TEM_p083
+  MAP_SAVDIR=/home/users/acc/TOOLS/MAPS    # needs to be changed if saving new maps
+  MAPDIR=/work/scratch-pw/${USER}/MAPS
+#
+  DTADIR=/gws/nopw/j04/nemo_vol1/ORCA0083-N006/means
+  BINDIR=/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim
+  LOGO=/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim/data/NOC_logo_white.png
+  BATHY=/home/users/acc/forYOOL/dom0083/bathy_level.nc
+  MAPFILE=latlon_1920_p083.nc
+#
+  # cs=brown2green.pal
+  # cs=rev/seasonal_25.pal
+  # cs=div_blue2darkred_18.pal
+  # cs=rev/darkgreenscale_25.pal
+  # cs=GMT_sealand_x20.pal
+  # cs=gurvan.pal
+  # cs=div_blue2darkred_86.pal
+  cs=pastel2.pal
+  if [ ! -d ${OUTDIR} ] ; then mkdir -p  ${OUTDIR} ; fi
+  if [ ! -d ${MAPDIR} ] ; then mkdir -p  ${MAPDIR} ; fi
+  if [ ! -e ${MAPDIR}/${MAPFILE} ] ; then
+    if [ -e ${MAP_SAVDIR}/${MAPFILE} ] ; then
+      cp -p ${MAP_SAVDIR}/${MAPFILE} ${MAPDIR}/${MAPFILE}
+    fi
+  fi
+#
+  tsklist=${OUTDIR}/tasklist
+  if [ -e $tsklist ] ; then rm $tsklist ; fi
+#
+  basecmd=(${BINDIR}/nemosim -usemap ${MAPDIR}/${MAPFILE} -k 1 -t 1 \
+            -limits -2.0 30.00 -bcoord -bathy ${BATHY} \
+            -sw 0.0 -90. -ne 360. 90.  -no_offset -r 1920 960 \
+            -cs ${cs} -logo ${LOGO} -lsize 240 77 -lpos 0 265 \
+            -bg \&quot;#131313\&quot; -np ${OMP_NUM_THREADS} )
+n=0
+m=0
+for fr in `cat mxl_list | sed -e&#39;s/d05P/d05T/g&#39;`
+do
+  nn=`printf &quot;%4.4d&quot; $n`
+  outf=$OUTDIR/temp083_$nn.png
+      if [ ! -f ${outf} ]; then
+        dstr=`echo $fr | sed -e &#39;s/.*ORCA0083-N06_\(....\)\(..\)\(..\).*/\3\2\1/&#39;`
+        var=potemp
+        if [ $( ncvarlst ${DTADIR}/$fr | grep -c thetao ) -eq 1 ] ; then var=thetao ; fi
+        echo $m  ${basecmd[@]} -d ${var} -f ${DTADIR}/$fr -o ${outf} -dateclk 56 1538 373 ${dstr} &gt;&gt; $tsklist
+        m=$(( $m + 1 ))
+      fi
+  n=$(( $n + 1 ))
+  if [ $m -eq 8 ]; then
+   echo &quot;A========Running srun===========&quot;$nn
+   head -1l $tsklist
+   srun --gres=gpu:0 --mpi=none --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07, \
+        --ntasks=$m  --multi-prog $tsklist  &amp;
+   wait
+   echo &quot;=========Finished srun==========&quot;
+   m=0
+   rm $tsklist
+  fi
+done
+if [ $m -gt 0 ]; then
+ echo &quot;B========Running srun===========&quot;
+ head -1l $tsklist
+ srun --gres=gpu:0 --mpi=none --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07, \
+      --ntasks=$m  --multi-prog $tsklist &amp;
+ wait
+ echo &quot;=========Finished srun==========&quot;
+ m=0
+ rm $tsklist
+fi
+#
+</pre></div>
+</div>
+<p>This small change improves performance sufficiently to complete the entire sequence in
+under 20 minutes.</p>
+<p>More significant speed-up can be achieved by utilising more cores simultaneously and
+recognising that the <code class="docutils literal notranslate"><span class="pre">ncvarlst</span></code> function is quite slow and forms a serial bottleneck. The
+switch is known to occur at the beginning of 2013 (frame number 509) so this can be
+hardwired into the script to save time. The remaining structure of the script remains the
+same but the job has to be submitted to the par-multi queue where up to 16 cores per node
+can be used. The following example uses 80 cores (5 nodes) to produce 80 frames
+simultaneously and completes the entire sequence in just over 2 minutes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#SBATCH --job-name=mkframp
+#SBATCH --time=00:10:00
+#SBATCH --nodes=5
+#SBATCH --ntasks=80
+#SBATCH --ntasks-per-node=16
+#SBATCH --partition=par-multi
+#
+# need jaspy for ncks:
+module load jaspy
+#
+# function to return an uncluttered list of variables:
+function ncvarlst { ncks --trd -m ${1} | grep -E &#39;: type&#39; | cut -f 1 -d &#39; &#39; | sed &#39;s/://&#39; | sort ; }
+#
+# setup
+date
+export OMP_NUM_THREADS=1
+export PATH=/work/n01/n01/acc/TOOLS/bin:$PATH
+export LD_LIBRARY_PATH=/work/n01/n01/acc/TOOLS/lib:$LD_LIBRARY_PATH
+#
+  OUTDIR=/work/scratch-pw/${USER}/HD/TEM_p083
+  MAP_SAVDIR=/home/users/acc/TOOLS/MAPS    # needs to be changed if saving new maps
+  MAPDIR=/work/scratch-pw/${USER}/MAPS
+#
+  DTADIR=/gws/nopw/j04/nemo_vol1/ORCA0083-N006/means
+  BINDIR=/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim
+  LOGO=/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim/data/NOC_logo_white.png
+  BATHY=/home/users/acc/forYOOL/dom0083/bathy_level.nc
+  MAPFILE=latlon_1920_p083.nc
+#
+  # cs=brown2green.pal
+  # cs=rev/seasonal_25.pal
+  # cs=div_blue2darkred_18.pal
+  # cs=rev/darkgreenscale_25.pal
+  # cs=GMT_sealand_x20.pal
+  # cs=gurvan.pal
+  # cs=div_blue2darkred_86.pal
+  cs=pastel2.pal
+  if [ ! -d ${OUTDIR} ] ; then mkdir -p  ${OUTDIR} ; fi
+  if [ ! -d ${MAPDIR} ] ; then mkdir -p  ${MAPDIR} ; fi
+  if [ ! -e ${MAPDIR}/${MAPFILE} ] ; then
+    if [ -e ${MAP_SAVDIR}/${MAPFILE} ] ; then
+      cp -p ${MAP_SAVDIR}/${MAPFILE} ${MAPDIR}/${MAPFILE}
+    fi
+  fi
+#
+  tsklist=${OUTDIR}/tasklist
+  if [ -e $tsklist ] ; then rm $tsklist ; fi
+#
+  basecmd=(${BINDIR}/nemosim -usemap ${MAPDIR}/${MAPFILE} -k 1 -t 1 \
+            -limits -2.0 30.00 -bcoord -bathy ${BATHY} \
+            -sw 0.0 -90. -ne 360. 90.  -no_offset -r 1920 960 \
+            -cs ${cs} -logo ${LOGO} -lsize 240 77 -lpos 0 265 \
+            -bg \&quot;#131313\&quot; -np ${OMP_NUM_THREADS} )
+n=0
+m=0
+for fr in `cat mxl_list | sed -e&#39;s/d05P/d05T/g&#39;`
+#for fr in `head -24 mxl_list | sed -e&#39;s/d05P/d05T/g&#39;`
+do
+  nn=`printf &quot;%4.4d&quot; $n`
+  outf=$OUTDIR/temp083_$nn.png
+      if [ ! -f ${outf} ]; then
+        dstr=`echo $fr | sed -e &#39;s/.*ORCA0083-N06_\(....\)\(..\)\(..\).*/\3\2\1/&#39;`
+        var=potemp
+# ncvarlst is a bit slow. Since we know when the change occurs (01/01/2013; n =509) just use the frame counter
+#       if [ $( ncvarlst ${DTADIR}/$fr | grep -c thetao ) -eq 1 ] ; then var=thetao ; fi
+        if [ $n -gt 508 ] ; then var=thetao ; fi
+        echo $m  ${basecmd[@]} -d ${var} -f ${DTADIR}/$fr -o ${outf} -dateclk 56 1538 373 ${dstr} &gt;&gt; $tsklist
+        m=$(( $m + 1 ))
+      fi
+  n=$(( $n + 1 ))
+  if [ $m -eq 80 ]; then
+   echo &quot;A========Running srun===========&quot;$nn
+   head -1l $tsklist
+   srun --gres=gpu:0 --mpi=none --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f, \
+        --ntasks=$m  --multi-prog $tsklist  &amp;
+   wait
+   echo &quot;=========Finished srun==========&quot;
+   m=0
+   rm $tsklist
+  fi
+done
+if [ $m -gt 0 ]; then
+ echo &quot;B========Running srun===========&quot;
+ head -1l $tsklist
+ srun --gres=gpu:0 --mpi=none --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f, \
+      --ntasks=$m  --multi-prog $tsklist &amp;
+ wait
+ echo &quot;=========Finished srun==========&quot;
+ m=0
+ rm $tsklist
+fi
+date
+#
+</pre></div>
+</div>
+<p>There is little point in trying to improve on this generic solution but, as a point of
+interest, it is worth noting that the LOTUS cluster is a hetrogeneous mix that includes
+many nodes with more than 16 cores per node. We can target, for example the skylake, 24
+core per node parts of the cluster and achieve a slightly faster result with fewer nodes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#SBATCH --job-name=mkframp
+#SBATCH --time=00:07:00
+#SBATCH --nodes=4
+#SBATCH --ntasks=96
+#SBATCH --ntasks-per-node=24
+#SBATCH --partition=par-multi
+#SBATCH --constraint=skylake348G
+#
+# need jaspy for ncks:
+module load jaspy
+#
+# function to return an uncluttered list of variables:
+function ncvarlst { ncks --trd -m ${1} | grep -E &#39;: type&#39; | cut -f 1 -d &#39; &#39; | sed &#39;s/://&#39; | sort ; }
+#
+# setup
+date
+export OMP_NUM_THREADS=1
+export PATH=/work/n01/n01/acc/TOOLS/bin:$PATH
+export LD_LIBRARY_PATH=/work/n01/n01/acc/TOOLS/lib:$LD_LIBRARY_PATH
+#
+  OUTDIR=/work/scratch-pw/${USER}/HD/TEM_p083
+  MAP_SAVDIR=/home/users/acc/TOOLS/MAPS    # needs to be changed if saving new maps
+  MAPDIR=/work/scratch-pw/${USER}/MAPS
+#
+  DTADIR=/gws/nopw/j04/nemo_vol1/ORCA0083-N006/means
+  BINDIR=/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim
+  LOGO=/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim/data/NOC_logo_white.png
+  BATHY=/home/users/acc/forYOOL/dom0083/bathy_level.nc
+  MAPFILE=latlon_1920_p083.nc
+#
+  # cs=brown2green.pal
+  # cs=rev/seasonal_25.pal
+  # cs=div_blue2darkred_18.pal
+  # cs=rev/darkgreenscale_25.pal
+  # cs=GMT_sealand_x20.pal
+  # cs=gurvan.pal
+  # cs=div_blue2darkred_86.pal
+  cs=pastel2.pal
+  if [ ! -d ${OUTDIR} ] ; then mkdir -p  ${OUTDIR} ; fi
+  if [ ! -d ${MAPDIR} ] ; then mkdir -p  ${MAPDIR} ; fi
+  if [ ! -e ${MAPDIR}/${MAPFILE} ] ; then
+    if [ -e ${MAP_SAVDIR}/${MAPFILE} ] ; then
+      cp -p ${MAP_SAVDIR}/${MAPFILE} ${MAPDIR}/${MAPFILE}
+    fi
+  fi
+#
+  tsklist=${OUTDIR}/tasklist
+  if [ -e $tsklist ] ; then rm $tsklist ; fi
+#
+  basecmd=(${BINDIR}/nemosim -usemap ${MAPDIR}/${MAPFILE} -k 1 -t 1 \
+            -limits -2.0 30.00 -bcoord -bathy ${BATHY} \
+            -sw 0.0 -90. -ne 360. 90.  -no_offset -r 1920 960 \
+            -cs ${cs} -logo ${LOGO} -lsize 240 77 -lpos 0 265 \
+            -bg \&quot;#131313\&quot; -np ${OMP_NUM_THREADS} )
+n=0
+m=0
+for fr in `cat mxl_list | sed -e&#39;s/d05P/d05T/g&#39;`
+do
+  nn=`printf &quot;%4.4d&quot; $n`
+  outf=$OUTDIR/temp083_$nn.png
+      if [ ! -f ${outf} ]; then
+        dstr=`echo $fr | sed -e &#39;s/.*ORCA0083-N06_\(....\)\(..\)\(..\).*/\3\2\1/&#39;`
+        var=potemp
+# ncvarlst is a bit slow. Since we know when the change occurs (01/01/2013; n =509) just use the frame counter
+#       if [ $( ncvarlst ${DTADIR}/$fr | grep -c thetao ) -eq 1 ] ; then var=thetao ; fi
+        if [ $n -gt 508 ] ; then var=thetao ; fi
+        echo $m  ${basecmd[@]} -d ${var} -f ${DTADIR}/$fr -o ${outf} -dateclk 56 1538 373 ${dstr} &gt;&gt; $tsklist
+        m=$(( $m + 1 ))
+      fi
+  n=$(( $n + 1 ))
+  if [ $m -eq 96 ]; then
+   echo &quot;A========Running srun===========&quot;$nn
+   head -1l $tsklist
+   srun --gres=gpu:0 --mpi=none \
+        --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17, \
+        --ntasks=$m  --multi-prog $tsklist  &amp;
+   wait
+   echo &quot;=========Finished srun==========&quot;
+   m=0
+   rm $tsklist
+  fi
+done
+if [ $m -gt 0 ]; then
+ echo &quot;B========Running srun===========&quot;
+ head -1l $tsklist
+ srun --gres=gpu:0 --mpi=none \
+      --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17, \
+      --ntasks=$m  --multi-prog $tsklist &amp;
+ wait
+ echo &quot;=========Finished srun==========&quot;
+ m=0
+ rm $tsklist
+fi
+date
+#
+</pre></div>
+</div>
+<p>which shaves another 15s off the execution time. Note, though, that the queuing times for
+the par-multi partition may mean that the 8-core test partition may still be a good option
+(with the replacement of ncvarlst and use of scratch-pw, the test queue can complete the
+sequence in 14.5 minutes with less likelihood of waiting).</p>
+<p>During testing a limit was reached beyond the 96 core point where jobs failed to execute
+with a:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span><span class="p">:</span> <span class="n">error</span><span class="p">:</span> <span class="n">Multi_prog</span> <span class="n">config</span> <span class="n">file</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">scratch</span><span class="o">-</span><span class="n">pw</span><span class="o">/</span><span class="n">acc</span><span class="o">/</span><span class="n">HD2</span><span class="o">/</span><span class="n">TEM_p083</span><span class="o">/</span><span class="n">tasklist</span> <span class="ow">is</span> <span class="n">too</span> <span class="n">large</span>
+</pre></div>
+</div>
+<p>complaint. There is no documentation to suggest there should be a limit but a work-around
+is yet to be found.</p>
 </div>
 <div class="section" id="encoding-the-video-sequence">
 <h2>Encoding the video sequence<a class="headerlink" href="#encoding-the-video-sequence" title="Permalink to this headline">¶</a></h2>
@@ -478,15 +803,16 @@ of these methods will produce poor quality results unless some control is exerci
 default settings. Chiefly this is because most techniques are meant for encoding video
 streams of real-world images where natural features are not unduly altered by slight
 blurring or fuzziness. When crisper edges are required and parts of the image remain
-static then it is often necessary to increase quality demands and except the larger files
+static then it is often necessary to increase quality demands and accept the larger files
 that result.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> utility provides one of the simplest methods and is readily available:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ffmpeg</span> <span class="o">-</span><span class="n">i</span> <span class="n">temp083_</span><span class="o">%</span><span class="mi">04</span><span class="n">d</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">vcodec</span> <span class="n">mpeg4</span> <span class="o">-</span><span class="n">vb</span> <span class="mi">20</span><span class="n">M</span> <span class="n">temp083</span><span class="o">.</span><span class="n">mp4</span>
 </pre></div>
 </div>
 <p>Here the quality is controlled by the <code class="docutils literal notranslate"><span class="pre">-vb</span></code> option (video bitrate). Try leaving this
-option out and compare the results. This movie file will have to be copied off JASMIN
-for viewing.</p>
+option out and compare the results. This encoding should be performed soon after frame
+creation if the frames are in the scratch-pw space and not intended to be kept. This movie
+file will have stored elsewhere (/home or GWS-space) and copied off JASMIN for viewing.</p>
 </div>
 </div>
 

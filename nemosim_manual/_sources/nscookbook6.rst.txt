@@ -126,7 +126,7 @@ of these methods will produce poor quality results unless some control is exerci
 default settings. Chiefly this is because most techniques are meant for encoding video
 streams of real-world images where natural features are not unduly altered by slight
 blurring or fuzziness. When crisper edges are required and parts of the image remain
-static then it is often necessary to increase quality demands and except the larger files
+static then it is often necessary to increase quality demands and accept the larger files
 that result.
 
 The ``ffmpeg`` utility provides one of the simplest methods and is readily available::

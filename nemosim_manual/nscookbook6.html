@@ -212,7 +212,7 @@ of these methods will produce poor quality results unless some control is exerci
 default settings. Chiefly this is because most techniques are meant for encoding video
 streams of real-world images where natural features are not unduly altered by slight
 blurring or fuzziness. When crisper edges are required and parts of the image remain
-static then it is often necessary to increase quality demands and except the larger files
+static then it is often necessary to increase quality demands and accept the larger files
 that result.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> utility provides one of the simplest methods and is readily available:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ffmpeg</span> <span class="o">-</span><span class="n">i</span> <span class="n">amm60_sst_</span><span class="o">%</span><span class="mi">04</span><span class="n">d</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">vcodec</span> <span class="n">mpeg4</span> <span class="o">-</span><span class="n">vb</span> <span class="mi">20</span><span class="n">M</span> <span class="n">amm60SST</span><span class="o">.</span><span class="n">mp4</span>
