@@ -53,13 +53,13 @@
 <li><a class="reference internal" href="#determine-the-mask-and-coordinate-options">4. Determine the mask and coordinate options</a></li>
 <li><a class="reference internal" href="#decide-on-variable-and-suitable-range">5. Decide on variable and suitable range</a></li>
 <li><a class="reference internal" href="#produce-a-trial-frame">6. Produce a trial frame</a></li>
-<li><a class="reference internal" href="#set-a-different-background-colour">Set a different background colour</a></li>
-<li><a class="reference internal" href="#adding-a-logo">Adding a logo</a></li>
-<li><a class="reference internal" href="#adding-a-date-clock">Adding a date clock</a></li>
-<li><a class="reference internal" href="#produce-the-first-complete-frame">Produce the first complete frame</a></li>
-<li><a class="reference internal" href="#producing-all-the-frames">Producing all the frames</a></li>
-<li><a class="reference internal" href="#suggested-improvements">Suggested improvements</a></li>
-<li><a class="reference internal" href="#encoding-the-video-sequence">Encoding the video sequence</a></li>
+<li><a class="reference internal" href="#set-a-different-background-colour">7. Set a different background colour</a></li>
+<li><a class="reference internal" href="#adding-a-logo">8. Adding a logo</a></li>
+<li><a class="reference internal" href="#adding-a-date-clock">9. Adding a date clock</a></li>
+<li><a class="reference internal" href="#produce-the-first-complete-frame">10. Produce the first complete frame</a></li>
+<li><a class="reference internal" href="#producing-all-the-frames">11. Producing all the frames</a></li>
+<li><a class="reference internal" href="#suggested-improvements">12. Suggested improvements</a></li>
+<li><a class="reference internal" href="#encoding-the-video-sequence">13. Encoding the video sequence</a></li>
 </ul>
 </li>
 </ul>
@@ -124,8 +124,10 @@ case any of my other tools interfere with your own versions.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">CB8_WORK</span>
 <span class="n">cd</span> <span class="n">CB8_WORK</span>
 <span class="n">cp</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">forMOCC</span><span class="o">/</span><span class="n">mxl_list</span> <span class="o">.</span>
-<span class="n">cp</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">forMOCC</span><span class="o">/</span><span class="n">CB8_examples</span> <span class="o">.</span>
-<span class="n">cp</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">forMOCC</span><span class="o">/</span><span class="n">mk_HD</span><span class="o">.</span><span class="n">slurm</span>
+<span class="n">cp</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">forMOOC</span><span class="o">/</span><span class="n">mk_HDframes_local_testq</span><span class="o">.</span><span class="n">slurm</span> <span class="o">.</span>
+<span class="n">cp</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">forMOOC</span><span class="o">/</span><span class="n">mk_HDframes_scratch_testq</span><span class="o">.</span><span class="n">slurm</span> <span class="o">.</span>
+<span class="n">cp</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">forMOOC</span><span class="o">/</span><span class="n">mk_HDframes_scratch_parmulti</span><span class="o">.</span><span class="n">slurm</span> <span class="o">.</span>
+<span class="n">cp</span> <span class="o">~</span><span class="n">acc</span><span class="o">/</span><span class="n">forMOOC</span><span class="o">/</span><span class="n">mk_HDframes_scratch_skylake</span><span class="o">.</span><span class="n">slurm</span> <span class="o">.</span>
 </pre></div>
 </div>
 </div>
@@ -306,7 +308,7 @@ only be amplified on the PufferSphere which is why many other packages are unsui
 generating images for this device.</p>
 </div>
 <div class="section" id="set-a-different-background-colour">
-<h2>Set a different background colour<a class="headerlink" href="#set-a-different-background-colour" title="Permalink to this headline">¶</a></h2>
+<h2>7. Set a different background colour<a class="headerlink" href="#set-a-different-background-colour" title="Permalink to this headline">¶</a></h2>
 <p>This aside, we are happy with the original image as a base. The next stages are to add a
 little dressing. First up, is to consider the land regions. The default settings have
 these as flat black. We are probably content with this at this stage but may wish to
@@ -321,7 +323,7 @@ uniquely targetted in any future manipulation. Adding:</p>
 <p>will achieve this.</p>
 </div>
 <div class="section" id="adding-a-logo">
-<h2>Adding a logo<a class="headerlink" href="#adding-a-logo" title="Permalink to this headline">¶</a></h2>
+<h2>8. Adding a logo<a class="headerlink" href="#adding-a-logo" title="Permalink to this headline">¶</a></h2>
 <p>The decision to add a logo is largely project-specific. However, it is probably easier to
 mask or remove a logo than it is to add one later so I’d recommend adding one to every
 project.  The caveat here is that any logo should be applied to a region of fixed colour
@@ -340,7 +342,7 @@ experiment on the trial image until you get it right. Here’s what I ended up w
 </div>
 </div>
 <div class="section" id="adding-a-date-clock">
-<h2>Adding a date clock<a class="headerlink" href="#adding-a-date-clock" title="Permalink to this headline">¶</a></h2>
+<h2>9. Adding a date clock<a class="headerlink" href="#adding-a-date-clock" title="Permalink to this headline">¶</a></h2>
 <p>The final element which is vital for providing animations with a visual indication of time
 progression is the date-clock. As well as suitable positioning and sizing arguments, we
 also need to provide the date for each frame. In the current example, the simplest way to
@@ -356,7 +358,7 @@ dstr=`echo $fr | sed -e &#39;s/.*ORCA0083-N06_\(....\)\(..\)\(..\).*/\3\2\1/&#39
 </div>
 </div>
 <div class="section" id="produce-the-first-complete-frame">
-<h2>Produce the first complete frame<a class="headerlink" href="#produce-the-first-complete-frame" title="Permalink to this headline">¶</a></h2>
+<h2>10. Produce the first complete frame<a class="headerlink" href="#produce-the-first-complete-frame" title="Permalink to this headline">¶</a></h2>
 <p>Putting this all together completes the first frame:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bathyf=&quot;/home/users/acc/forYOOL/dom0083/bathy_level.nc&quot;
 logof=&quot;/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim/data/NOC_logo_white.png&quot;
@@ -374,7 +376,7 @@ nemosim -usemap /home/users/acc/TOOLS/MAPS/latlon_1920_p083.nc \
 <a class="reference internal image-reference" href="_images/example19c.png"><img alt="_images/example19c.png" class="align-center" src="_images/example19c.png" style="width: 480.0px; height: 240.0px;" /></a>
 </div>
 <div class="section" id="producing-all-the-frames">
-<h2>Producing all the frames<a class="headerlink" href="#producing-all-the-frames" title="Permalink to this headline">¶</a></h2>
+<h2>11. Producing all the frames<a class="headerlink" href="#producing-all-the-frames" title="Permalink to this headline">¶</a></h2>
 <p>We now have all the elements required to produce the complete frame sequence. With some
 simple scripting techniques a series of numbered frames can easily be produced. However,
 on JASMIN we have access to the LOTUS cluster and can do better than a simple serial
@@ -382,7 +384,7 @@ script. This example uses the <code class="docutils literal notranslate"><span c
 will run through the sequence producing 8 frames simultaneously. It may be possible to be
 even more ambitious than this but this will already process a 10 year sequence in around 30
 minutes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cat mk_HD.slurm
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cat mk_HDframes_local_testq.slurm
 #!/bin/bash
 #SBATCH --job-name=mkframe
 #SBATCH --time=00:35:00
@@ -462,7 +464,7 @@ if [ $m -gt 0 ]; then
 fi
 #
 
-sbatch mk_HD.slurm
+sbatch mk_HDframes_local_testq.slurm
 </pre></div>
 </div>
 <p>There is plenty of scope for improving on this: exploring other queue options; different
@@ -472,22 +474,27 @@ within each input data file. It uses ncks at the heart of this which requires th
 module to be loaded. There is an unfortunate change in the name of the variable part way
 through the sequence which is caught by this check and the correct alternative (thetao)
 is substituted as needed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
 <p>Update: an important fact discovered during subsequent investigations is that the
 <code class="docutils literal notranslate"><span class="pre">ncvarlst</span></code> command forms a serial bottleneck in the above script. If you choose to make
 no other changes, you should, at least, substitute these lines for the variable name check:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># ncvarlst is a bit slow. Since we know when the change occurs (01/01/2013; n =509) just use the frame counter
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span># ncvarlst is a bit slow. Since we know when the change occurs (01/01/2013; n =509) just use the frame counter
 #       if [ $( ncvarlst ${DTADIR}/$fr | grep -c thetao ) -eq 1 ] ; then var=thetao ; fi
         if [ $n -gt 508 ] ; then var=thetao ; fi
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="suggested-improvements">
-<h2>Suggested improvements<a class="headerlink" href="#suggested-improvements" title="Permalink to this headline">¶</a></h2>
+<h2>12. Suggested improvements<a class="headerlink" href="#suggested-improvements" title="Permalink to this headline">¶</a></h2>
 <p>One quick gain can be obtained by switching production to the /work/scratch-pw workspace.
 This is true scratch space which will be wiped periodically (and, therefore, shouldn’t be
 assumed to exist much beyond the duration of the job) but is more performant than the
-no_pw disks. This minor variation of the first slurm script makes use of this space:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+no_pw disks. This minor variation of the first slurm script makes use of this space (
+differences from the previous example are highlighted):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cat mk_HDframes_scratch_testq.slurm
+#!/bin/bash
 #SBATCH --job-name=mkframe
 #SBATCH --time=00:35:00
 #SBATCH --nodes=1
@@ -505,10 +512,14 @@ export OMP_NUM_THREADS=1
 export PATH=/work/n01/n01/acc/TOOLS/bin:$PATH
 export LD_LIBRARY_PATH=/work/n01/n01/acc/TOOLS/lib:$LD_LIBRARY_PATH
 #
-  OUTDIR=/work/scratch-pw/${USER}/HD/TEM_p083
-  MAP_SAVDIR=/home/users/acc/TOOLS/MAPS    # needs to be changed if saving new maps
-  MAPDIR=/work/scratch-pw/${USER}/MAPS
-#
+</pre></div>
+</div>
+<div class="hilite"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>OUTDIR=/work/scratch-pw/${USER}/HD/TEM_p083
+MAP_SAVDIR=/home/users/acc/TOOLS/MAPS    # needs to be changed if saving new maps
+MAPDIR=/work/scratch-pw/${USER}/MAPS
+</pre></div>
+</div>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#
   DTADIR=/gws/nopw/j04/nemo_vol1/ORCA0083-N006/means
   BINDIR=/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim
   LOGO=/home/users/acc/DEVTOOLS/NEMOSIM/NemoSim/data/NOC_logo_white.png
@@ -524,13 +535,17 @@ export LD_LIBRARY_PATH=/work/n01/n01/acc/TOOLS/lib:$LD_LIBRARY_PATH
   # cs=div_blue2darkred_86.pal
   cs=pastel2.pal
   if [ ! -d ${OUTDIR} ] ; then mkdir -p  ${OUTDIR} ; fi
-  if [ ! -d ${MAPDIR} ] ; then mkdir -p  ${MAPDIR} ; fi
-  if [ ! -e ${MAPDIR}/${MAPFILE} ] ; then
-    if [ -e ${MAP_SAVDIR}/${MAPFILE} ] ; then
-      cp -p ${MAP_SAVDIR}/${MAPFILE} ${MAPDIR}/${MAPFILE}
-    fi
+</pre></div>
+</div>
+<div class="hilite"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if [ ! -d ${MAPDIR} ] ; then mkdir -p  ${MAPDIR} ; fi
+if [ ! -e ${MAPDIR}/${MAPFILE} ] ; then
+  if [ -e ${MAP_SAVDIR}/${MAPFILE} ] ; then
+    cp -p ${MAP_SAVDIR}/${MAPFILE} ${MAPDIR}/${MAPFILE}
   fi
-#
+fi
+</pre></div>
+</div>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#
   tsklist=${OUTDIR}/tasklist
   if [ -e $tsklist ] ; then rm $tsklist ; fi
 #
@@ -586,14 +601,19 @@ hardwired into the script to save time. The remaining structure of the script re
 same but the job has to be submitted to the par-multi queue where up to 16 cores per node
 can be used. The following example uses 80 cores (5 nodes) to produce 80 frames
 simultaneously and completes the entire sequence in just over 2 minutes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">mk_HDframes_scratch_parmulti</span><span class="o">.</span><span class="n">slurm</span>
+#!/bin/bash
 #SBATCH --job-name=mkframp
 #SBATCH --time=00:10:00
-#SBATCH --nodes=5
+</pre></div>
+</div>
+<div class="hilite"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#SBATCH --nodes=5
 #SBATCH --ntasks=80
 #SBATCH --ntasks-per-node=16
 #SBATCH --partition=par-multi
-#
+</pre></div>
+</div>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#
 # need jaspy for ncks:
 module load jaspy
 #
@@ -643,26 +663,33 @@ export LD_LIBRARY_PATH=/work/n01/n01/acc/TOOLS/lib:$LD_LIBRARY_PATH
 n=0
 m=0
 for fr in `cat mxl_list | sed -e&#39;s/d05P/d05T/g&#39;`
-#for fr in `head -24 mxl_list | sed -e&#39;s/d05P/d05T/g&#39;`
 do
   nn=`printf &quot;%4.4d&quot; $n`
   outf=$OUTDIR/temp083_$nn.png
       if [ ! -f ${outf} ]; then
         dstr=`echo $fr | sed -e &#39;s/.*ORCA0083-N06_\(....\)\(..\)\(..\).*/\3\2\1/&#39;`
         var=potemp
-# ncvarlst is a bit slow. Since we know when the change occurs (01/01/2013; n =509) just use the frame counter
+</pre></div>
+</div>
+<div class="hilite"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span># ncvarlst is a bit slow. Since we know when the change occurs (01/01/2013; n =509) just use the frame counter
 #       if [ $( ncvarlst ${DTADIR}/$fr | grep -c thetao ) -eq 1 ] ; then var=thetao ; fi
         if [ $n -gt 508 ] ; then var=thetao ; fi
-        echo $m  ${basecmd[@]} -d ${var} -f ${DTADIR}/$fr -o ${outf} -dateclk 56 1538 373 ${dstr} &gt;&gt; $tsklist
-        m=$(( $m + 1 ))
-      fi
-  n=$(( $n + 1 ))
-  if [ $m -eq 80 ]; then
-   echo &quot;A========Running srun===========&quot;$nn
-   head -1l $tsklist
-   srun --gres=gpu:0 --mpi=none --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f, \
-        --ntasks=$m  --multi-prog $tsklist  &amp;
-   wait
+</pre></div>
+</div>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      echo $m  ${basecmd[@]} -d ${var} -f ${DTADIR}/$fr -o ${outf} -dateclk 56 1538 373 ${dstr} &gt;&gt; $tsklist
+      m=$(( $m + 1 ))
+    fi
+n=$(( $n + 1 ))
+</pre></div>
+</div>
+<div class="hilite"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if [ $m -eq 80 ]; then
+ echo &quot;A========Running srun===========&quot;$nn
+ head -1l $tsklist
+ srun --gres=gpu:0 --mpi=none --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f, \
+      --ntasks=$m  --multi-prog $tsklist  &amp;
+</pre></div>
+</div>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   wait
    echo &quot;=========Finished srun==========&quot;
    m=0
    rm $tsklist
@@ -671,9 +698,13 @@ done
 if [ $m -gt 0 ]; then
  echo &quot;B========Running srun===========&quot;
  head -1l $tsklist
- srun --gres=gpu:0 --mpi=none --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f, \
-      --ntasks=$m  --multi-prog $tsklist &amp;
- wait
+</pre></div>
+</div>
+<div class="hilite"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>srun --gres=gpu:0 --mpi=none --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f, \
+     --ntasks=$m  --multi-prog $tsklist &amp;
+</pre></div>
+</div>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span> wait
  echo &quot;=========Finished srun==========&quot;
  m=0
  rm $tsklist
@@ -686,15 +717,20 @@ date
 interest, it is worth noting that the LOTUS cluster is a hetrogeneous mix that includes
 many nodes with more than 16 cores per node. We can target, for example the skylake, 24
 core per node parts of the cluster and achieve a slightly faster result with fewer nodes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">mk_HDframes_scratch_skylake</span><span class="o">.</span><span class="n">slurm</span>
+#!/bin/bash
 #SBATCH --job-name=mkframp
 #SBATCH --time=00:07:00
-#SBATCH --nodes=4
+</pre></div>
+</div>
+<div class="hilite"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#SBATCH --nodes=4
 #SBATCH --ntasks=96
 #SBATCH --ntasks-per-node=24
 #SBATCH --partition=par-multi
 #SBATCH --constraint=skylake348G
-#
+</pre></div>
+</div>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#
 # need jaspy for ncks:
 module load jaspy
 #
@@ -757,13 +793,17 @@ do
         m=$(( $m + 1 ))
       fi
   n=$(( $n + 1 ))
-  if [ $m -eq 96 ]; then
-   echo &quot;A========Running srun===========&quot;$nn
-   head -1l $tsklist
-   srun --gres=gpu:0 --mpi=none \
-        --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17, \
-        --ntasks=$m  --multi-prog $tsklist  &amp;
-   wait
+</pre></div>
+</div>
+<div class="hilite"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if [ $m -eq 96 ]; then
+ echo &quot;A========Running srun===========&quot;$nn
+ head -1l $tsklist
+ srun --gres=gpu:0 --mpi=none \
+      --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17, \
+      --ntasks=$m  --multi-prog $tsklist  &amp;
+</pre></div>
+</div>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   wait
    echo &quot;=========Finished srun==========&quot;
    m=0
    rm $tsklist
@@ -772,10 +812,14 @@ done
 if [ $m -gt 0 ]; then
  echo &quot;B========Running srun===========&quot;
  head -1l $tsklist
- srun --gres=gpu:0 --mpi=none \
-      --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17, \
-      --ntasks=$m  --multi-prog $tsklist &amp;
- wait
+</pre></div>
+</div>
+<div class="hilite"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>srun --gres=gpu:0 --mpi=none \
+     --cpu-bind v,map_cpu:0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17, \
+     --ntasks=$m  --multi-prog $tsklist &amp;
+</pre></div>
+</div>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span> wait
  echo &quot;=========Finished srun==========&quot;
  m=0
  rm $tsklist
@@ -797,7 +841,7 @@ with a:</p>
 is yet to be found.</p>
 </div>
 <div class="section" id="encoding-the-video-sequence">
-<h2>Encoding the video sequence<a class="headerlink" href="#encoding-the-video-sequence" title="Permalink to this headline">¶</a></h2>
+<h2>13. Encoding the video sequence<a class="headerlink" href="#encoding-the-video-sequence" title="Permalink to this headline">¶</a></h2>
 <p>There are many ways to turn a numbered sequence of images into an encoded video and many
 of these methods will produce poor quality results unless some control is exercised over
 default settings. Chiefly this is because most techniques are meant for encoding video

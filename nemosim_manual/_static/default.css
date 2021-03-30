@@ -28,6 +28,15 @@ a:hover {
     color: #2491CF;
 }
 
+.hilite {
+    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    font-size: 0.95em;
+    letter-spacing: 0.015em;
+    background-color: yellow;
+    color: black;
+    padding: 0.5em;
+}
+
 pre {
     font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
     font-size: 0.95em;
